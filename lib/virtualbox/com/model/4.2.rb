@@ -1,8 +1,33 @@
 require_relative '4.2-gen'
+require 'set'
 
 module VirtualBox
 module COM
 module Model
+
+
+class Machine < AbstractInterface
+    ONLINE_STATES = Set.new [ :running, 
+                              :paused, 
+                              :stuck,
+                              :teleporting,
+                              :live_snapshotting,
+                              :starting,
+                              :stopping,
+                              :saving,
+                              :restoring,
+                              :teleporting_paused_vm,
+                              :teleporting_in,
+                              :fault_tolerant_syncing,
+                              :deleting_snapshot_online,
+                              :deleting_snapshot_paused ]
+
+    def is_online?
+        ONLINE_STATES.include?(state)
+    end
+end
+
+
 
 class Progress < AbstractInterface
     # This method blocks the execution while the operations represented
