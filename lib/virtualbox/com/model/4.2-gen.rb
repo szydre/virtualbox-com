@@ -1228,8 +1228,8 @@ class Machine < AbstractInterface
   property :memory_balloon_size, UINT32
   property :page_fusion_enabled, BOOL
   property :vram_size, UINT32
-  property :accelerate3d_enabled, BOOL
-  property :accelerate2d_video_enabled, BOOL
+  property :accelerate_3d_enabled, BOOL
+  property :accelerate_2d_video_enabled, BOOL
   property :monitor_count, UINT32
   property :video_capture_enabled, BOOL
   property :video_capture_file, WSTRING
