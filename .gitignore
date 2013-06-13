@@ -1,0 +1,9 @@
+doc/*
+.yardoc/*
+pkg/*
+test/coverage/*
+.bundle/*
+vendor/*
+Gemfile.lock
+test.rb
+*.rbc
