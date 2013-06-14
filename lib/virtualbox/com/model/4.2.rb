@@ -1,4 +1,4 @@
-require_relative '4.2-gen'
+require_relative '4.2-generated'
 require 'set'
 
 module VirtualBox
@@ -20,7 +20,8 @@ class Machine < AbstractInterface
                               :teleporting_in,
                               :fault_tolerant_syncing,
                               :deleting_snapshot_online,
-                              :deleting_snapshot_paused ]
+                              :deleting_snapshot_paused,
+                            ]
 
     def is_online?
         ONLINE_STATES.include?(state)
@@ -109,7 +110,7 @@ class EventSource < AbstractInterface
         :on_drag_and_drop_mode_changed    => :DragAndDropModeChangedEvent,
     }
 
-    def getEvent(*args)
+    def get_casted_event(*args)
         if e = get_event(*args)
             (model = MODEL_MAP[e.type]) ? e.cast(model) : e
         end
