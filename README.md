@@ -11,6 +11,10 @@ unmaintained [virtualbox](https://github.com/mitchellh/virtualbox) gem
 by [Mitchell Hashimoto](https://github.com/mitchellh) from which
 part of this code belongs.
 
+If you need a high level API take a look at
+[ruby-virtualbox](https://github.com/sdalu/ruby-virtualbox) which 
+rely on this gem but provide a more rubyish interface.
+
 
 ## Installation and Requirements
 
