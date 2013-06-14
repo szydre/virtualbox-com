@@ -138,17 +138,17 @@ class Sig
                 results << data.length
                 
                 # Create the array
-                c_type, type = mangling(type.first)
+                c_type, i_type = mangling(type.first)
                 
                 # If its a regular type (int, bool, etc.) then just make it an
                 # array of that
-                if type != :interface
+                if i_type != :interface
                     # Build a pointer to an array of values
                     result = ::FFI::MemoryPointer.new(c_type, data.length)
                     adder = result.method("put_#{c_type}")
                     data.each_with_index do |single, index|
                         value = []
-                        single_type_to_arg([single], type[0], value)
+                        single_type_to_arg([single], [type[0], :in], value)
                         adder.call(index, value.first)
                     end
                     
@@ -158,7 +158,7 @@ class Sig
                     array = ::FFI::MemoryPointer.new(:pointer, data.length)
                     data.each_with_index do |datum, i|
                         converted = []
-                        single_type_to_arg([datum], type.first, converted)
+                        single_type_to_arg([datum], [type[0], :in], converted)
                         array[i].put_pointer(0, converted.first)
                     end
                     
