@@ -34,32 +34,8 @@ class AbstractModel
 end
 
 
-class AbstractEnum < AbstractModel
-    extend Enumerable
-    def self.map(value = nil)
-        if value
-            m = {}
-            if Array === value
-            then value.each_index {|i|   m[value[i]] = i }
-            else value.each       {|k,v| m[k] = v        }
-            end            
-            @map = m
-        end
-        
-        @map
-    end
-
-    # Iterate over the enum, yielding each item to a block.
-    def self.each
-        @map.each do |key, value|
-            yield key
-        end
-    end
-end
 
 class AbstractInterface < AbstractModel
-    attr_reader :implementer
-
     class << self
 
         # Extends the current model with another one.
@@ -104,9 +80,6 @@ class AbstractInterface < AbstractModel
             members.select {|s| s.kind_of?(Spec::Property) }
         end
 
-
-#                  nsresult (*GetMessage)(void *pThis, PRUnichar * *aMessage);
-        
         private
         def h ; @h ||= {} ; end
     end

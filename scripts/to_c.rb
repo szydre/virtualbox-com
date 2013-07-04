@@ -32,10 +32,11 @@ module VirtualBox
     end
 end
 
+require_relative '../lib/virtualbox/com/abstracts'
 require_relative 'abstracts'
 require_relative 'sig'
 require_relative 'spec'
-require_relative '4.2'
+require_relative '../lib/virtualbox/com/model/4.2-generated'
 
 
 
