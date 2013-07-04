@@ -11,9 +11,24 @@ module Model
 
 class NSISupports < AbstractInterface
   iid      "00000000-0000-0000-c000-000000000046"
-  function :QueryInterface, :pointer, [ :pointer ], :hide => true
-  function :AddRef,  nil, [],                       :hide => true
-  function :Release, nil, [],                       :hide => true
+  function :QueryInterface, PTR, [ PTR ], :hide => true
+  function :AddRef,  nil, [],             :hide => true
+  function :Release, nil, [],             :hide => true
+end
+
+class NSIException < AbstractInterface
+  iid      "f3a8d3b4-c424-4edc-8bf6-8974c983ba78"
+  extends :NSISupports
+  property :message,       WSTRING,        :readonly => true
+  property :result,        UINT32,         :readonly => true
+  property :name,          WSTRING,        :readonly => true
+  property :filename,      WSTRING,        :readonly => true
+  property :line_number,   UINT32,         :readonly => true
+  property :column_number, UINT32,         :readonly => true
+  property :location,      PTR,            :readonly => true
+  property :inner,         :NSIException,  :readonly => true
+  property :data,          :NSISupports,   :readonly => true
+  function :to_string,     nil, [WSTRING]
 end
 
 class SettingsVersion < AbstractEnum
@@ -1024,6 +1039,7 @@ end
 
 class VirtualBoxErrorInfo < AbstractInterface
   iid      "f91e6e91-49e1-4fd2-b21e-269003350d06"
+  extends  :NSIException
   property :result_code, INT32, :readonly => true
   property :interface_i_d, WSTRING, :readonly => true
   property :component, WSTRING, :readonly => true
@@ -1120,7 +1136,7 @@ class Appliance < AbstractInterface
   property :machines, [WSTRING], :readonly => true
   function :read, :Progress, [WSTRING]
   function :interpret, nil, []
-  function :import_machines, :Progress, [[:mportOptions]]
+  function :import_machines, :Progress, [[:ImportOptions]]
   function :create_vfs_explorer, :VFSExplorer, [WSTRING]
   function :write, :Progress, [WSTRING, BOOL, WSTRING]
   function :get_warnings, [WSTRING], []
@@ -1884,7 +1900,7 @@ end
 class Framebuffer < AbstractInterface
   iid      "b7ed347a-5765-40a0-ae1c-f543eb4ddeaf"
   extends  :NSISupports
-  property :address, OCTET, :readonly => true
+  property :address, PTR, :readonly => true
   property :width, UINT32, :readonly => true
   property :height, UINT32, :readonly => true
   property :bits_per_pixel, UINT32, :readonly => true
@@ -1897,11 +1913,11 @@ class Framebuffer < AbstractInterface
   function :lock, nil, []
   function :unlock, nil, []
   function :notify_update, nil, [UINT32, UINT32, UINT32, UINT32]
-  function :request_resize, BOOL, [UINT32, UINT32, :pointer, UINT32, UINT32, UINT32, UINT32]
+  function :request_resize, BOOL, [UINT32, UINT32, PTR, UINT32, UINT32, UINT32, UINT32]
   function :video_mode_supported, BOOL, [UINT32, UINT32, UINT32]
-  function :get_visible_region, UINT32, [:pointer, UINT32]
-  function :set_visible_region, nil, [:pointer, UINT32]
-  function :process_v_hw_a_command, nil, [:pointer]
+  function :get_visible_region, UINT32, [PTR, UINT32]
+  function :set_visible_region, nil, [PTR, UINT32]
+  function :process_vhwa_command, nil, [PTR]
   setup
 end
 
@@ -1924,13 +1940,13 @@ class Display < AbstractInterface
   function :get_framebuffer, nil, [UINT32, [:out, :Framebuffer], [:out, INT32], [:out, INT32]]
   function :set_video_mode_hint, nil, [UINT32, BOOL, BOOL, INT32, INT32, UINT32, UINT32, UINT32]
   function :set_seamless_mode, nil, [BOOL]
-  function :take_screenshot, nil, [UINT32, :pointer, UINT32, UINT32]
+  function :take_screenshot, nil, [UINT32, PTR, UINT32, UINT32]
   function :take_screenshot_to_array, [OCTET], [UINT32, UINT32, UINT32]
   function :take_screenshot_png_to_array, [OCTET], [UINT32, UINT32, UINT32]
-  function :draw_to_screen, nil, [UINT32, :pointer, UINT32, UINT32, UINT32, UINT32]
+  function :draw_to_screen, nil, [UINT32, PTR, UINT32, UINT32, UINT32, UINT32]
   function :invalidate_and_update, nil, []
   function :resize_completed, nil, [UINT32]
-  function :complete_v_hw_a_command, nil, [:pointer]
+  function :complete_vhwa_command, nil, [PTR]
   function :viewport_changed, nil, [UINT32, UINT32, UINT32, UINT32, UINT32]
   setup
 end
@@ -2036,7 +2052,7 @@ class USBController < AbstractInterface
   iid      "01e6f13a-0580-452f-a40f-74e32a5e4921"
   extends  :NSISupports
   property :enabled, BOOL
-  property :enabled_e_h_c_i, BOOL
+  property :enabled_ehci, BOOL
   property :proxy_available, BOOL, :readonly => true
   property :usb_standard, UINT16, :readonly => true
   property :device_filters, [:USBDeviceFilter], :readonly => true
