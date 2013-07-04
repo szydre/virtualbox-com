@@ -251,6 +251,7 @@ static VALUE cBlob		= Qundef;
 static VALUE cWString		= Qundef;
 static VALUE cCArray		= Qundef;
 static VALUE cIID		= Qundef;
+static VALUE cAbstractModel     = Qundef;
 static VALUE cAbstractInterface = Qundef;
 static VALUE cAbstractEnum      = Qundef;
 
@@ -1043,10 +1044,12 @@ void Init_vbox(void) {
     mModel             = rb_define_module_under(mCOM, "Model");
 
     /* Define abstract enumerations / interfaces */
+    cAbstractModel
+	= rb_define_class_under(mCOM, "AbstractModel",     rb_cObject);
     cAbstractEnum 
-	= rb_define_class_under(mCOM, "AbstractEnum",      rb_cObject);
+	= rb_define_class_under(mCOM, "AbstractEnum",      cAbstractModel);
     cAbstractInterface 
-	= rb_define_class_under(mCOM, "AbstractInterface", rb_cObject);
+	= rb_define_class_under(mCOM, "AbstractInterface", cAbstractModel);
 
     /* Retrieve exception map */
     oExceptionMap 

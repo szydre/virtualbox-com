@@ -20,10 +20,6 @@ module COM
         rescue NameError
             nil
         end
-
-        def self.create(name, *args)
-            self.get(name).new(*args)
-        end
     end
 
     # Information about VirtualBox version
@@ -38,20 +34,8 @@ end
 end
 
 
-# Exceptions
 require_relative 'com/exceptions'
+require_relative 'com/abstracts'
 
-# Abstract class for model definitions
-require_relative 'com/abstract_enum'
-require_relative 'com/abstract_interface'
 
-# Classes
-require_relative 'com/iid'
-
-# Implementation
-# It needs to add the following to VirtualBox::COM
-#  - Methods: virtualbox, session
-#  - Class  : Implementer
-#  - Types  : INT8, INT16, INT32, INT64, UINT8, UINT16, UINT32, UINT64,
-#             WSTRING, BOOL
-require_relative 'com/xpcomc-ffi'
+require_relative 'com/xpcomc-native/4.2'

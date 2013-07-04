@@ -33,6 +33,15 @@ end
 end
 
 
+module VirtualBox
+module COM
+module Model
+    def self.create(name, *args)
+        self.get(name).new(*args)
+    end
+end
+end
+end
 
 # Load FFI implementation
 require_relative 'xpcomc-ffi/xpcomc-vbox'
