@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage      = "http://github.com/sdalu/virtualbox-com"
   s.summary       = "Low level VirtualBox binding"
   s.description   = "Low level VirtualBox binding using native code"
-  s.extensions    = [ "ext/virtualbox-com/extconf.rb" ]
+  s.extensions    = [ "ext/virtualbox-com/**/extconf.rb" ]
 
 
   s.required_rubygems_version = ">= 1.3.6"
