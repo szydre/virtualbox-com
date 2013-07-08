@@ -53,8 +53,8 @@ io = $stdout
 M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
     next unless model <= VirtualBox::COM::AbstractInterface
     puts "struct #{name} {"
-    if e = model.extends
-        puts "  struct #{e.nickname} #{e.nickname};"
+    if (s = model.superclass) < VirtualBox::COM::AbstractInterface
+        puts "  struct #{s.nickname} #{s.nickname};"
     end
     model.members.each {|spec|
         spec.signatures.each {|n, sig|
@@ -90,10 +90,6 @@ M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
 io << "static void comclass_init(VALUE under) {\n"
 M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
     kAbstract = 'c' + model.superclass.name.split('::')[-1]
-    if model.respond_to?(:extends) && e = model.extends
-        kAbstract = 'c' + e.name.split('::')[-1]
-    end
-
     
     io << "  {\n"
     io << "    iid_t iid  = #{model::IID.to_struct};\n"

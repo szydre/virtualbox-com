@@ -24,9 +24,6 @@ class AbstractModel
         const_set(:IID, IID.new(str))
     end
         
-    def self.setup(opts={})
-    end
-
 
     def self.nickname
         self.name.split('::')[-1]

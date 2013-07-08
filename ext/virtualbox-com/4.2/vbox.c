@@ -8,157 +8,10 @@
 #include <ruby.h>
 #include <ruby/encoding.h>
 
-/* Extra type used by generated classes */
-typedef int       bool_t;
-typedef uint16_t *wstring_t;
-typedef struct iid {
-    uint32_t m0;
-    uint16_t m1;
-    uint16_t m2;
-    uint8_t  m3[8];
-} iid_t;
-
-struct obj {
-    void * vtbl;
-};
-
-
-
-
-#define VBOX_APP_HOME "VBOX_APP_HOME"
+#include "../types.h"
+#include "../helpers.h"
 
 #define NS_CHECK(x) ns_check(x)
-
-
-
-/*======================================================================
- * Define basic structure and functions necessary to init XPCom 
- * Open dynamic library and retrieve XPCOM functions
- *======================================================================*/
-
-#define VBOX_XPCOMC_VERSION     0x00020000U
-typedef struct VBOX_XPCOMC {
-    unsigned cb;
-    unsigned uVersion;
-    unsigned int (*get_version    )(void);    
-    void         (*initialize     )(const char *virtualBoxIID,
-				    void **virtualBox,
-				    const char *sessionIID,
-				    void **session);
-    void         (*uninitialize   )(void);
-    void         (*unalloc_mem    )(void *pv);
-    void         (*utf16_free     )(wstring_t u16);
-    void         (*utf8_free      )(char *u8);
-    int          (*utf16_to_utf8  )(const wstring_t u16, char **u8);
-    int          (*utf8_to_utf16  )(const char *u8, wstring_t *u16);
-    void         (*get_event_queue)(void **eventQueue);
-    unsigned uEndVersion;
-} * VBOX_XPCOMC;
-typedef VBOX_XPCOMC (*VBOX_GET_XPCOMC_FUNCTIONS)(unsigned uVersion);
-
-
-#if defined(__linux__) || defined(__linux_gnu__) || \
-    defined(__sun__) || defined(__FreeBSD__)
-# define VBOX_DYNLIB_NAME    "VBoxXPCOMC.so"
-#elif defined(__APPLE__)
-# define VBOX_DYNLIB_NAME    "VBoxXPCOMC.dylib"
-#elif defined(_MSC_VER) || defined(__OS2__)
-# define VBOX_DYNLIB_NAME    "VBoxXPCOMC.dll"
-#else
-# error "Need to be ported to this platform"
-#endif
-
-
-#if defined(__OS2__)
-# define VBOX_GET_XPCOMC_FUNCTIONS_SYMBOL_NAME   "_VBoxGetXPCOMCFunctions"
-#else
-# define VBOX_GET_XPCOMC_FUNCTIONS_SYMBOL_NAME   "VBoxGetXPCOMCFunctions"
-#endif
-
-
-static char *VBoxHome[] = {
-#if defined(__gnu__linux__) || defined(__linux__)
-    "/opt/VirtualBox",
-    "/usr/lib/virtualbox",
-#elif defined(__sun__)
-    "/opt/VirtualBox/amd64",
-    "/opt/VirtualBox/i386",
-#elif defined(__APPLE__)
-    "/Application/VirtualBox.app/Contents/MacOS",
-#elif defined(__FreeBSD__)
-    "/usr/local/lib/virtualbox",
-#endif
-    NULL
-};
-
-
-static VBOX_XPCOMC virtualbox_load(char *home, void **dl_ptr) {
-    char *path      = NULL;
-    void *dl        = NULL;
-    void *sym       = NULL;
-    void *funcs     = NULL;
-
-    /* Deal with environment variable */
-    if (home) { setenv(VBOX_APP_HOME, home, 1); } 
-    else          { unsetenv(VBOX_APP_HOME);            }
-
-    /* Build library full path */
-    if (home) {
-	size_t len = strlen(home) + 1 + sizeof(VBOX_DYNLIB_NAME);
-	path = malloc(len+1);
-	snprintf(path, len+1, "%s/%s", home, VBOX_DYNLIB_NAME);
-    }
-
-    /* Open lib */
-    if (! (dl = dlopen(path, RTLD_NOW | RTLD_LOCAL)))
-	goto failed;
-
-    /* Retrieve symbole */
-    if (! (sym = dlsym(dl, VBOX_GET_XPCOMC_FUNCTIONS_SYMBOL_NAME))) {
-	rb_warn("dlsym(%s/%s): %s", 
-		path, VBOX_GET_XPCOMC_FUNCTIONS_SYMBOL_NAME, dlerror());
-	goto failed;
-    }
-    
-    /* Retrieve vbox xpcomc functions */
-    if (! (funcs = ((VBOX_GET_XPCOMC_FUNCTIONS)sym)(VBOX_XPCOMC_VERSION))) {
-	rb_warn("%s: pfnGetFunctions(%#x) failed", path, VBOX_XPCOMC_VERSION);
-	goto failed;
-    }
-
-    /* Returns */
-    free(path);
-    if (*dl_ptr) *dl_ptr = dl;
-    return funcs;
-
- failed:
-    if (dl  ) dlclose(dl);
-    if (path) free(path);
-    return NULL;
-}
-
-static VBOX_XPCOMC virtualbox_init(void **dl_ptr) {
-    char  *home    = getenv(VBOX_APP_HOME);
-    char **hlist   = VBoxHome;
-
-    if (home)
-        return virtualbox_load(home, dl_ptr);
-
-    while ((home = *hlist++)) {
-	VBOX_XPCOMC xpcom = virtualbox_load(home, dl_ptr);
-	if (xpcom) return xpcom;
-    }
-
-    return virtualbox_load(NULL, dl_ptr);
-}
-
-static void virtualbox_destroy(void *dl) {
-    if (dl) {
-#if 0 /* VBoxRT.so doesn't like being reloaded. See @bugref{3725}. */
-        dlclose(dl);
-#endif
-    }	
-}
 
 
 
@@ -168,79 +21,10 @@ static void virtualbox_destroy(void *dl) {
  *  - handle conversion to fixed size type (int, pointer)
  *======================================================================*/
 
-#define SYM(str) ID2SYM(rb_intern(str))
+
+extern VBOX_XPCOMC virtualbox_com_xpcom;
 
 
-#if   2 == SIZEOF_SHORT
-#  define NUM2INT16(val)  NUM2SHORT(val)
-#  define NUM2UINT16(val) NUM2USHORT(val)
-#elif 2 == SIZEOF_INT
-#  define NUM2INT16(val)  NUM2INT(val)
-#  define NUM2UINT16(val) NUM2UINT(val)
-#elif 2 == SIZEOF_LONG
-#  define NUM2INT16(val)  NUM2LONG(val)
-#  define NUM2UINT16(val) NUM2ULONG(val)
-#elif 2 == SIZEOF_LONG_LONG
-#  define NUM2INT16(val)  NUM2LL(val)
-#  define NUM2UINT16(val) NUM2ULL(val)
-#else
-#  error "unknown conversion"
-#endif
-
-#if   4 == SIZEOF_SHORT
-#  define NUM2INT32(val)  NUM2SHORT(val)
-#  define NUM2UINT32(val) NUM2USHORT(val)
-#elif 4 == SIZEOF_INT
-#  define NUM2INT32(val)  NUM2INT(val)
-#  define NUM2UINT32(val) NUM2UINT(val)
-#elif 4 == SIZEOF_LONG
-#  define NUM2INT32(val)  NUM2LONG(val)
-#  define NUM2UINT32(val) NUM2ULONG(val)
-#elif 4 == SIZEOF_LONG_LONG
-#  define NUM2INT32(val)  NUM2LL(val)
-#  define NUM2UINT32(val) NUM2ULL(val)
-#else
-#  error "unknown conversion"
-#endif
-
-#if   8 == SIZEOF_SHORT
-#  define NUM2INT64(val)  NUM2SHORT(val)
-#  define NUM2UINT64(val) NUM2USHORT(val)
-#elif 8 == SIZEOF_INT
-#  define NUM2INT64(val)  NUM2INT(val)
-#  define NUM2UINT64(val) NUM2UINT(val)
-#elif 8 == SIZEOF_LONG
-#  define NUM2INT64(val)  NUM2LONG(val)
-#  define NUM2UINT64(val) NUM2ULONG(val)
-#elif 8 == SIZEOF_LONG_LONG
-#  define NUM2INT64(val)  NUM2LL(val)
-#  define NUM2UINT64(val) NUM2ULL(val)
-#else
-#  error "unknown conversion"
-#endif
-
-
-#if SIZEOF_LONG == SIZEOF_VOIDP
-#  define NUM2PTR(val) NUM2ULONG(val)
-#  define PTR2NUM(ptr) ULONG2NUM(ptr)
-#elif SIZEOF_LONG_LONG == SIZEOF_VOIDP
-#  define NUM2PTR(val) NUM2ULL(val)
-#  define PTR2NUM(ptr) ULL2NUM(ptr)
-#else
-#  error "unknown converion"
-#endif
-
-
-
-
-
-
-
-
-
-
-
-static void * vlib  		= NULL;
 static VBOX_XPCOMC xpcom        = NULL;
 
 static VALUE mVirtualBox 	= Qundef;
@@ -979,14 +763,12 @@ static VALUE NSISupports__cast(VALUE self, VALUE model_name) {
 
 
 /* ruby calls this to load the extension */
-void Init_vbox(void) {
+void Init_vbox_4_2(void) {
     VALUE oOne  = INT2FIX(1);
     VALUE oTwo  = INT2FIX(2);
     VALUE p15, p16, p31, p32, p63, p64;
-    void *vbox, *session, *queue;
 
-    /* Virtualbox */
-    xpcom = virtualbox_init(&vlib);
+    xpcom = virtualbox_com_xpcom;
 
     /* Basic ruby helper objects */
     _IID        = rb_intern("IID");
@@ -1067,24 +849,12 @@ void Init_vbox(void) {
     rb_define_method(cNSISupports, "cast",  NSISupports__cast,  1);
     rb_define_method(cNSISupports, "dup",   NSISupports__dup,   0);
     rb_define_method(cNSISupports, "clone", NSISupports__clone, 0);
+}
 
+VALUE virtualbox_com_virtualbox(void *ptr) {
+    return convert_interface(ptr, cVirtualBox);
+}
 
-    /* Instantiate VirtualBox and Session class */
-    xpcom->initialize("3b2f08eb-b810-4715-bee0-bb06b9880ad2", &vbox,
-		      "12f4dcdb-12b2-4ec1-b7cd-ddd9f6c5bf4d", &session);
-    if (vbox    == NULL)
-        rb_fatal("VirtualBox::COM could not get virtualbox handle");
-    if (session == NULL)
-        rb_fatal("VirtualBox::COM could not get session handle");
-    rb_const_set(mCOM, rb_intern("VIRTUALBOX"), 
-		 convert_interface(vbox, cVirtualBox));
-    rb_const_set(mCOM, rb_intern("SESSION"), 
-		 convert_interface(session, cSession));
-
-#if 0
-    /* Instantiate event queue */
-    xpcom->get_event_queue(&queue);
-    printf("Got the event queue: %p\n", (void *)queue);
-#endif
-
+VALUE virtualbox_com_session(void *ptr) {
+    return convert_interface(ptr, cSession);
 }

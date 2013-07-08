@@ -1,4 +1,4 @@
-require_relative '4.2-generated'
+
 require 'set'
 
 module VirtualBox
@@ -6,7 +6,7 @@ module COM
 module Model
 
 
-class Machine < AbstractInterface
+class Machine < NSISupports
     ONLINE_STATES = Set.new [ :running, 
                               :paused, 
                               :stuck,
@@ -30,7 +30,7 @@ end
 
 
 
-class Progress < AbstractInterface
+class Progress < NSISupports
     # This method blocks the execution while the operations represented
     # by this {Progress} object execute, but yields a block every `x`
     # percent (interval given in parameters).
@@ -62,7 +62,7 @@ class Progress < AbstractInterface
 end
 
 
-class EventSource < AbstractInterface
+class EventSource < NSISupports
     MODEL_MAP = {
         :machine_event                    => :MachineEvent,
         :snapshot_event                   => :SnapshotEvent,

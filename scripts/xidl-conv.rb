@@ -1,42 +1,66 @@
 require 'bundler/setup'
+require 'getoptlong'
 require 'nokogiri'
-require_relative 'util'
-
-XIDL = Nokogiri::XML(File.new(File.dirname(__FILE__) + '/VirtualBox.xidl'))
-LIB  = XIDL.root.xpath('library')
+require 'virtualbox/com/util'
 
 
+# Parse command line
+opts = GetoptLong.new(
+	[ "--xidl",		GetoptLong::REQUIRED_ARGUMENT ],
+	[ "--file",		GetoptLong::REQUIRED_ARGUMENT ],
+	[ "--help",		GetoptLong::NO_ARGUMENT ] )
 
-io = $stdout
+xidl = nil
+file = nil
 
-io << <<-EOT
+begin
+    opts.each do |opt, arg|
+	case opt
+	when "--xidl" then xidl = arg
+	when "--file" then file = arg
+        when "--help" then raise
+	end
+    end
+    raise if xidl.nil?
+rescue
+    $stderr.print <<EOT
+usage: xidl-conv.rb: --xidl file [--file output]
+    --xidl        VirtualBox XIDL file
+    --file        path to generated output
+    --help        Show this message.
+
+EOT
+    exit 0
+end
+
+
+XIDL    = Nokogiri::XML(File.new(xidl))
+LIB     = XIDL.root.xpath('library')
+IO      = file.nil? ? $stdout : File.open(file, 'w')
+
+IO << <<-EOT
 #
 # This file has been automatically generated from the VirtualBox.xidl
 #
 
 EOT
 
-io << "module VirtualBox\n"
-io << "module COM\n"
-io << "\n"
-io << "MODEL_VERSION = \"4.2\"\n"
-io << "\n"
-io << "module Model\n"
-io << "\n"
+IO << "module VirtualBox\n"
+IO << "module COM\n"
+IO << "module Model\n"
+IO << "\n"
 
 
-io << <<-EOT
+IO << <<-EOT
 class NSISupports < AbstractInterface
   iid      "00000000-0000-0000-c000-000000000046"
   function :QueryInterface, PTR, [ PTR ], :hide => true
   function :AddRef,  nil, [],             :hide => true
   function :Release, nil, [],             :hide => true
-  setup
 end
 
-class NSIException < AbstractInterface
+class NSIException < NSISupports
   iid      "f3a8d3b4-c424-4edc-8bf6-8974c983ba78"
-  extends :NSISupports
   property :message,       WSTRING,        :readonly => true
   property :result,        UINT32,         :readonly => true
   property :name,          WSTRING,        :readonly => true
@@ -47,42 +71,6 @@ class NSIException < AbstractInterface
   property :inner,         :NSIException,  :readonly => true
   property :data,          :NSISupports,   :readonly => true
   function :to_string,     nil, [WSTRING]
-  setup
-end
-
-
-clas NSIEventTarget < AbstractInterface
-  iid      "ea99ad5b-cc67-4efb-97c9-2ef620a59f2a"
-  extends :NSISupports
-  function post_event,     nil, [ PLEvent ]
-  function is_on_current_thread, BOOL, []
-  setup
-end
-
-
-class NSIEventQueue < AbstractInterface
-  iid      "176afb41-00a4-11d3-9f2a-00400553eef0"
-  extends  NSIEventTarget;
-  function init_event  PLEvent * aEvent, void * owner, PLHandleEventProc handler, PLDestroyEventProc destructor);
-  function post_synchronous_event PLEvent * aEvent, void * *aResult);
-  function pending_events PRBool *_retval);
-  function process_pending_events
-  function event_loop
-  function event_available PRBool *aResult);
-  function get_event PLEvent * *_retval);
-  function handle_event PLEvent * aEvent);
-  function wait_for_event  PLEvent * *_retval);
-  function  PRInt32 (*GetEventQueueSelectFD)(nsIEventQueue *pThis);
-  function init  PRBool aNative);
-  function init_from_PRThread PRThread * thread, PRBool aNative);
-  function init_from_PLQueue  PLEventQueue * aQueue);
-  function enter_monitor
-  function exit_monitor
-  function revoke_events void * owner);
-  function get_PLEventQueue  PLEventQueue * *_retval);
-  function is_queue_native, BOOL, []
-  function stop_accepting_events
-  setup
 end
 
 EOT
@@ -135,30 +123,28 @@ end
 
 # Enumeration
 for enum in LIB.xpath('enum')
-    io << "class #{enum[:name]} < AbstractEnum\n"
-    io << "  iid \"#{enum[:uuid]}\"\n"
-    io << "  map({\n"    
+    IO << "class #{enum[:name]} < AbstractEnum\n"
+    IO << "  iid \"#{enum[:uuid]}\"\n"
+    IO << "  map({\n"    
     enum.xpath('const').each {|c|
-        io << "    :%-40s => %s,\n" % [ c[:name].uncamelize, c[:value] ] }
-    io << "  })\n"
-    io << "  setup\n"
-    io << "end\n"
-    io << "\n"
+        IO << "    :%-40s => %s,\n" % [ c[:name].uncamelize, c[:value] ] }
+    IO << "  })\n"
+    IO << "end\n"
+    IO << "\n"
 end
 
 # Interface
 for interface in LIB.xpath('interface')
-    io << "class #{interface[:name][1..-1]} < AbstractInterface\n"
-    io << "  iid      \"#{interface[:uuid]}\"\n"
+    klass = case e=interface[:extends]
+            when 'AbstractInterface'
+            when '$errorinfo' then 'NSIException'
+            when '$unknown'   then 'NSISupports'
+            when /^I/         then e[1..-1]
+            else raise "Unknown extension"
+            end
 
-    case e=interface[:extends]
-    when nil
-    when '$errorinfo' then io << "  extends  :NSIException\n"
-    when '$unknown'   then io << "  extends  :NSISupports\n"
-    when /^I/         then io << "  extends  :#{e[1..-1]}\n"
-    else raise "Unknown extension"
-    end
-
+    IO << "class #{interface[:name][1..-1]} < #{klass}\n"
+    IO << "  iid      \"#{interface[:uuid]}\"\n"
 
     interface.xpath('attribute').each {|a|
         name = ':' + a[:name].uncamelize
@@ -167,7 +153,7 @@ for interface in LIB.xpath('interface')
         args = [ name, type ]
         args << opts if opts && !opts.empty?
 
-        io << "  property " << args.join(', ') << "\n"
+        IO << "  property " << args.join(', ') << "\n"
     }
     interface.xpath('method').each {|m|
         name = ':' + m[:name].uncamelize
@@ -181,17 +167,16 @@ for interface in LIB.xpath('interface')
             t
         }.join(', ') + ']'
 
-        io << "  function " << [name, ret, param].join(', ') << "\n"
+        IO << "  function " << [name, ret, param].join(', ') << "\n"
     }
 
-    io << "  setup\n"
-    io << "end\n"
-    io << "\n"
+    IO << "end\n"
+    IO << "\n"
 end
 
 
-io << "end\n"
-io << "end\n"
-io << "end\n"
+IO << "end\n"
+IO << "end\n"
+IO << "end\n"
 
-io.flush
+IO.flush

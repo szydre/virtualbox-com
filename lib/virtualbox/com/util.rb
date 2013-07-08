@@ -129,7 +129,6 @@ module Util
         "vm"            => "VM",
         "vd"            => "VD",
     }
-
 end
 
 end

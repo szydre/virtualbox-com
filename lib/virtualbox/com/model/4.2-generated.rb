@@ -16,9 +16,8 @@ class NSISupports < AbstractInterface
   function :Release, nil, [],             :hide => true
 end
 
-class NSIException < AbstractInterface
+class NSIException < NSISupports
   iid      "f3a8d3b4-c424-4edc-8bf6-8974c983ba78"
-  extends :NSISupports
   property :message,       WSTRING,        :readonly => true
   property :result,        UINT32,         :readonly => true
   property :name,          WSTRING,        :readonly => true
@@ -52,7 +51,6 @@ class SettingsVersion < AbstractEnum
     :v1_13                                    => 15,
     :future                                   => 99999,
   })
-  setup
 end
 
 class AccessMode < AbstractEnum
@@ -61,7 +59,6 @@ class AccessMode < AbstractEnum
     :read_only                                => 1,
     :read_write                               => 2,
   })
-  setup
 end
 
 class MachineState < AbstractEnum
@@ -94,7 +91,6 @@ class MachineState < AbstractEnum
     :first_transient                          => 8,
     :last_transient                           => 21,
   })
-  setup
 end
 
 class SessionState < AbstractEnum
@@ -106,7 +102,6 @@ class SessionState < AbstractEnum
     :spawning                                 => 3,
     :unlocking                                => 4,
   })
-  setup
 end
 
 class CPUPropertyType < AbstractEnum
@@ -116,7 +111,6 @@ class CPUPropertyType < AbstractEnum
     :pae                                      => 1,
     :synthetic                                => 2,
   })
-  setup
 end
 
 class HWVirtExPropertyType < AbstractEnum
@@ -130,7 +124,6 @@ class HWVirtExPropertyType < AbstractEnum
     :large_pages                              => 5,
     :force                                    => 6,
   })
-  setup
 end
 
 class FaultToleranceState < AbstractEnum
@@ -140,7 +133,6 @@ class FaultToleranceState < AbstractEnum
     :master                                   => 2,
     :standby                                  => 3,
   })
-  setup
 end
 
 class LockType < AbstractEnum
@@ -150,7 +142,6 @@ class LockType < AbstractEnum
     :shared                                   => 1,
     :vm                                       => 3,
   })
-  setup
 end
 
 class SessionType < AbstractEnum
@@ -161,7 +152,6 @@ class SessionType < AbstractEnum
     :remote                                   => 2,
     :shared                                   => 3,
   })
-  setup
 end
 
 class DeviceType < AbstractEnum
@@ -175,7 +165,6 @@ class DeviceType < AbstractEnum
     :usb                                      => 5,
     :shared_folder                            => 6,
   })
-  setup
 end
 
 class DeviceActivity < AbstractEnum
@@ -186,7 +175,6 @@ class DeviceActivity < AbstractEnum
     :reading                                  => 2,
     :writing                                  => 3,
   })
-  setup
 end
 
 class ClipboardMode < AbstractEnum
@@ -197,7 +185,6 @@ class ClipboardMode < AbstractEnum
     :guest_to_host                            => 2,
     :bidirectional                            => 3,
   })
-  setup
 end
 
 class DragAndDropMode < AbstractEnum
@@ -208,7 +195,6 @@ class DragAndDropMode < AbstractEnum
     :guest_to_host                            => 2,
     :bidirectional                            => 3,
   })
-  setup
 end
 
 class Scope < AbstractEnum
@@ -218,7 +204,6 @@ class Scope < AbstractEnum
     :machine                                  => 1,
     :session                                  => 2,
   })
-  setup
 end
 
 class BIOSBootMenuMode < AbstractEnum
@@ -228,7 +213,6 @@ class BIOSBootMenuMode < AbstractEnum
     :menu_only                                => 1,
     :message_and_menu                         => 2,
   })
-  setup
 end
 
 class ProcessorFeature < AbstractEnum
@@ -239,7 +223,6 @@ class ProcessorFeature < AbstractEnum
     :long_mode                                => 2,
     :nested_paging                            => 3,
   })
-  setup
 end
 
 class FirmwareType < AbstractEnum
@@ -251,7 +234,6 @@ class FirmwareType < AbstractEnum
     :efi64                                    => 4,
     :efidual                                  => 5,
   })
-  setup
 end
 
 class PointingHIDType < AbstractEnum
@@ -263,7 +245,6 @@ class PointingHIDType < AbstractEnum
     :usb_tablet                               => 4,
     :combo_mouse                              => 5,
   })
-  setup
 end
 
 class KeyboardHIDType < AbstractEnum
@@ -274,7 +255,6 @@ class KeyboardHIDType < AbstractEnum
     :usb_keyboard                             => 3,
     :combo_keyboard                           => 4,
   })
-  setup
 end
 
 class VFSType < AbstractEnum
@@ -285,7 +265,6 @@ class VFSType < AbstractEnum
     :s3                                       => 3,
     :web_dav                                  => 4,
   })
-  setup
 end
 
 class VFSFileType < AbstractEnum
@@ -301,7 +280,6 @@ class VFSFileType < AbstractEnum
     :socket                                   => 8,
     :white_out                                => 9,
   })
-  setup
 end
 
 class ImportOptions < AbstractEnum
@@ -310,7 +288,6 @@ class ImportOptions < AbstractEnum
     :keep_all_macs                            => 1,
     :keep_nat_macs                            => 2,
   })
-  setup
 end
 
 class VirtualSystemDescriptionType < AbstractEnum
@@ -341,7 +318,6 @@ class VirtualSystemDescriptionType < AbstractEnum
     :sound_card                               => 23,
     :settings_file                            => 24,
   })
-  setup
 end
 
 class VirtualSystemDescriptionValueType < AbstractEnum
@@ -352,7 +328,6 @@ class VirtualSystemDescriptionValueType < AbstractEnum
     :auto                                     => 3,
     :extra_config                             => 4,
   })
-  setup
 end
 
 class CleanupMode < AbstractEnum
@@ -363,7 +338,6 @@ class CleanupMode < AbstractEnum
     :detach_all_return_hard_disks_only        => 3,
     :full                                     => 4,
   })
-  setup
 end
 
 class CloneMode < AbstractEnum
@@ -373,7 +347,6 @@ class CloneMode < AbstractEnum
     :machine_and_child_states                 => 2,
     :all_states                               => 3,
   })
-  setup
 end
 
 class CloneOptions < AbstractEnum
@@ -384,7 +357,6 @@ class CloneOptions < AbstractEnum
     :keep_nat_macs                            => 3,
     :keep_disk_names                          => 4,
   })
-  setup
 end
 
 class AutostopType < AbstractEnum
@@ -395,7 +367,6 @@ class AutostopType < AbstractEnum
     :power_off                                => 3,
     :acpi_shutdown                            => 4,
   })
-  setup
 end
 
 class HostNetworkInterfaceMediumType < AbstractEnum
@@ -406,7 +377,6 @@ class HostNetworkInterfaceMediumType < AbstractEnum
     :ppp                                      => 2,
     :slip                                     => 3,
   })
-  setup
 end
 
 class HostNetworkInterfaceStatus < AbstractEnum
@@ -416,7 +386,6 @@ class HostNetworkInterfaceStatus < AbstractEnum
     :up                                       => 1,
     :down                                     => 2,
   })
-  setup
 end
 
 class HostNetworkInterfaceType < AbstractEnum
@@ -425,7 +394,6 @@ class HostNetworkInterfaceType < AbstractEnum
     :bridged                                  => 1,
     :host_only                                => 2,
   })
-  setup
 end
 
 class AdditionsFacilityType < AbstractEnum
@@ -440,7 +408,6 @@ class AdditionsFacilityType < AbstractEnum
     :graphics                                 => 1100,
     :all                                      => 2147483646,
   })
-  setup
 end
 
 class AdditionsFacilityClass < AbstractEnum
@@ -454,7 +421,6 @@ class AdditionsFacilityClass < AbstractEnum
     :third_party                              => 999,
     :all                                      => 2147483646,
   })
-  setup
 end
 
 class AdditionsFacilityStatus < AbstractEnum
@@ -470,7 +436,6 @@ class AdditionsFacilityStatus < AbstractEnum
     :failed                                   => 800,
     :unknown                                  => 999,
   })
-  setup
 end
 
 class AdditionsRunLevelType < AbstractEnum
@@ -481,7 +446,6 @@ class AdditionsRunLevelType < AbstractEnum
     :userland                                 => 2,
     :desktop                                  => 3,
   })
-  setup
 end
 
 class AdditionsUpdateFlag < AbstractEnum
@@ -490,7 +454,6 @@ class AdditionsUpdateFlag < AbstractEnum
     :none                                     => 0,
     :wait_for_update_start_only               => 1,
   })
-  setup
 end
 
 class FileSeekType < AbstractEnum
@@ -499,7 +462,6 @@ class FileSeekType < AbstractEnum
     :set                                      => 0,
     :current                                  => 1,
   })
-  setup
 end
 
 class ProcessInputFlag < AbstractEnum
@@ -508,7 +470,6 @@ class ProcessInputFlag < AbstractEnum
     :none                                     => 0,
     :end_of_file                              => 1,
   })
-  setup
 end
 
 class ProcessOutputFlag < AbstractEnum
@@ -517,7 +478,6 @@ class ProcessOutputFlag < AbstractEnum
     :none                                     => 0,
     :std_err                                  => 1,
   })
-  setup
 end
 
 class ProcessWaitForFlag < AbstractEnum
@@ -530,7 +490,6 @@ class ProcessWaitForFlag < AbstractEnum
     :std_out                                  => 8,
     :std_err                                  => 16,
   })
-  setup
 end
 
 class ProcessWaitResult < AbstractEnum
@@ -547,7 +506,6 @@ class ProcessWaitResult < AbstractEnum
     :std_err                                  => 8,
     :wait_flag_not_supported                  => 9,
   })
-  setup
 end
 
 class CopyFileFlag < AbstractEnum
@@ -558,7 +516,6 @@ class CopyFileFlag < AbstractEnum
     :update                                   => 2,
     :follow_links                             => 4,
   })
-  setup
 end
 
 class DirectoryCreateFlag < AbstractEnum
@@ -567,7 +524,6 @@ class DirectoryCreateFlag < AbstractEnum
     :none                                     => 0,
     :parents                                  => 1,
   })
-  setup
 end
 
 class DirectoryRemoveRecFlag < AbstractEnum
@@ -577,7 +533,6 @@ class DirectoryRemoveRecFlag < AbstractEnum
     :content_and_dir                          => 1,
     :content_only                             => 2,
   })
-  setup
 end
 
 class PathRenameFlag < AbstractEnum
@@ -588,7 +543,6 @@ class PathRenameFlag < AbstractEnum
     :replace                                  => 2,
     :no_symlinks                              => 4,
   })
-  setup
 end
 
 class ProcessCreateFlag < AbstractEnum
@@ -603,7 +557,6 @@ class ProcessCreateFlag < AbstractEnum
     :wait_for_std_err                         => 32,
     :expand_arguments                         => 64,
   })
-  setup
 end
 
 class ProcessPriority < AbstractEnum
@@ -612,7 +565,6 @@ class ProcessPriority < AbstractEnum
     :invalid                                  => 0,
     :default                                  => 1,
   })
-  setup
 end
 
 class SymlinkType < AbstractEnum
@@ -622,7 +574,6 @@ class SymlinkType < AbstractEnum
     :directory                                => 1,
     :file                                     => 2,
   })
-  setup
 end
 
 class SymlinkReadFlag < AbstractEnum
@@ -631,7 +582,6 @@ class SymlinkReadFlag < AbstractEnum
     :none                                     => 0,
     :no_symlinks                              => 1,
   })
-  setup
 end
 
 class ProcessStatus < AbstractEnum
@@ -650,7 +600,6 @@ class ProcessStatus < AbstractEnum
     :down                                     => 600,
     :error                                    => 800,
   })
-  setup
 end
 
 class FsObjType < AbstractEnum
@@ -666,7 +615,6 @@ class FsObjType < AbstractEnum
     :socket                                   => 200,
     :whiteout                                 => 400,
   })
-  setup
 end
 
 class DragAndDropAction < AbstractEnum
@@ -677,7 +625,6 @@ class DragAndDropAction < AbstractEnum
     :move                                     => 2,
     :link                                     => 3,
   })
-  setup
 end
 
 class DirectoryOpenFlag < AbstractEnum
@@ -686,7 +633,6 @@ class DirectoryOpenFlag < AbstractEnum
     :none                                     => 0,
     :no_symlinks                              => 1,
   })
-  setup
 end
 
 class MediumState < AbstractEnum
@@ -700,7 +646,6 @@ class MediumState < AbstractEnum
     :creating                                 => 5,
     :deleting                                 => 6,
   })
-  setup
 end
 
 class MediumType < AbstractEnum
@@ -713,7 +658,6 @@ class MediumType < AbstractEnum
     :readonly                                 => 4,
     :multi_attach                             => 5,
   })
-  setup
 end
 
 class MediumVariant < AbstractEnum
@@ -728,7 +672,6 @@ class MediumVariant < AbstractEnum
     :diff                                     => 0x20000,
     :no_create_dir                            => 0x40000000,
   })
-  setup
 end
 
 class DataType < AbstractEnum
@@ -738,7 +681,6 @@ class DataType < AbstractEnum
     :int8                                     => 1,
     :string                                   => 2,
   })
-  setup
 end
 
 class DataFlags < AbstractEnum
@@ -750,7 +692,6 @@ class DataFlags < AbstractEnum
     :array                                    => 0x04,
     :flag_mask                                => 0x07,
   })
-  setup
 end
 
 class MediumFormatCapabilities < AbstractEnum
@@ -768,7 +709,6 @@ class MediumFormatCapabilities < AbstractEnum
     :vfs                                      => 0x200,
     :capability_mask                          => 0x3FF,
   })
-  setup
 end
 
 class MouseButtonState < AbstractEnum
@@ -783,7 +723,6 @@ class MouseButtonState < AbstractEnum
     :x_button2                                => 0x40,
     :mouse_state_mask                         => 0x7F,
   })
-  setup
 end
 
 class FramebufferPixelFormat < AbstractEnum
@@ -792,7 +731,6 @@ class FramebufferPixelFormat < AbstractEnum
     :opaque                                   => 0,
     :fourcc_rgb                               => 0x32424752,
   })
-  setup
 end
 
 class NetworkAttachmentType < AbstractEnum
@@ -805,7 +743,6 @@ class NetworkAttachmentType < AbstractEnum
     :host_only                                => 4,
     :generic                                  => 5,
   })
-  setup
 end
 
 class NetworkAdapterType < AbstractEnum
@@ -819,7 +756,6 @@ class NetworkAdapterType < AbstractEnum
     :i82545em                                 => 5,
     :virtio                                   => 6,
   })
-  setup
 end
 
 class NetworkAdapterPromiscModePolicy < AbstractEnum
@@ -829,7 +765,6 @@ class NetworkAdapterPromiscModePolicy < AbstractEnum
     :allow_network                            => 2,
     :allow_all                                => 3,
   })
-  setup
 end
 
 class PortMode < AbstractEnum
@@ -840,7 +775,6 @@ class PortMode < AbstractEnum
     :host_device                              => 2,
     :raw_file                                 => 3,
   })
-  setup
 end
 
 class USBDeviceState < AbstractEnum
@@ -853,7 +787,6 @@ class USBDeviceState < AbstractEnum
     :held                                     => 4,
     :captured                                 => 5,
   })
-  setup
 end
 
 class USBDeviceFilterAction < AbstractEnum
@@ -863,7 +796,6 @@ class USBDeviceFilterAction < AbstractEnum
     :ignore                                   => 1,
     :hold                                     => 2,
   })
-  setup
 end
 
 class AudioDriverType < AbstractEnum
@@ -879,7 +811,6 @@ class AudioDriverType < AbstractEnum
     :pulse                                    => 7,
     :sol_audio                                => 8,
   })
-  setup
 end
 
 class AudioControllerType < AbstractEnum
@@ -889,7 +820,6 @@ class AudioControllerType < AbstractEnum
     :sb16                                     => 1,
     :hda                                      => 2,
   })
-  setup
 end
 
 class AuthType < AbstractEnum
@@ -899,7 +829,6 @@ class AuthType < AbstractEnum
     :external                                 => 1,
     :guest                                    => 2,
   })
-  setup
 end
 
 class StorageBus < AbstractEnum
@@ -912,7 +841,6 @@ class StorageBus < AbstractEnum
     :floppy                                   => 4,
     :sas                                      => 5,
   })
-  setup
 end
 
 class StorageControllerType < AbstractEnum
@@ -928,7 +856,6 @@ class StorageControllerType < AbstractEnum
     :i82078                                   => 7,
     :lsi_logic_sas                            => 8,
   })
-  setup
 end
 
 class ChipsetType < AbstractEnum
@@ -938,7 +865,6 @@ class ChipsetType < AbstractEnum
     :piix3                                    => 1,
     :ich9                                     => 2,
   })
-  setup
 end
 
 class NATAliasMode < AbstractEnum
@@ -948,7 +874,6 @@ class NATAliasMode < AbstractEnum
     :alias_proxy_only                         => 0x02,
     :alias_use_same_ports                     => 0x04,
   })
-  setup
 end
 
 class NATProtocol < AbstractEnum
@@ -957,7 +882,6 @@ class NATProtocol < AbstractEnum
     :udp                                      => 0,
     :tcp                                      => 1,
   })
-  setup
 end
 
 class BandwidthGroupType < AbstractEnum
@@ -967,7 +891,6 @@ class BandwidthGroupType < AbstractEnum
     :disk                                     => 1,
     :network                                  => 2,
   })
-  setup
 end
 
 class VBoxEventType < AbstractEnum
@@ -1024,7 +947,6 @@ class VBoxEventType < AbstractEnum
     :on_drag_and_drop_mode_changed            => 73,
     :last                                     => 74,
   })
-  setup
 end
 
 class GuestMonitorChangedEventType < AbstractEnum
@@ -1034,23 +956,19 @@ class GuestMonitorChangedEventType < AbstractEnum
     :disabled                                 => 1,
     :new_origin                               => 2,
   })
-  setup
 end
 
-class VirtualBoxErrorInfo < AbstractInterface
+class VirtualBoxErrorInfo < NSIException
   iid      "f91e6e91-49e1-4fd2-b21e-269003350d06"
-  extends  :NSIException
   property :result_code, INT32, :readonly => true
   property :interface_i_d, WSTRING, :readonly => true
   property :component, WSTRING, :readonly => true
   property :text, WSTRING, :readonly => true
   property :next, :VirtualBoxErrorInfo, :readonly => true
-  setup
 end
 
-class DHCPServer < AbstractInterface
+class DHCPServer < NSISupports
   iid      "6cfe387c-74fb-4ca7-bff6-973bec8af7a3"
-  extends  :NSISupports
   property :enabled, BOOL
   property :ip_address, WSTRING, :readonly => true
   property :network_mask, WSTRING, :readonly => true
@@ -1060,12 +978,10 @@ class DHCPServer < AbstractInterface
   function :set_configuration, nil, [WSTRING, WSTRING, WSTRING, WSTRING]
   function :start, nil, [WSTRING, WSTRING, WSTRING]
   function :stop, nil, []
-  setup
 end
 
-class VirtualBox < AbstractInterface
+class VirtualBox < NSISupports
   iid      "3b2f08eb-b810-4715-bee0-bb06b9880ad2"
-  extends  :NSISupports
   property :version, WSTRING, :readonly => true
   property :version_normalized, WSTRING, :readonly => true
   property :revision, UINT32, :readonly => true
@@ -1110,12 +1026,10 @@ class VirtualBox < AbstractInterface
   function :find_dhcp_server_by_network_name, :DHCPServer, [WSTRING]
   function :remove_dhcp_server, nil, [:DHCPServer]
   function :check_firmware_present, BOOL, [:FirmwareType, WSTRING, [:out, WSTRING], [:out, WSTRING]]
-  setup
 end
 
-class VFSExplorer < AbstractInterface
+class VFSExplorer < NSISupports
   iid      "003d7f92-d38e-487f-b790-8c5e8631cb2f"
-  extends  :NSISupports
   property :path, WSTRING, :readonly => true
   property :type, :VFSType, :readonly => true
   function :update, :Progress, []
@@ -1124,12 +1038,10 @@ class VFSExplorer < AbstractInterface
   function :entry_list, nil, [[:out, [WSTRING]], [:out, [UINT32]], [:out, [UINT32]], [:out, [UINT32]]]
   function :exists, [WSTRING], [[WSTRING]]
   function :remove, :Progress, [[WSTRING]]
-  setup
 end
 
-class Appliance < AbstractInterface
+class Appliance < NSISupports
   iid      "3059cf9e-25c7-4f0b-9fa5-3c42e441670b"
-  extends  :NSISupports
   property :path, WSTRING, :readonly => true
   property :disks, [WSTRING], :readonly => true
   property :virtual_system_descriptions, [:VirtualSystemDescription], :readonly => true
@@ -1140,24 +1052,20 @@ class Appliance < AbstractInterface
   function :create_vfs_explorer, :VFSExplorer, [WSTRING]
   function :write, :Progress, [WSTRING, BOOL, WSTRING]
   function :get_warnings, [WSTRING], []
-  setup
 end
 
-class VirtualSystemDescription < AbstractInterface
+class VirtualSystemDescription < NSISupports
   iid      "d7525e6c-531a-4c51-8e04-41235083a3d8"
-  extends  :NSISupports
   property :count, UINT32, :readonly => true
   function :get_description, nil, [[:out, [:VirtualSystemDescriptionType]], [:out, [WSTRING]], [:out, [WSTRING]], [:out, [WSTRING]], [:out, [WSTRING]]]
   function :get_description_by_type, nil, [:VirtualSystemDescriptionType, [:out, [:VirtualSystemDescriptionType]], [:out, [WSTRING]], [:out, [WSTRING]], [:out, [WSTRING]], [:out, [WSTRING]]]
   function :get_values_by_type, [WSTRING], [:VirtualSystemDescriptionType, :VirtualSystemDescriptionValueType]
   function :set_final_values, nil, [[BOOL], [WSTRING], [WSTRING]]
   function :add_description, nil, [:VirtualSystemDescriptionType, WSTRING, WSTRING]
-  setup
 end
 
-class InternalMachineControl < AbstractInterface
+class InternalMachineControl < NSISupports
   iid      "dca36a92-703c-4649-98a4-f40c1ef0c336"
-  extends  :NSISupports
   function :set_remove_saved_state_file, nil, [BOOL]
   function :update_state, nil, [:MachineState]
   function :get_ipcid, WSTRING, []
@@ -1185,12 +1093,10 @@ class InternalMachineControl < AbstractInterface
   function :unlock_media, nil, []
   function :eject_medium, :MediumAttachment, [:MediumAttachment]
   function :report_vm_statistics, nil, [UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32, UINT32]
-  setup
 end
 
-class BIOSSettings < AbstractInterface
+class BIOSSettings < NSISupports
   iid      "38b54279-dc35-4f5e-a431-835b867c6b5e"
-  extends  :NSISupports
   property :logo_fade_in, BOOL
   property :logo_fade_out, BOOL
   property :logo_display_time, UINT32
@@ -1200,33 +1106,27 @@ class BIOSSettings < AbstractInterface
   property :io_apic_enabled, BOOL
   property :time_offset, INT64
   property :pxe_debug_enabled, BOOL
-  setup
 end
 
-class PCIAddress < AbstractInterface
+class PCIAddress < NSISupports
   iid      "D88B324F-DB19-4D3B-A1A9-BF5B127199A8"
-  extends  :NSISupports
   property :bus, INT16
   property :device, INT16
   property :dev_function, INT16
   function :as_long, INT32, []
   function :from_long, nil, [INT32]
-  setup
 end
 
-class PCIDeviceAttachment < AbstractInterface
+class PCIDeviceAttachment < NSISupports
   iid      "91f33d6f-e621-4f70-a77e-15f0e3c714d5"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :is_physical_device, BOOL, :readonly => true
   property :host_address, INT32, :readonly => true
   property :guest_address, INT32, :readonly => true
-  setup
 end
 
-class Machine < AbstractInterface
+class Machine < NSISupports
   iid      "22781af3-1c96-4126-9edf-67a020e0e858"
-  extends  :NSISupports
   property :parent, :VirtualBox, :readonly => true
   property :accessible, BOOL, :readonly => true
   property :access_error, :VirtualBoxErrorInfo, :readonly => true
@@ -1369,12 +1269,10 @@ class Machine < AbstractInterface
   function :query_log_filename, WSTRING, [UINT32]
   function :read_log, [OCTET], [UINT32, INT64, INT64]
   function :clone_to, :Progress, [:Machine, :CloneMode, [:CloneOptions]]
-  setup
 end
 
-class VRDEServerInfo < AbstractInterface
+class VRDEServerInfo < NSISupports
   iid      "714434a1-58c3-4aab-9049-7652c5df113b"
-  extends  :NSISupports
   property :active, BOOL, :readonly => true
   property :port, INT32, :readonly => true
   property :number_of_clients, UINT32, :readonly => true
@@ -1390,12 +1288,10 @@ class VRDEServerInfo < AbstractInterface
   property :client_ip, WSTRING, :readonly => true
   property :client_version, UINT32, :readonly => true
   property :encryption_style, UINT32, :readonly => true
-  setup
 end
 
-class Console < AbstractInterface
+class Console < NSISupports
   iid      "db7ab4ca-2a3f-4183-9243-c1208da92392"
-  extends  :NSISupports
   property :machine, :Machine, :readonly => true
   property :state, :MachineState, :readonly => true
   property :guest, :Guest, :readonly => true
@@ -1436,12 +1332,10 @@ class Console < AbstractInterface
   function :delete_snapshot_range, :Progress, [WSTRING, WSTRING]
   function :restore_snapshot, :Progress, [:Snapshot]
   function :teleport, :Progress, [WSTRING, UINT32, WSTRING, UINT32]
-  setup
 end
 
-class HostNetworkInterface < AbstractInterface
+class HostNetworkInterface < NSISupports
   iid      "87a4153d-6889-4dd6-9654-2e9ff0ae8dec"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :id, WSTRING, :readonly => true
   property :network_name, WSTRING, :readonly => true
@@ -1459,12 +1353,10 @@ class HostNetworkInterface < AbstractInterface
   function :enable_static_ip_config_v6, nil, [WSTRING, UINT32]
   function :enable_dynamic_ip_config, nil, []
   function :dhcp_rediscover, nil, []
-  setup
 end
 
-class Host < AbstractInterface
+class Host < NSISupports
   iid      "30678943-32df-4830-b413-931b25ac86a0"
-  extends  :NSISupports
   property :dvd_drives, [:Medium], :readonly => true
   property :floppy_drives, [:Medium], :readonly => true
   property :usb_devices, [:HostUSBDevice], :readonly => true
@@ -1496,12 +1388,10 @@ class Host < AbstractInterface
   function :find_usb_device_by_id, :HostUSBDevice, [WSTRING]
   function :find_usb_device_by_address, :HostUSBDevice, [WSTRING]
   function :generate_mac_address, WSTRING, []
-  setup
 end
 
-class SystemProperties < AbstractInterface
+class SystemProperties < NSISupports
   iid      "1d7aca29-97f0-4287-9874-a60ec4f80ea6"
-  extends  :NSISupports
   property :min_guest_ram, UINT32, :readonly => true
   property :max_guest_ram, UINT32, :readonly => true
   property :min_guest_vram, UINT32, :readonly => true
@@ -1535,12 +1425,10 @@ class SystemProperties < AbstractInterface
   function :get_max_instances_of_storage_bus, UINT32, [:ChipsetType, :StorageBus]
   function :get_device_types_for_storage_bus, [:DeviceType], [:StorageBus]
   function :get_default_io_cache_setting_for_storage_controller, BOOL, [:StorageControllerType]
-  setup
 end
 
-class GuestOSType < AbstractInterface
+class GuestOSType < NSISupports
   iid      "6d968f9a-858b-4c50-bf17-241f069e94c2"
-  extends  :NSISupports
   property :family_id, WSTRING, :readonly => true
   property :family_description, WSTRING, :readonly => true
   property :id, WSTRING, :readonly => true
@@ -1568,23 +1456,19 @@ class GuestOSType < AbstractInterface
   property :recommended_audio_controller, :AudioControllerType, :readonly => true
   property :recommended_floppy, BOOL, :readonly => true
   property :recommended_usb, BOOL, :readonly => true
-  setup
 end
 
-class AdditionsFacility < AbstractInterface
+class AdditionsFacility < NSISupports
   iid      "54992946-6af1-4e49-98ec-58b558b7291e"
-  extends  :NSISupports
   property :class_type, :AdditionsFacilityClass, :readonly => true
   property :last_updated, INT64, :readonly => true
   property :name, WSTRING, :readonly => true
   property :status, :AdditionsFacilityStatus, :readonly => true
   property :type, :AdditionsFacilityType, :readonly => true
-  setup
 end
 
-class GuestSession < AbstractInterface
+class GuestSession < NSISupports
   iid      "57eb82a8-822b-42c1-9d1c-5c54bc3d3250"
-  extends  :NSISupports
   property :user, WSTRING, :readonly => true
   property :domain, WSTRING, :readonly => true
   property :name, WSTRING, :readonly => true
@@ -1626,12 +1510,10 @@ class GuestSession < AbstractInterface
   function :symlink_read, WSTRING, [WSTRING, [:SymlinkReadFlag]]
   function :symlink_remove_directory, nil, [WSTRING]
   function :symlink_remove_file, nil, [WSTRING]
-  setup
 end
 
-class Process < AbstractInterface
+class Process < NSISupports
   iid      "08864d56-96ab-418b-adbc-5a679532aeb0"
-  extends  :NSISupports
   property :pid, UINT32, :readonly => true
   property :status, :ProcessStatus, :readonly => true
   property :exit_code, INT32, :readonly => true
@@ -1645,34 +1527,26 @@ class Process < AbstractInterface
   function :write, UINT32, [UINT32, UINT32, [OCTET], UINT32]
   function :write_array, UINT32, [UINT32, [:ProcessInputFlag], [OCTET], UINT32]
   function :terminate, nil, []
-  setup
 end
 
-class GuestProcess < AbstractInterface
+class GuestProcess < Process
   iid      "dfa39a36-5d43-4840-a025-67ea956b3111"
-  extends  :Process
-  setup
 end
 
-class Directory < AbstractInterface
+class Directory < NSISupports
   iid      "1b70dd03-26d7-483a-8877-89bbb0f87b70"
-  extends  :NSISupports
   property :directory_name, WSTRING, :readonly => true
   property :filter, WSTRING, :readonly => true
   function :close, nil, []
   function :read, :FsObjInfo, []
-  setup
 end
 
-class GuestDirectory < AbstractInterface
+class GuestDirectory < Directory
   iid      "af4a8ce0-0725-42b7-8826-46e3c7ba7357"
-  extends  :Directory
-  setup
 end
 
-class File < AbstractInterface
+class File < NSISupports
   iid      "b702a560-6139-4a8e-a892-bbf14b97bf97"
-  extends  :NSISupports
   property :creation_mode, UINT32, :readonly => true
   property :disposition, UINT32, :readonly => true
   property :file_name, WSTRING, :readonly => true
@@ -1687,18 +1561,14 @@ class File < AbstractInterface
   function :set_acl, nil, [WSTRING]
   function :write, UINT32, [[OCTET], UINT32]
   function :write_at, UINT32, [INT64, [OCTET], UINT32]
-  setup
 end
 
-class GuestFile < AbstractInterface
+class GuestFile < File
   iid      "60661aec-145f-4d11-b80e-8ea151598093"
-  extends  :File
-  setup
 end
 
-class FsObjInfo < AbstractInterface
+class FsObjInfo < NSISupports
   iid      "4047ba30-7006-4966-ae86-94164e5e20eb"
-  extends  :NSISupports
   property :access_time, INT64, :readonly => true
   property :allocated_size, INT64, :readonly => true
   property :birth_time, INT64, :readonly => true
@@ -1718,18 +1588,14 @@ class FsObjInfo < AbstractInterface
   property :uid, UINT32, :readonly => true
   property :user_flags, UINT32, :readonly => true
   property :user_name, WSTRING, :readonly => true
-  setup
 end
 
-class GuestFsObjInfo < AbstractInterface
+class GuestFsObjInfo < FsObjInfo
   iid      "d5cf678e-3484-4e4a-ac55-329e15462e18"
-  extends  :FsObjInfo
-  setup
 end
 
-class Guest < AbstractInterface
+class Guest < NSISupports
   iid      "19c32350-0618-4ede-b0c3-2b4311bf0d9b"
-  extends  :NSISupports
   property :os_type_id, WSTRING, :readonly => true
   property :additions_run_level, :AdditionsRunLevelType, :readonly => true
   property :additions_version, WSTRING, :readonly => true
@@ -1753,12 +1619,10 @@ class Guest < AbstractInterface
   function :create_session, :GuestSession, [WSTRING, WSTRING, WSTRING, WSTRING]
   function :find_session, [:GuestSession], [WSTRING]
   function :update_guest_additions, :Progress, [WSTRING, [:AdditionsUpdateFlag]]
-  setup
 end
 
-class Progress < AbstractInterface
+class Progress < NSISupports
   iid      "c20238e4-3221-4d3f-8891-81ce92d9f913"
-  extends  :NSISupports
   property :id, WSTRING, :readonly => true
   property :description, WSTRING, :readonly => true
   property :initiator, :NSISupports, :readonly => true
@@ -1781,12 +1645,10 @@ class Progress < AbstractInterface
   function :wait_for_operation_completion, nil, [UINT32, INT32]
   function :wait_for_async_progress_completion, nil, [:Progress]
   function :cancel, nil, []
-  setup
 end
 
-class Snapshot < AbstractInterface
+class Snapshot < NSISupports
   iid      "0472823b-c6e7-472a-8e9f-d732e86b8463"
-  extends  :NSISupports
   property :id, WSTRING, :readonly => true
   property :name, WSTRING
   property :description, WSTRING
@@ -1796,12 +1658,10 @@ class Snapshot < AbstractInterface
   property :parent, :Snapshot, :readonly => true
   property :children, [:Snapshot], :readonly => true
   function :get_children_count, UINT32, []
-  setup
 end
 
-class MediumAttachment < AbstractInterface
+class MediumAttachment < NSISupports
   iid      "5ee464d6-0613-4331-b154-7ce12170ef9f"
-  extends  :NSISupports
   property :medium, :Medium, :readonly => true
   property :controller, WSTRING, :readonly => true
   property :port, INT32, :readonly => true
@@ -1813,12 +1673,10 @@ class MediumAttachment < AbstractInterface
   property :non_rotational, BOOL, :readonly => true
   property :discard, BOOL, :readonly => true
   property :bandwidth_group, :BandwidthGroup, :readonly => true
-  setup
 end
 
-class Medium < AbstractInterface
+class Medium < NSISupports
   iid      "29989373-b111-4654-8493-2e1176cba890"
-  extends  :NSISupports
   property :id, WSTRING, :readonly => true
   property :description, WSTRING
   property :state, :MediumState, :readonly => true
@@ -1861,45 +1719,37 @@ class Medium < AbstractInterface
   function :compact, :Progress, []
   function :resize, :Progress, [INT64]
   function :reset, :Progress, []
-  setup
 end
 
-class MediumFormat < AbstractInterface
+class MediumFormat < NSISupports
   iid      "9bd5b655-ea47-4637-99f3-aad0948be35b"
-  extends  :NSISupports
   property :id, WSTRING, :readonly => true
   property :name, WSTRING, :readonly => true
   property :capabilities, UINT32, :readonly => true
   function :describe_file_extensions, nil, [[:out, [WSTRING]], [:out, [:DeviceType]]]
   function :describe_properties, nil, [[:out, [WSTRING]], [:out, [WSTRING]], [:out, [:DataType]], [:out, [UINT32]], [:out, [WSTRING]]]
-  setup
 end
 
-class Keyboard < AbstractInterface
+class Keyboard < NSISupports
   iid      "f6916ec5-a881-4237-898f-7de58cf88672"
-  extends  :NSISupports
   property :event_source, :EventSource, :readonly => true
   function :put_scancode, nil, [INT32]
   function :put_scancodes, UINT32, [[INT32]]
   function :put_cad, nil, []
-  setup
 end
 
-class Mouse < AbstractInterface
+class Mouse < NSISupports
   iid      "05044a52-7811-4f00-ae3a-0ab7ff707b10"
-  extends  :NSISupports
   property :absolute_supported, BOOL, :readonly => true
   property :relative_supported, BOOL, :readonly => true
   property :needs_host_cursor, BOOL, :readonly => true
   property :event_source, :EventSource, :readonly => true
   function :put_mouse_event, nil, [INT32, INT32, INT32, INT32, INT32]
   function :put_mouse_event_absolute, nil, [INT32, INT32, INT32, INT32, INT32]
-  setup
 end
 
-class Framebuffer < AbstractInterface
+class Framebuffer < NSISupports
   iid      "b7ed347a-5765-40a0-ae1c-f543eb4ddeaf"
-  extends  :NSISupports
   property :address, PTR, :readonly => true
   property :width, UINT32, :readonly => true
   property :height, UINT32, :readonly => true
@@ -1918,23 +1768,19 @@ class Framebuffer < AbstractInterface
   function :get_visible_region, UINT32, [PTR, UINT32]
   function :set_visible_region, nil, [PTR, UINT32]
   function :process_vhwa_command, nil, [PTR]
-  setup
 end
 
-class FramebufferOverlay < AbstractInterface
+class FramebufferOverlay < Framebuffer
   iid      "0bcc1c7e-e415-47d2-bfdb-e4c705fb0f47"
-  extends  :Framebuffer
   property :x, UINT32, :readonly => true
   property :y, UINT32, :readonly => true
   property :visible, BOOL, :readonly => true
   property :alpha, UINT32, :readonly => true
   function :move, nil, [UINT32, UINT32]
-  setup
 end
 
-class Display < AbstractInterface
+class Display < NSISupports
   iid      "b83ee395-8679-40ca-8d60-1a0cbe724930"
-  extends  :NSISupports
   function :get_screen_resolution, nil, [UINT32, [:out, UINT32], [:out, UINT32], [:out, UINT32]]
   function :set_framebuffer, nil, [UINT32, :Framebuffer]
   function :get_framebuffer, nil, [UINT32, [:out, :Framebuffer], [:out, INT32], [:out, INT32]]
@@ -1948,12 +1794,10 @@ class Display < AbstractInterface
   function :resize_completed, nil, [UINT32]
   function :complete_vhwa_command, nil, [PTR]
   function :viewport_changed, nil, [UINT32, UINT32, UINT32, UINT32, UINT32]
-  setup
 end
 
-class NetworkAdapter < AbstractInterface
+class NetworkAdapter < NSISupports
   iid      "efa0f965-63c7-4c60-afdf-b1cc9943b9c0"
-  extends  :NSISupports
   property :adapter_type, :NetworkAdapterType
   property :slot, UINT32, :readonly => true
   property :enabled, BOOL
@@ -1975,12 +1819,10 @@ class NetworkAdapter < AbstractInterface
   function :get_property, WSTRING, [WSTRING]
   function :set_property, nil, [WSTRING, WSTRING]
   function :get_properties, [WSTRING], [WSTRING, [:out, [WSTRING]]]
-  setup
 end
 
-class SerialPort < AbstractInterface
+class SerialPort < NSISupports
   iid      "937f6970-5103-4745-b78e-d28dcf1479a8"
-  extends  :NSISupports
   property :slot, UINT32, :readonly => true
   property :enabled, BOOL
   property :io_base, UINT32
@@ -1988,23 +1830,19 @@ class SerialPort < AbstractInterface
   property :host_mode, :PortMode
   property :server, BOOL
   property :path, WSTRING
-  setup
 end
 
-class ParallelPort < AbstractInterface
+class ParallelPort < NSISupports
   iid      "0c925f06-dd10-4b77-8de8-294d738c3214"
-  extends  :NSISupports
   property :slot, UINT32, :readonly => true
   property :enabled, BOOL
   property :io_base, UINT32
   property :irq, UINT32
   property :path, WSTRING
-  setup
 end
 
-class MachineDebugger < AbstractInterface
+class MachineDebugger < NSISupports
   iid      "a9abbb7c-d678-43b2-bed2-19ec0e32303d"
-  extends  :NSISupports
   property :single_step, BOOL
   property :recompile_user, BOOL
   property :recompile_supervisor, BOOL
@@ -2045,12 +1883,10 @@ class MachineDebugger < AbstractInterface
   function :reset_stats, nil, [WSTRING]
   function :dump_stats, nil, [WSTRING]
   function :get_stats, nil, [WSTRING, BOOL, [:out, WSTRING]]
-  setup
 end
 
-class USBController < AbstractInterface
+class USBController < NSISupports
   iid      "01e6f13a-0580-452f-a40f-74e32a5e4921"
-  extends  :NSISupports
   property :enabled, BOOL
   property :enabled_ehci, BOOL
   property :proxy_available, BOOL, :readonly => true
@@ -2059,12 +1895,10 @@ class USBController < AbstractInterface
   function :create_device_filter, :USBDeviceFilter, [WSTRING]
   function :insert_device_filter, nil, [UINT32, :USBDeviceFilter]
   function :remove_device_filter, :USBDeviceFilter, [UINT32]
-  setup
 end
 
-class USBDevice < AbstractInterface
+class USBDevice < NSISupports
   iid      "f8967b0b-4483-400f-92b5-8b675d98a85b"
-  extends  :NSISupports
   property :id, WSTRING, :readonly => true
   property :vendor_id, UINT16, :readonly => true
   property :product_id, UINT16, :readonly => true
@@ -2077,12 +1911,10 @@ class USBDevice < AbstractInterface
   property :version, UINT16, :readonly => true
   property :port_version, UINT16, :readonly => true
   property :remote, BOOL, :readonly => true
-  setup
 end
 
-class USBDeviceFilter < AbstractInterface
+class USBDeviceFilter < NSISupports
   iid      "d6831fb4-1a94-4c2c-96ef-8d0d6192066d"
-  extends  :NSISupports
   property :name, WSTRING
   property :active, BOOL
   property :vendor_id, WSTRING
@@ -2094,35 +1926,27 @@ class USBDeviceFilter < AbstractInterface
   property :port, WSTRING
   property :remote, WSTRING
   property :masked_interfaces, UINT32
-  setup
 end
 
-class HostUSBDevice < AbstractInterface
+class HostUSBDevice < USBDevice
   iid      "173b4b44-d268-4334-a00d-b6521c9a740a"
-  extends  :USBDevice
   property :state, :USBDeviceState, :readonly => true
-  setup
 end
 
-class HostUSBDeviceFilter < AbstractInterface
+class HostUSBDeviceFilter < USBDeviceFilter
   iid      "4cc70246-d74a-400f-8222-3900489c0374"
-  extends  :USBDeviceFilter
   property :action, :USBDeviceFilterAction
-  setup
 end
 
-class AudioAdapter < AbstractInterface
+class AudioAdapter < NSISupports
   iid      "921873db-5f3f-4b69-91f9-7be9e535a2cb"
-  extends  :NSISupports
   property :enabled, BOOL
   property :audio_controller, :AudioControllerType
   property :audio_driver, :AudioDriverType
-  setup
 end
 
-class VRDEServer < AbstractInterface
+class VRDEServer < NSISupports
   iid      "d38de40a-c2c1-4e95-b5a4-167b05f5694c"
-  extends  :NSISupports
   property :enabled, BOOL
   property :auth_type, :AuthType
   property :auth_timeout, UINT32
@@ -2133,24 +1957,20 @@ class VRDEServer < AbstractInterface
   property :vrde_properties, [WSTRING], :readonly => true
   function :set_vrde_property, nil, [WSTRING, WSTRING]
   function :get_vrde_property, WSTRING, [WSTRING]
-  setup
 end
 
-class SharedFolder < AbstractInterface
+class SharedFolder < NSISupports
   iid      "8388da11-b559-4574-a5b7-2bd7acd5cef8"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :host_path, WSTRING, :readonly => true
   property :accessible, BOOL, :readonly => true
   property :writable, BOOL, :readonly => true
   property :auto_mount, BOOL, :readonly => true
   property :last_access_error, WSTRING, :readonly => true
-  setup
 end
 
-class InternalSessionControl < AbstractInterface
+class InternalSessionControl < NSISupports
   iid      "3e83963a-1c3b-400d-8c5f-f2d077b0a597"
-  extends  :NSISupports
   function :get_pid, UINT32, []
   function :get_remote_console, :Console, []
   function :assign_machine, nil, [:Machine, :LockType]
@@ -2178,23 +1998,19 @@ class InternalSessionControl < AbstractInterface
   function :enumerate_guest_properties, nil, [WSTRING, [:out, [WSTRING]], [:out, [WSTRING]], [:out, [INT64]], [:out, [WSTRING]]]
   function :online_merge_medium, nil, [:MediumAttachment, UINT32, UINT32, :Medium, :Medium, BOOL, :Medium, [:Medium], :Progress]
   function :enable_vm_m_statistics, nil, [BOOL]
-  setup
 end
 
-class Session < AbstractInterface
+class Session < NSISupports
   iid      "12F4DCDB-12B2-4EC1-B7CD-DDD9F6C5BF4D"
-  extends  :NSISupports
   property :state, :SessionState, :readonly => true
   property :type, :SessionType, :readonly => true
   property :machine, :Machine, :readonly => true
   property :console, :Console, :readonly => true
   function :unlock_machine, nil, []
-  setup
 end
 
-class StorageController < AbstractInterface
+class StorageController < NSISupports
   iid      "a1556333-09b6-46d9-bfb7-fc239b7fbe1e"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :max_devices_per_port_count, UINT32, :readonly => true
   property :min_port_count, UINT32, :readonly => true
@@ -2205,12 +2021,10 @@ class StorageController < AbstractInterface
   property :controller_type, :StorageControllerType
   property :use_host_io_cache, BOOL
   property :bootable, BOOL, :readonly => true
-  setup
 end
 
-class PerformanceMetric < AbstractInterface
+class PerformanceMetric < NSISupports
   iid      "2a1a60ae-9345-4019-ad53-d34ba41cbfe9"
-  extends  :NSISupports
   property :metric_name, WSTRING, :readonly => true
   property :object, :NSISupports, :readonly => true
   property :description, WSTRING, :readonly => true
@@ -2219,24 +2033,20 @@ class PerformanceMetric < AbstractInterface
   property :unit, WSTRING, :readonly => true
   property :minimum_value, INT32, :readonly => true
   property :maximum_value, INT32, :readonly => true
-  setup
 end
 
-class PerformanceCollector < AbstractInterface
+class PerformanceCollector < NSISupports
   iid      "e22e1acb-ac4a-43bb-a31c-17321659b0c6"
-  extends  :NSISupports
   property :metric_names, [WSTRING], :readonly => true
   function :get_metrics, [:PerformanceMetric], [[WSTRING], [:NSISupports]]
   function :setup_metrics, [:PerformanceMetric], [[WSTRING], [:NSISupports], UINT32, UINT32]
   function :enable_metrics, [:PerformanceMetric], [[WSTRING], [:NSISupports]]
   function :disable_metrics, [:PerformanceMetric], [[WSTRING], [:NSISupports]]
   function :query_metrics_data, [INT32], [[WSTRING], [:NSISupports], [:out, [WSTRING]], [:out, [:NSISupports]], [:out, [WSTRING]], [:out, [UINT32]], [:out, [UINT32]], [:out, [UINT32]], [:out, [UINT32]]]
-  setup
 end
 
-class NATEngine < AbstractInterface
+class NATEngine < NSISupports
   iid      "26451b99-3b2d-4dcb-8e4b-d63654218175"
-  extends  :NSISupports
   property :network, WSTRING
   property :host_ip, WSTRING
   property :tftp_prefix, WSTRING
@@ -2251,22 +2061,18 @@ class NATEngine < AbstractInterface
   function :get_network_settings, nil, [[:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32]]
   function :add_redirect, nil, [WSTRING, :NATProtocol, WSTRING, UINT16, WSTRING, UINT16]
   function :remove_redirect, nil, [WSTRING]
-  setup
 end
 
-class ExtPackPlugIn < AbstractInterface
+class ExtPackPlugIn < NSISupports
   iid      "58000040-e718-4746-bbce-4b86d96da461"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :description, WSTRING, :readonly => true
   property :frontend, WSTRING, :readonly => true
   property :module_path, WSTRING, :readonly => true
-  setup
 end
 
-class ExtPackBase < AbstractInterface
+class ExtPackBase < NSISupports
   iid      "f79b75d8-2890-4f34-ffff-ffffa144e82c"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :description, WSTRING, :readonly => true
   property :version, WSTRING, :readonly => true
@@ -2279,27 +2085,21 @@ class ExtPackBase < AbstractInterface
   property :show_license, BOOL, :readonly => true
   property :license, WSTRING, :readonly => true
   function :query_license, WSTRING, [WSTRING, WSTRING, WSTRING]
-  setup
 end
 
-class ExtPack < AbstractInterface
+class ExtPack < ExtPackBase
   iid      "431685da-3618-4ebc-b038-833ba829b4b2"
-  extends  :ExtPackBase
   function :query_object, :NSISupports, [WSTRING]
-  setup
 end
 
-class ExtPackFile < AbstractInterface
+class ExtPackFile < ExtPackBase
   iid      "b6b49f55-efcc-4f08-b486-56e8d8afb10b"
-  extends  :ExtPackBase
   property :file_path, WSTRING, :readonly => true
   function :install, :Progress, [BOOL, WSTRING]
-  setup
 end
 
-class ExtPackManager < AbstractInterface
+class ExtPackManager < NSISupports
   iid      "3295e6ce-b051-47b2-9514-2c588bfe7554"
-  extends  :NSISupports
   property :installed_ext_packs, [:ExtPack], :readonly => true
   function :find, :ExtPack, [WSTRING]
   function :open_ext_pack_file, :ExtPackFile, [WSTRING]
@@ -2307,42 +2107,34 @@ class ExtPackManager < AbstractInterface
   function :cleanup, nil, []
   function :query_all_plug_ins_for_frontend, [WSTRING], [WSTRING]
   function :is_ext_pack_usable, BOOL, [WSTRING]
-  setup
 end
 
-class BandwidthGroup < AbstractInterface
+class BandwidthGroup < NSISupports
   iid      "badea2d7-0261-4146-89f0-6a57cc34833d"
-  extends  :NSISupports
   property :name, WSTRING, :readonly => true
   property :type, :BandwidthGroupType, :readonly => true
   property :reference, UINT32, :readonly => true
   property :max_bytes_per_sec, INT64
-  setup
 end
 
-class BandwidthControl < AbstractInterface
+class BandwidthControl < NSISupports
   iid      "e2eb3930-d2f4-4f87-be17-0707e30f019f"
-  extends  :NSISupports
   property :num_groups, UINT32, :readonly => true
   function :create_bandwidth_group, nil, [WSTRING, :BandwidthGroupType, INT64]
   function :delete_bandwidth_group, nil, [WSTRING]
   function :get_bandwidth_group, :BandwidthGroup, [WSTRING]
   function :get_all_bandwidth_groups, [:BandwidthGroup], []
-  setup
 end
 
-class VirtualBoxClient < AbstractInterface
+class VirtualBoxClient < NSISupports
   iid      "5fe0bd48-1181-40d1-991f-3b02f269a823"
-  extends  :NSISupports
   property :virtual_box, :VirtualBox, :readonly => true
   property :session, :Session, :readonly => true
   property :event_source, :EventSource, :readonly => true
-  setup
 end
 
-class EventSource < AbstractInterface
+class EventSource < NSISupports
   iid      "9b6e1aee-35f3-4f4d-b5bb-ed0ecefd8538"
-  extends  :NSISupports
   function :create_listener, :EventListener, []
   function :create_aggregator, :EventSource, [[:EventSource]]
   function :register_listener, nil, [:EventListener, [:VBoxEventType], BOOL]
@@ -2350,116 +2142,86 @@ class EventSource < AbstractInterface
   function :fire_event, BOOL, [:Event, INT32]
   function :get_event, :Event, [:EventListener, INT32]
   function :event_processed, nil, [:EventListener, :Event]
-  setup
 end
 
-class EventListener < AbstractInterface
+class EventListener < NSISupports
   iid      "67099191-32e7-4f6c-85ee-422304c71b90"
-  extends  :NSISupports
   function :handle_event, nil, [:Event]
-  setup
 end
 
-class Event < AbstractInterface
+class Event < NSISupports
   iid      "0ca2adba-8f30-401b-a8cd-fe31dbe839c0"
-  extends  :NSISupports
   property :type, :VBoxEventType, :readonly => true
   property :source, :EventSource, :readonly => true
   property :waitable, BOOL, :readonly => true
   function :set_processed, nil, []
   function :wait_processed, BOOL, [INT32]
-  setup
 end
 
-class ReusableEvent < AbstractInterface
+class ReusableEvent < Event
   iid      "69bfb134-80f6-4266-8e20-16371f68fa25"
-  extends  :Event
   property :generation, UINT32, :readonly => true
   function :reuse, nil, []
-  setup
 end
 
-class MachineEvent < AbstractInterface
+class MachineEvent < Event
   iid      "92ed7b1a-0d96-40ed-ae46-a564d484325e"
-  extends  :Event
   property :machine_id, WSTRING, :readonly => true
-  setup
 end
 
-class MachineStateChangedEvent < AbstractInterface
+class MachineStateChangedEvent < MachineEvent
   iid      "5748F794-48DF-438D-85EB-98FFD70D18C9"
-  extends  :MachineEvent
   property :state, :MachineState, :readonly => true
-  setup
 end
 
-class MachineDataChangedEvent < AbstractInterface
+class MachineDataChangedEvent < MachineEvent
   iid      "abe94809-2e88-4436-83d7-50f3e64d0503"
-  extends  :MachineEvent
   property :temporary, BOOL, :readonly => true
-  setup
 end
 
-class MediumRegisteredEvent < AbstractInterface
+class MediumRegisteredEvent < Event
   iid      "53fac49a-b7f1-4a5a-a4ef-a11dd9c2a458"
-  extends  :Event
   property :medium_id, WSTRING, :readonly => true
   property :medium_type, :DeviceType, :readonly => true
   property :registered, BOOL, :readonly => true
-  setup
 end
 
-class MachineRegisteredEvent < AbstractInterface
+class MachineRegisteredEvent < MachineEvent
   iid      "c354a762-3ff2-4f2e-8f09-07382ee25088"
-  extends  :MachineEvent
   property :registered, BOOL, :readonly => true
-  setup
 end
 
-class SessionStateChangedEvent < AbstractInterface
+class SessionStateChangedEvent < MachineEvent
   iid      "714a3eef-799a-4489-86cd-fe8e45b2ff8e"
-  extends  :MachineEvent
   property :state, :SessionState, :readonly => true
-  setup
 end
 
-class GuestPropertyChangedEvent < AbstractInterface
+class GuestPropertyChangedEvent < MachineEvent
   iid      "3f63597a-26f1-4edb-8dd2-6bddd0912368"
-  extends  :MachineEvent
   property :name, WSTRING, :readonly => true
   property :value, WSTRING, :readonly => true
   property :flags, WSTRING, :readonly => true
-  setup
 end
 
-class SnapshotEvent < AbstractInterface
+class SnapshotEvent < MachineEvent
   iid      "21637b0e-34b8-42d3-acfb-7e96daf77c22"
-  extends  :MachineEvent
   property :snapshot_id, WSTRING, :readonly => true
-  setup
 end
 
-class SnapshotTakenEvent < AbstractInterface
+class SnapshotTakenEvent < SnapshotEvent
   iid      "d27c0b3d-6038-422c-b45e-6d4a0503d9f1"
-  extends  :SnapshotEvent
-  setup
 end
 
-class SnapshotDeletedEvent < AbstractInterface
+class SnapshotDeletedEvent < SnapshotEvent
   iid      "c48f3401-4a9e-43f4-b7a7-54bd285e22f4"
-  extends  :SnapshotEvent
-  setup
 end
 
-class SnapshotChangedEvent < AbstractInterface
+class SnapshotChangedEvent < SnapshotEvent
   iid      "07541941-8079-447a-a33e-47a69c7980db"
-  extends  :SnapshotEvent
-  setup
 end
 
-class MousePointerShapeChangedEvent < AbstractInterface
+class MousePointerShapeChangedEvent < Event
   iid      "a6dcf6e8-416b-4181-8c4a-45ec95177aef"
-  extends  :Event
   property :visible, BOOL, :readonly => true
   property :alpha, BOOL, :readonly => true
   property :xhot, UINT32, :readonly => true
@@ -2467,216 +2229,160 @@ class MousePointerShapeChangedEvent < AbstractInterface
   property :width, UINT32, :readonly => true
   property :height, UINT32, :readonly => true
   property :shape, [OCTET], :readonly => true
-  setup
 end
 
-class MouseCapabilityChangedEvent < AbstractInterface
+class MouseCapabilityChangedEvent < Event
   iid      "d633ad48-820c-4207-b46c-6bd3596640d5"
-  extends  :Event
   property :supports_absolute, BOOL, :readonly => true
   property :supports_relative, BOOL, :readonly => true
   property :needs_host_cursor, BOOL, :readonly => true
-  setup
 end
 
-class KeyboardLedsChangedEvent < AbstractInterface
+class KeyboardLedsChangedEvent < Event
   iid      "6DDEF35E-4737-457B-99FC-BC52C851A44F"
-  extends  :Event
   property :num_lock, BOOL, :readonly => true
   property :caps_lock, BOOL, :readonly => true
   property :scroll_lock, BOOL, :readonly => true
-  setup
 end
 
-class StateChangedEvent < AbstractInterface
+class StateChangedEvent < Event
   iid      "4376693C-CF37-453B-9289-3B0F521CAF27"
-  extends  :Event
   property :state, :MachineState, :readonly => true
-  setup
 end
 
-class AdditionsStateChangedEvent < AbstractInterface
+class AdditionsStateChangedEvent < Event
   iid      "D70F7915-DA7C-44C8-A7AC-9F173490446A"
-  extends  :Event
-  setup
 end
 
-class NetworkAdapterChangedEvent < AbstractInterface
+class NetworkAdapterChangedEvent < Event
   iid      "08889892-1EC6-4883-801D-77F56CFD0103"
-  extends  :Event
   property :network_adapter, :NetworkAdapter, :readonly => true
-  setup
 end
 
-class SerialPortChangedEvent < AbstractInterface
+class SerialPortChangedEvent < Event
   iid      "3BA329DC-659C-488B-835C-4ECA7AE71C6C"
-  extends  :Event
   property :serial_port, :SerialPort, :readonly => true
-  setup
 end
 
-class ParallelPortChangedEvent < AbstractInterface
+class ParallelPortChangedEvent < Event
   iid      "813C99FC-9849-4F47-813E-24A75DC85615"
-  extends  :Event
   property :parallel_port, :ParallelPort, :readonly => true
-  setup
 end
 
-class StorageControllerChangedEvent < AbstractInterface
+class StorageControllerChangedEvent < Event
   iid      "715212BF-DA59-426E-8230-3831FAA52C56"
-  extends  :Event
-  setup
 end
 
-class MediumChangedEvent < AbstractInterface
+class MediumChangedEvent < Event
   iid      "0FE2DA40-5637-472A-9736-72019EABD7DE"
-  extends  :Event
   property :medium_attachment, :MediumAttachment, :readonly => true
-  setup
 end
 
-class ClipboardModeChangedEvent < AbstractInterface
+class ClipboardModeChangedEvent < Event
   iid      "cac21692-7997-4595-a731-3a509db604e5"
-  extends  :Event
   property :clipboard_mode, :ClipboardMode, :readonly => true
-  setup
 end
 
-class DragAndDropModeChangedEvent < AbstractInterface
+class DragAndDropModeChangedEvent < Event
   iid      "e90b8850-ac8e-4dff-8059-4100ae2c3c3d"
-  extends  :Event
   property :drag_and_drop_mode, :DragAndDropMode, :readonly => true
-  setup
 end
 
-class CPUChangedEvent < AbstractInterface
+class CPUChangedEvent < Event
   iid      "4da2dec7-71b2-4817-9a64-4ed12c17388e"
-  extends  :Event
   property :cpu, UINT32, :readonly => true
   property :add, BOOL, :readonly => true
-  setup
 end
 
-class CPUExecutionCapChangedEvent < AbstractInterface
+class CPUExecutionCapChangedEvent < Event
   iid      "dfa7e4f5-b4a4-44ce-85a8-127ac5eb59dc"
-  extends  :Event
   property :execution_cap, UINT32, :readonly => true
-  setup
 end
 
-class GuestKeyboardEvent < AbstractInterface
+class GuestKeyboardEvent < Event
   iid      "88394258-7006-40d4-b339-472ee3801844"
-  extends  :Event
   property :scancodes, [INT32], :readonly => true
-  setup
 end
 
-class GuestMouseEvent < AbstractInterface
+class GuestMouseEvent < ReusableEvent
   iid      "1f85d35c-c524-40ff-8e98-307000df0992"
-  extends  :ReusableEvent
   property :absolute, BOOL, :readonly => true
   property :x, INT32, :readonly => true
   property :y, INT32, :readonly => true
   property :z, INT32, :readonly => true
   property :w, INT32, :readonly => true
   property :buttons, INT32, :readonly => true
-  setup
 end
 
-class VRDEServerChangedEvent < AbstractInterface
+class VRDEServerChangedEvent < Event
   iid      "a06fd66a-3188-4c8c-8756-1395e8cb691c"
-  extends  :Event
-  setup
 end
 
-class VRDEServerInfoChangedEvent < AbstractInterface
+class VRDEServerInfoChangedEvent < Event
   iid      "dd6a1080-e1b7-4339-a549-f0878115596e"
-  extends  :Event
-  setup
 end
 
-class USBControllerChangedEvent < AbstractInterface
+class USBControllerChangedEvent < Event
   iid      "93BADC0C-61D9-4940-A084-E6BB29AF3D83"
-  extends  :Event
-  setup
 end
 
-class USBDeviceStateChangedEvent < AbstractInterface
+class USBDeviceStateChangedEvent < Event
   iid      "806da61b-6679-422a-b629-51b06b0c6d93"
-  extends  :Event
   property :device, :USBDevice, :readonly => true
   property :attached, BOOL, :readonly => true
   property :error, :VirtualBoxErrorInfo, :readonly => true
-  setup
 end
 
-class SharedFolderChangedEvent < AbstractInterface
+class SharedFolderChangedEvent < Event
   iid      "B66349B5-3534-4239-B2DE-8E1535D94C0B"
-  extends  :Event
   property :scope, :Scope, :readonly => true
-  setup
 end
 
-class RuntimeErrorEvent < AbstractInterface
+class RuntimeErrorEvent < Event
   iid      "883DD18B-0721-4CDE-867C-1A82ABAF914C"
-  extends  :Event
   property :fatal, BOOL, :readonly => true
   property :id, WSTRING, :readonly => true
   property :message, WSTRING, :readonly => true
-  setup
 end
 
-class EventSourceChangedEvent < AbstractInterface
+class EventSourceChangedEvent < Event
   iid      "e7932cb8-f6d4-4ab6-9cbf-558eb8959a6a"
-  extends  :Event
   property :listener, :EventListener, :readonly => true
   property :add, BOOL, :readonly => true
-  setup
 end
 
-class ExtraDataChangedEvent < AbstractInterface
+class ExtraDataChangedEvent < Event
   iid      "024F00CE-6E0B-492A-A8D0-968472A94DC7"
-  extends  :Event
   property :machine_id, WSTRING, :readonly => true
   property :key, WSTRING, :readonly => true
   property :value, WSTRING, :readonly => true
-  setup
 end
 
-class VetoEvent < AbstractInterface
+class VetoEvent < Event
   iid      "9a1a4130-69fe-472f-ac10-c6fa25d75007"
-  extends  :Event
   function :add_veto, nil, [WSTRING]
   function :is_vetoed, BOOL, []
   function :get_vetos, [WSTRING], []
-  setup
 end
 
-class ExtraDataCanChangeEvent < AbstractInterface
+class ExtraDataCanChangeEvent < VetoEvent
   iid      "245d88bd-800a-40f8-87a6-170d02249a55"
-  extends  :VetoEvent
   property :machine_id, WSTRING, :readonly => true
   property :key, WSTRING, :readonly => true
   property :value, WSTRING, :readonly => true
-  setup
 end
 
-class CanShowWindowEvent < AbstractInterface
+class CanShowWindowEvent < VetoEvent
   iid      "adf292b0-92c9-4a77-9d35-e058b39fe0b9"
-  extends  :VetoEvent
-  setup
 end
 
-class ShowWindowEvent < AbstractInterface
+class ShowWindowEvent < Event
   iid      "B0A0904D-2F05-4D28-855F-488F96BAD2B2"
-  extends  :Event
   property :win_id, INT64
-  setup
 end
 
-class NATRedirectEvent < AbstractInterface
+class NATRedirectEvent < MachineEvent
   iid      "24eef068-c380-4510-bc7c-19314a7352f1"
-  extends  :MachineEvent
   property :slot, UINT32, :readonly => true
   property :remove, BOOL, :readonly => true
   property :name, WSTRING, :readonly => true
@@ -2685,51 +2391,40 @@ class NATRedirectEvent < AbstractInterface
   property :host_port, INT32, :readonly => true
   property :guest_ip, WSTRING, :readonly => true
   property :guest_port, INT32, :readonly => true
-  setup
 end
 
-class HostPCIDevicePlugEvent < AbstractInterface
+class HostPCIDevicePlugEvent < MachineEvent
   iid      "a0bad6df-d612-47d3-89d4-db3992533948"
-  extends  :MachineEvent
   property :plugged, BOOL, :readonly => true
   property :success, BOOL, :readonly => true
   property :attachment, :PCIDeviceAttachment, :readonly => true
   property :message, WSTRING, :readonly => true
-  setup
 end
 
-class VBoxSVCAvailabilityChangedEvent < AbstractInterface
+class VBoxSVCAvailabilityChangedEvent < Event
   iid      "97c78fcd-d4fc-485f-8613-5af88bfcfcdc"
-  extends  :Event
   property :available, BOOL, :readonly => true
-  setup
 end
 
-class BandwidthGroupChangedEvent < AbstractInterface
+class BandwidthGroupChangedEvent < Event
   iid      "334df94a-7556-4cbc-8c04-043096b02d82"
-  extends  :Event
   property :bandwidth_group, :BandwidthGroup, :readonly => true
-  setup
 end
 
-class GuestMonitorChangedEvent < AbstractInterface
+class GuestMonitorChangedEvent < Event
   iid      "0f7b8a22-c71f-4a36-8e5f-a77d01d76090"
-  extends  :Event
   property :change_type, :GuestMonitorChangedEventType, :readonly => true
   property :screen_id, UINT32, :readonly => true
   property :origin_x, UINT32, :readonly => true
   property :origin_y, UINT32, :readonly => true
   property :width, UINT32, :readonly => true
   property :height, UINT32, :readonly => true
-  setup
 end
 
-class StorageDeviceChangedEvent < AbstractInterface
+class StorageDeviceChangedEvent < Event
   iid      "8a5c2dce-e341-49d4-afce-c95979f7d70c"
-  extends  :Event
   property :storage_device, :MediumAttachment, :readonly => true
   property :removed, BOOL, :readonly => true
-  setup
 end
 
 end

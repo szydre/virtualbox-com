@@ -4,6 +4,8 @@ require 'virtualbox-com'
 # Shortcut
 lib = VirtualBox::COM
 
+puts lib.virtualbox.api_version
+
 # Name of the first VM
 puts lib.virtualbox.machines[0].name
 
