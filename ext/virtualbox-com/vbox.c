@@ -712,8 +712,7 @@ static inline VALUE convert_array_wstring(uint32_t size, void **array) {
  *
  *======================================================================*/
 
-
-#include "gen.h"
+#include "generated.inc"
 
 
 static void nsISupports_free(struct obj *ptr) {
@@ -763,7 +762,7 @@ static VALUE NSISupports__cast(VALUE self, VALUE model_name) {
 
 
 /* ruby calls this to load the extension */
-void Init_vbox_4_2(void) {
+void Init_vbox(void) {
     VALUE oOne  = INT2FIX(1);
     VALUE oTwo  = INT2FIX(2);
     VALUE p15, p16, p31, p32, p63, p64;

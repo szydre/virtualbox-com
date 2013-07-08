@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.summary       = "Low level VirtualBox binding"
   s.description   = "Low level VirtualBox binding using native code"
   s.extensions    = [ "ext/virtualbox-com/4.2/extconf.rb",
+                      "ext/virtualbox-com/4.1/extconf.rb",
   		      "ext/virtualbox-com/loader/extconf.rb" ]	
 
 # s.add_dependency "ffi"
@@ -21,8 +22,11 @@ Gem::Specification.new do |s|
   s.license       = 'GPL-2'
   
 
-  s.files         = `git ls-files`.split("\n")
-  s.executables   = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
+  s.files         = [ 'LICENSE', 'Gemfile', 'virtualbox-com.gemspec' ] + 
+  		     Dir['scripts/*.rb']		  + 
+		     Dir['examples/*.rb'] + 
+		     Dir['ext/**/*.{c,h,rb,inc}'] +
+		     Dir['lib/**/*.rb'] 
   s.require_path  = 'lib'
 end
 
