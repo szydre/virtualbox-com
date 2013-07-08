@@ -27,7 +27,6 @@ struct VirtualBoxErrorInfo {
 struct DHCPServer {
   struct NSISupports NSISupports;
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_ip_address)(void *, void *);
   uint32_t (*get_network_mask)(void *, void *);
   uint32_t (*get_network_name)(void *, void *);
@@ -150,32 +149,20 @@ struct InternalMachineControl {
 struct BIOSSettings {
   struct NSISupports NSISupports;
   uint32_t (*get_logo_fade_in)(void *, void *);
-  uint32_t (*set_logo_fade_in)(void *, bool_t);
   uint32_t (*get_logo_fade_out)(void *, void *);
-  uint32_t (*set_logo_fade_out)(void *, bool_t);
   uint32_t (*get_logo_display_time)(void *, void *);
-  uint32_t (*set_logo_display_time)(void *, uint32_t);
   uint32_t (*get_logo_image_path)(void *, void *);
-  uint32_t (*set_logo_image_path)(void *, wstring_t);
   uint32_t (*get_boot_menu_mode)(void *, void *);
-  uint32_t (*set_boot_menu_mode)(void *, uint32_t);
   uint32_t (*get_acpi_enabled)(void *, void *);
-  uint32_t (*set_acpi_enabled)(void *, bool_t);
   uint32_t (*get_io_apic_enabled)(void *, void *);
-  uint32_t (*set_io_apic_enabled)(void *, bool_t);
   uint32_t (*get_time_offset)(void *, void *);
-  uint32_t (*set_time_offset)(void *, int64_t);
   uint32_t (*get_pxe_debug_enabled)(void *, void *);
-  uint32_t (*set_pxe_debug_enabled)(void *, bool_t);
 };
 struct PCIAddress {
   struct NSISupports NSISupports;
   uint32_t (*get_bus)(void *, void *);
-  uint32_t (*set_bus)(void *, int16_t);
   uint32_t (*get_device)(void *, void *);
-  uint32_t (*set_device)(void *, int16_t);
   uint32_t (*get_dev_function)(void *, void *);
-  uint32_t (*set_dev_function)(void *, int16_t);
   uint32_t (*as_long)(void *, void *);
   uint32_t (*from_long)(void *, int32_t);
 };
@@ -192,64 +179,36 @@ struct Machine {
   uint32_t (*get_accessible)(void *, void *);
   uint32_t (*get_access_error)(void *, void *);
   uint32_t (*get_name)(void *, void *);
-  uint32_t (*set_name)(void *, wstring_t);
   uint32_t (*get_description)(void *, void *);
-  uint32_t (*set_description)(void *, wstring_t);
   uint32_t (*get_id)(void *, void *);
   uint32_t (*get_groups)(void *, void *, void *);
-  uint32_t (*set_groups)(void *, uint32_t, void *);
   uint32_t (*get_os_type_id)(void *, void *);
-  uint32_t (*set_os_type_id)(void *, wstring_t);
   uint32_t (*get_hardware_version)(void *, void *);
-  uint32_t (*set_hardware_version)(void *, wstring_t);
   uint32_t (*get_hardware_uuid)(void *, void *);
-  uint32_t (*set_hardware_uuid)(void *, wstring_t);
   uint32_t (*get_cpu_count)(void *, void *);
-  uint32_t (*set_cpu_count)(void *, uint32_t);
   uint32_t (*get_cpu_hot_plug_enabled)(void *, void *);
-  uint32_t (*set_cpu_hot_plug_enabled)(void *, bool_t);
   uint32_t (*get_cpu_execution_cap)(void *, void *);
-  uint32_t (*set_cpu_execution_cap)(void *, uint32_t);
   uint32_t (*get_memory_size)(void *, void *);
-  uint32_t (*set_memory_size)(void *, uint32_t);
   uint32_t (*get_memory_balloon_size)(void *, void *);
-  uint32_t (*set_memory_balloon_size)(void *, uint32_t);
   uint32_t (*get_page_fusion_enabled)(void *, void *);
-  uint32_t (*set_page_fusion_enabled)(void *, bool_t);
   uint32_t (*get_vram_size)(void *, void *);
-  uint32_t (*set_vram_size)(void *, uint32_t);
   uint32_t (*get_accelerate_3d_enabled)(void *, void *);
-  uint32_t (*set_accelerate_3d_enabled)(void *, bool_t);
   uint32_t (*get_accelerate_2d_video_enabled)(void *, void *);
-  uint32_t (*set_accelerate_2d_video_enabled)(void *, bool_t);
   uint32_t (*get_monitor_count)(void *, void *);
-  uint32_t (*set_monitor_count)(void *, uint32_t);
   uint32_t (*get_video_capture_enabled)(void *, void *);
-  uint32_t (*set_video_capture_enabled)(void *, bool_t);
   uint32_t (*get_video_capture_file)(void *, void *);
-  uint32_t (*set_video_capture_file)(void *, wstring_t);
   uint32_t (*get_video_capture_width)(void *, void *);
-  uint32_t (*set_video_capture_width)(void *, uint32_t);
   uint32_t (*get_video_capture_height)(void *, void *);
-  uint32_t (*set_video_capture_height)(void *, uint32_t);
   uint32_t (*get_bios_settings)(void *, void *);
   uint32_t (*get_firmware_type)(void *, void *);
-  uint32_t (*set_firmware_type)(void *, uint32_t);
   uint32_t (*get_pointing_hid_type)(void *, void *);
-  uint32_t (*set_pointing_hid_type)(void *, uint32_t);
   uint32_t (*get_keyboard_hid_type)(void *, void *);
-  uint32_t (*set_keyboard_hid_type)(void *, uint32_t);
   uint32_t (*get_hpet_enabled)(void *, void *);
-  uint32_t (*set_hpet_enabled)(void *, bool_t);
   uint32_t (*get_chipset_type)(void *, void *);
-  uint32_t (*set_chipset_type)(void *, uint32_t);
   uint32_t (*get_snapshot_folder)(void *, void *);
-  uint32_t (*set_snapshot_folder)(void *, wstring_t);
   uint32_t (*get_vrde_server)(void *, void *);
   uint32_t (*get_emulated_usb_webcamera_enabled)(void *, void *);
-  uint32_t (*set_emulated_usb_webcamera_enabled)(void *, bool_t);
   uint32_t (*get_emulated_usb_card_reader_enabled)(void *, void *);
-  uint32_t (*set_emulated_usb_card_reader_enabled)(void *, bool_t);
   uint32_t (*get_medium_attachments)(void *, void *, void *);
   uint32_t (*get_usb_controller)(void *, void *);
   uint32_t (*get_audio_adapter)(void *, void *);
@@ -268,49 +227,28 @@ struct Machine {
   uint32_t (*get_current_state_modified)(void *, void *);
   uint32_t (*get_shared_folders)(void *, void *, void *);
   uint32_t (*get_clipboard_mode)(void *, void *);
-  uint32_t (*set_clipboard_mode)(void *, uint32_t);
   uint32_t (*get_drag_and_drop_mode)(void *, void *);
-  uint32_t (*set_drag_and_drop_mode)(void *, uint32_t);
   uint32_t (*get_guest_property_notification_patterns)(void *, void *);
-  uint32_t (*set_guest_property_notification_patterns)(void *, wstring_t);
   uint32_t (*get_teleporter_enabled)(void *, void *);
-  uint32_t (*set_teleporter_enabled)(void *, bool_t);
   uint32_t (*get_teleporter_port)(void *, void *);
-  uint32_t (*set_teleporter_port)(void *, uint32_t);
   uint32_t (*get_teleporter_address)(void *, void *);
-  uint32_t (*set_teleporter_address)(void *, wstring_t);
   uint32_t (*get_teleporter_password)(void *, void *);
-  uint32_t (*set_teleporter_password)(void *, wstring_t);
   uint32_t (*get_fault_tolerance_state)(void *, void *);
-  uint32_t (*set_fault_tolerance_state)(void *, uint32_t);
   uint32_t (*get_fault_tolerance_port)(void *, void *);
-  uint32_t (*set_fault_tolerance_port)(void *, uint32_t);
   uint32_t (*get_fault_tolerance_address)(void *, void *);
-  uint32_t (*set_fault_tolerance_address)(void *, wstring_t);
   uint32_t (*get_fault_tolerance_password)(void *, void *);
-  uint32_t (*set_fault_tolerance_password)(void *, wstring_t);
   uint32_t (*get_fault_tolerance_sync_interval)(void *, void *);
-  uint32_t (*set_fault_tolerance_sync_interval)(void *, uint32_t);
   uint32_t (*get_rtc_use_utc)(void *, void *);
-  uint32_t (*set_rtc_use_utc)(void *, bool_t);
   uint32_t (*get_io_cache_enabled)(void *, void *);
-  uint32_t (*set_io_cache_enabled)(void *, bool_t);
   uint32_t (*get_io_cache_size)(void *, void *);
-  uint32_t (*set_io_cache_size)(void *, uint32_t);
   uint32_t (*get_pci_device_assignments)(void *, void *, void *);
   uint32_t (*get_bandwidth_control)(void *, void *);
   uint32_t (*get_tracing_enabled)(void *, void *);
-  uint32_t (*set_tracing_enabled)(void *, bool_t);
   uint32_t (*get_tracing_config)(void *, void *);
-  uint32_t (*set_tracing_config)(void *, wstring_t);
   uint32_t (*get_allow_tracing_to_access_vm)(void *, void *);
-  uint32_t (*set_allow_tracing_to_access_vm)(void *, bool_t);
   uint32_t (*get_autostart_enabled)(void *, void *);
-  uint32_t (*set_autostart_enabled)(void *, bool_t);
   uint32_t (*get_autostart_delay)(void *, void *);
-  uint32_t (*set_autostart_delay)(void *, uint32_t);
   uint32_t (*get_autostop_type)(void *, void *);
-  uint32_t (*set_autostop_type)(void *, uint32_t);
   uint32_t (*lock_machine)(void *, void *, uint32_t);
   uint32_t (*launch_vm_process)(void *, void *, wstring_t, wstring_t, void *);
   uint32_t (*set_boot_order)(void *, uint32_t, uint32_t);
@@ -414,7 +352,6 @@ struct Console {
   uint32_t (*get_event_source)(void *, void *);
   uint32_t (*get_attached_pci_devices)(void *, void *, void *);
   uint32_t (*get_use_host_clipboard)(void *, void *);
-  uint32_t (*set_use_host_clipboard)(void *, bool_t);
   uint32_t (*power_up)(void *, void *);
   uint32_t (*power_up_paused)(void *, void *);
   uint32_t (*power_down)(void *, void *);
@@ -510,31 +447,19 @@ struct SystemProperties {
   uint32_t (*get_parallel_port_count)(void *, void *);
   uint32_t (*get_max_boot_position)(void *, void *);
   uint32_t (*get_default_machine_folder)(void *, void *);
-  uint32_t (*set_default_machine_folder)(void *, wstring_t);
   uint32_t (*get_medium_formats)(void *, void *, void *);
   uint32_t (*get_default_hard_disk_format)(void *, void *);
-  uint32_t (*set_default_hard_disk_format)(void *, wstring_t);
   uint32_t (*get_free_disk_space_warning)(void *, void *);
-  uint32_t (*set_free_disk_space_warning)(void *, int64_t);
   uint32_t (*get_free_disk_space_percent_warning)(void *, void *);
-  uint32_t (*set_free_disk_space_percent_warning)(void *, uint32_t);
   uint32_t (*get_free_disk_space_error)(void *, void *);
-  uint32_t (*set_free_disk_space_error)(void *, int64_t);
   uint32_t (*get_free_disk_space_percent_error)(void *, void *);
-  uint32_t (*set_free_disk_space_percent_error)(void *, uint32_t);
   uint32_t (*get_vrde_auth_library)(void *, void *);
-  uint32_t (*set_vrde_auth_library)(void *, wstring_t);
   uint32_t (*get_web_service_auth_library)(void *, void *);
-  uint32_t (*set_web_service_auth_library)(void *, wstring_t);
   uint32_t (*get_default_vrde_ext_pack)(void *, void *);
-  uint32_t (*set_default_vrde_ext_pack)(void *, wstring_t);
   uint32_t (*get_log_history_count)(void *, void *);
-  uint32_t (*set_log_history_count)(void *, uint32_t);
   uint32_t (*get_default_audio_driver)(void *, void *);
   uint32_t (*get_autostart_database_path)(void *, void *);
-  uint32_t (*set_autostart_database_path)(void *, wstring_t);
   uint32_t (*get_default_additions_iso)(void *, void *);
-  uint32_t (*set_default_additions_iso)(void *, wstring_t);
   uint32_t (*get_max_network_adapters)(void *, uint32_t, void *);
   uint32_t (*get_max_network_adapters_of_type)(void *, uint32_t, uint32_t, void *);
   uint32_t (*get_max_devices_per_port_for_storage_bus)(void *, uint32_t, void *);
@@ -590,7 +515,6 @@ struct GuestSession {
   uint32_t (*get_id)(void *, void *);
   uint32_t (*get_timeout)(void *, void *);
   uint32_t (*get_environment)(void *, void *, void *);
-  uint32_t (*set_environment)(void *, uint32_t, void *);
   uint32_t (*get_processes)(void *, void *, void *);
   uint32_t (*get_directories)(void *, void *, void *);
   uint32_t (*get_files)(void *, void *, void *);
@@ -710,9 +634,7 @@ struct Guest {
   uint32_t (*get_facilities)(void *, void *, void *);
   uint32_t (*get_sessions)(void *, void *, void *);
   uint32_t (*get_memory_balloon_size)(void *, void *);
-  uint32_t (*set_memory_balloon_size)(void *, uint32_t);
   uint32_t (*get_statistics_update_interval)(void *, void *);
-  uint32_t (*set_statistics_update_interval)(void *, uint32_t);
   uint32_t (*internal_get_statistics)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
   uint32_t (*get_facility_status)(void *, uint32_t, void *, void *);
   uint32_t (*get_additions_status)(void *, uint32_t, void *);
@@ -747,7 +669,6 @@ struct Progress {
   uint32_t (*get_operation_percent)(void *, void *);
   uint32_t (*get_operation_weight)(void *, void *);
   uint32_t (*get_timeout)(void *, void *);
-  uint32_t (*set_timeout)(void *, uint32_t);
   uint32_t (*set_current_operation_progress)(void *, uint32_t);
   uint32_t (*set_next_operation)(void *, wstring_t, uint32_t);
   uint32_t (*wait_for_completion)(void *, int32_t);
@@ -759,9 +680,7 @@ struct Snapshot {
   struct NSISupports NSISupports;
   uint32_t (*get_id)(void *, void *);
   uint32_t (*get_name)(void *, void *);
-  uint32_t (*set_name)(void *, wstring_t);
   uint32_t (*get_description)(void *, void *);
-  uint32_t (*set_description)(void *, wstring_t);
   uint32_t (*get_time_stamp)(void *, void *);
   uint32_t (*get_online)(void *, void *);
   uint32_t (*get_machine)(void *, void *);
@@ -787,11 +706,9 @@ struct Medium {
   struct NSISupports NSISupports;
   uint32_t (*get_id)(void *, void *);
   uint32_t (*get_description)(void *, void *);
-  uint32_t (*set_description)(void *, wstring_t);
   uint32_t (*get_state)(void *, void *);
   uint32_t (*get_variant)(void *, void *);
   uint32_t (*get_location)(void *, void *);
-  uint32_t (*set_location)(void *, wstring_t);
   uint32_t (*get_name)(void *, void *);
   uint32_t (*get_device_type)(void *, void *);
   uint32_t (*get_host_drive)(void *, void *);
@@ -799,7 +716,6 @@ struct Medium {
   uint32_t (*get_format)(void *, void *);
   uint32_t (*get_medium_format)(void *, void *);
   uint32_t (*get_type)(void *, void *);
-  uint32_t (*set_type)(void *, uint32_t);
   uint32_t (*get_allowed_types)(void *, void *, void *);
   uint32_t (*get_parent)(void *, void *);
   uint32_t (*get_children)(void *, void *, void *);
@@ -807,7 +723,6 @@ struct Medium {
   uint32_t (*get_read_only)(void *, void *);
   uint32_t (*get_logical_size)(void *, void *);
   uint32_t (*get_auto_reset)(void *, void *);
-  uint32_t (*set_auto_reset)(void *, bool_t);
   uint32_t (*get_last_access_error)(void *, void *);
   uint32_t (*get_machine_ids)(void *, void *, void *);
   uint32_t (*set_ids)(void *, bool_t, wstring_t, bool_t, wstring_t);
@@ -904,39 +819,23 @@ struct Display {
 struct NetworkAdapter {
   struct NSISupports NSISupports;
   uint32_t (*get_adapter_type)(void *, void *);
-  uint32_t (*set_adapter_type)(void *, uint32_t);
   uint32_t (*get_slot)(void *, void *);
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_mac_address)(void *, void *);
-  uint32_t (*set_mac_address)(void *, wstring_t);
   uint32_t (*get_attachment_type)(void *, void *);
-  uint32_t (*set_attachment_type)(void *, uint32_t);
   uint32_t (*get_bridged_interface)(void *, void *);
-  uint32_t (*set_bridged_interface)(void *, wstring_t);
   uint32_t (*get_host_only_interface)(void *, void *);
-  uint32_t (*set_host_only_interface)(void *, wstring_t);
   uint32_t (*get_internal_network)(void *, void *);
-  uint32_t (*set_internal_network)(void *, wstring_t);
   uint32_t (*get_nat_network)(void *, void *);
-  uint32_t (*set_nat_network)(void *, wstring_t);
   uint32_t (*get_generic_driver)(void *, void *);
-  uint32_t (*set_generic_driver)(void *, wstring_t);
   uint32_t (*get_cable_connected)(void *, void *);
-  uint32_t (*set_cable_connected)(void *, bool_t);
   uint32_t (*get_line_speed)(void *, void *);
-  uint32_t (*set_line_speed)(void *, uint32_t);
   uint32_t (*get_promisc_mode_policy)(void *, void *);
-  uint32_t (*set_promisc_mode_policy)(void *, uint32_t);
   uint32_t (*get_trace_enabled)(void *, void *);
-  uint32_t (*set_trace_enabled)(void *, bool_t);
   uint32_t (*get_trace_file)(void *, void *);
-  uint32_t (*set_trace_file)(void *, wstring_t);
   uint32_t (*get_nat_engine)(void *, void *);
   uint32_t (*get_boot_priority)(void *, void *);
-  uint32_t (*set_boot_priority)(void *, uint32_t);
   uint32_t (*get_bandwidth_group)(void *, void *);
-  uint32_t (*set_bandwidth_group)(void *, void *);
   uint32_t (*get_property)(void *, wstring_t, void *);
   uint32_t (*set_property)(void *, wstring_t, wstring_t);
   uint32_t (*get_properties)(void *, wstring_t, void *, void *, void *, void *);
@@ -945,44 +844,28 @@ struct SerialPort {
   struct NSISupports NSISupports;
   uint32_t (*get_slot)(void *, void *);
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_io_base)(void *, void *);
-  uint32_t (*set_io_base)(void *, uint32_t);
   uint32_t (*get_irq)(void *, void *);
-  uint32_t (*set_irq)(void *, uint32_t);
   uint32_t (*get_host_mode)(void *, void *);
-  uint32_t (*set_host_mode)(void *, uint32_t);
   uint32_t (*get_server)(void *, void *);
-  uint32_t (*set_server)(void *, bool_t);
   uint32_t (*get_path)(void *, void *);
-  uint32_t (*set_path)(void *, wstring_t);
 };
 struct ParallelPort {
   struct NSISupports NSISupports;
   uint32_t (*get_slot)(void *, void *);
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_io_base)(void *, void *);
-  uint32_t (*set_io_base)(void *, uint32_t);
   uint32_t (*get_irq)(void *, void *);
-  uint32_t (*set_irq)(void *, uint32_t);
   uint32_t (*get_path)(void *, void *);
-  uint32_t (*set_path)(void *, wstring_t);
 };
 struct MachineDebugger {
   struct NSISupports NSISupports;
   uint32_t (*get_single_step)(void *, void *);
-  uint32_t (*set_single_step)(void *, bool_t);
   uint32_t (*get_recompile_user)(void *, void *);
-  uint32_t (*set_recompile_user)(void *, bool_t);
   uint32_t (*get_recompile_supervisor)(void *, void *);
-  uint32_t (*set_recompile_supervisor)(void *, bool_t);
   uint32_t (*get_patm_enabled)(void *, void *);
-  uint32_t (*set_patm_enabled)(void *, bool_t);
   uint32_t (*get_csam_enabled)(void *, void *);
-  uint32_t (*set_csam_enabled)(void *, bool_t);
   uint32_t (*get_log_enabled)(void *, void *);
-  uint32_t (*set_log_enabled)(void *, bool_t);
   uint32_t (*get_log_dbg_flags)(void *, void *);
   uint32_t (*get_log_dbg_groups)(void *, void *);
   uint32_t (*get_log_dbg_destinations)(void *, void *);
@@ -996,7 +879,6 @@ struct MachineDebugger {
   uint32_t (*get_os_version)(void *, void *);
   uint32_t (*get_pae_enabled)(void *, void *);
   uint32_t (*get_virtual_time_rate)(void *, void *);
-  uint32_t (*set_virtual_time_rate)(void *, uint32_t);
   uint32_t (*get_vm)(void *, void *);
   uint32_t (*dump_guest_core)(void *, wstring_t, wstring_t);
   uint32_t (*dump_host_process_core)(void *, wstring_t, wstring_t);
@@ -1022,9 +904,7 @@ struct MachineDebugger {
 struct USBController {
   struct NSISupports NSISupports;
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_enabled_ehci)(void *, void *);
-  uint32_t (*set_enabled_ehci)(void *, bool_t);
   uint32_t (*get_proxy_available)(void *, void *);
   uint32_t (*get_usb_standard)(void *, void *);
   uint32_t (*get_device_filters)(void *, void *, void *);
@@ -1050,27 +930,16 @@ struct USBDevice {
 struct USBDeviceFilter {
   struct NSISupports NSISupports;
   uint32_t (*get_name)(void *, void *);
-  uint32_t (*set_name)(void *, wstring_t);
   uint32_t (*get_active)(void *, void *);
-  uint32_t (*set_active)(void *, bool_t);
   uint32_t (*get_vendor_id)(void *, void *);
-  uint32_t (*set_vendor_id)(void *, wstring_t);
   uint32_t (*get_product_id)(void *, void *);
-  uint32_t (*set_product_id)(void *, wstring_t);
   uint32_t (*get_revision)(void *, void *);
-  uint32_t (*set_revision)(void *, wstring_t);
   uint32_t (*get_manufacturer)(void *, void *);
-  uint32_t (*set_manufacturer)(void *, wstring_t);
   uint32_t (*get_product)(void *, void *);
-  uint32_t (*set_product)(void *, wstring_t);
   uint32_t (*get_serial_number)(void *, void *);
-  uint32_t (*set_serial_number)(void *, wstring_t);
   uint32_t (*get_port)(void *, void *);
-  uint32_t (*set_port)(void *, wstring_t);
   uint32_t (*get_remote)(void *, void *);
-  uint32_t (*set_remote)(void *, wstring_t);
   uint32_t (*get_masked_interfaces)(void *, void *);
-  uint32_t (*set_masked_interfaces)(void *, uint32_t);
 };
 struct HostUSBDevice {
   struct USBDevice USBDevice;
@@ -1079,33 +948,22 @@ struct HostUSBDevice {
 struct HostUSBDeviceFilter {
   struct USBDeviceFilter USBDeviceFilter;
   uint32_t (*get_action)(void *, void *);
-  uint32_t (*set_action)(void *, uint32_t);
 };
 struct AudioAdapter {
   struct NSISupports NSISupports;
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_audio_controller)(void *, void *);
-  uint32_t (*set_audio_controller)(void *, uint32_t);
   uint32_t (*get_audio_driver)(void *, void *);
-  uint32_t (*set_audio_driver)(void *, uint32_t);
 };
 struct VRDEServer {
   struct NSISupports NSISupports;
   uint32_t (*get_enabled)(void *, void *);
-  uint32_t (*set_enabled)(void *, bool_t);
   uint32_t (*get_auth_type)(void *, void *);
-  uint32_t (*set_auth_type)(void *, uint32_t);
   uint32_t (*get_auth_timeout)(void *, void *);
-  uint32_t (*set_auth_timeout)(void *, uint32_t);
   uint32_t (*get_allow_multi_connection)(void *, void *);
-  uint32_t (*set_allow_multi_connection)(void *, bool_t);
   uint32_t (*get_reuse_single_connection)(void *, void *);
-  uint32_t (*set_reuse_single_connection)(void *, bool_t);
   uint32_t (*get_vrde_ext_pack)(void *, void *);
-  uint32_t (*set_vrde_ext_pack)(void *, wstring_t);
   uint32_t (*get_auth_library)(void *, void *);
-  uint32_t (*set_auth_library)(void *, wstring_t);
   uint32_t (*get_vrde_properties)(void *, void *, void *);
   uint32_t (*set_vrde_property)(void *, wstring_t, wstring_t);
   uint32_t (*get_vrde_property)(void *, wstring_t, void *);
@@ -1164,14 +1022,10 @@ struct StorageController {
   uint32_t (*get_min_port_count)(void *, void *);
   uint32_t (*get_max_port_count)(void *, void *);
   uint32_t (*get_instance)(void *, void *);
-  uint32_t (*set_instance)(void *, uint32_t);
   uint32_t (*get_port_count)(void *, void *);
-  uint32_t (*set_port_count)(void *, uint32_t);
   uint32_t (*get_bus)(void *, void *);
   uint32_t (*get_controller_type)(void *, void *);
-  uint32_t (*set_controller_type)(void *, uint32_t);
   uint32_t (*get_use_host_io_cache)(void *, void *);
-  uint32_t (*set_use_host_io_cache)(void *, bool_t);
   uint32_t (*get_bootable)(void *, void *);
 };
 struct PerformanceMetric {
@@ -1197,23 +1051,14 @@ struct PerformanceCollector {
 struct NATEngine {
   struct NSISupports NSISupports;
   uint32_t (*get_network)(void *, void *);
-  uint32_t (*set_network)(void *, wstring_t);
   uint32_t (*get_host_ip)(void *, void *);
-  uint32_t (*set_host_ip)(void *, wstring_t);
   uint32_t (*get_tftp_prefix)(void *, void *);
-  uint32_t (*set_tftp_prefix)(void *, wstring_t);
   uint32_t (*get_tftp_boot_file)(void *, void *);
-  uint32_t (*set_tftp_boot_file)(void *, wstring_t);
   uint32_t (*get_tftp_next_server)(void *, void *);
-  uint32_t (*set_tftp_next_server)(void *, wstring_t);
   uint32_t (*get_alias_mode)(void *, void *);
-  uint32_t (*set_alias_mode)(void *, uint32_t);
   uint32_t (*get_dns_pass_domain)(void *, void *);
-  uint32_t (*set_dns_pass_domain)(void *, bool_t);
   uint32_t (*get_dns_proxy)(void *, void *);
-  uint32_t (*set_dns_proxy)(void *, bool_t);
   uint32_t (*get_dns_use_host_resolver)(void *, void *);
-  uint32_t (*set_dns_use_host_resolver)(void *, bool_t);
   uint32_t (*get_redirects)(void *, void *, void *);
   uint32_t (*set_network_settings)(void *, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
   uint32_t (*get_network_settings)(void *, void *, void *, void *, void *, void *);
@@ -1267,7 +1112,6 @@ struct BandwidthGroup {
   uint32_t (*get_type)(void *, void *);
   uint32_t (*get_reference)(void *, void *);
   uint32_t (*get_max_bytes_per_sec)(void *, void *);
-  uint32_t (*set_max_bytes_per_sec)(void *, int64_t);
 };
 struct BandwidthControl {
   struct NSISupports NSISupports;
@@ -1487,7 +1331,6 @@ struct CanShowWindowEvent {
 struct ShowWindowEvent {
   struct Event Event;
   uint32_t (*get_win_id)(void *, void *);
-  uint32_t (*set_win_id)(void *, int64_t);
 };
 struct NATRedirectEvent {
   struct MachineEvent MachineEvent;
@@ -1726,9 +1569,9 @@ static VALUE NSISupports__QueryInterface(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NSISupports *vtbl = obj->vtbl;
-  i0 = prepare_ptr(i0);
   void * v1;
   void * v2;
+  i0 = prepare_ptr(i0);
   extract_ptr(i0, &v1);
   NS_CHECK(vtbl->QueryInterface(obj, v1, &v2));
   res = rb_ary_new();
@@ -1756,8 +1599,8 @@ static VALUE NSIException__to_string(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NSIException *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->to_string(obj, v1));
   res = rb_ary_new();
@@ -1921,14 +1764,14 @@ static VALUE DHCPServer__set_configuration(VALUE self, VALUE i0, VALUE i1, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct DHCPServer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_wstring(i3);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
   wstring_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_wstring(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -1941,12 +1784,12 @@ static VALUE DHCPServer__start(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct DHCPServer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -1971,17 +1814,6 @@ static VALUE DHCPServer__get_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE DHCPServer__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct DHCPServer *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE DHCPServer__get_ip_address(VALUE self) {
@@ -2043,15 +1875,15 @@ static VALUE VirtualBox__compose_machine_filename(VALUE self, VALUE i0, VALUE i1
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_wstring(i3);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
   wstring_t v4;
   wstring_t v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_wstring(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -2066,11 +1898,6 @@ static VALUE VirtualBox__create_machine(VALUE self, VALUE i0, VALUE i1, VALUE i2
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_array_wstring(i2);
-  i3 = prepare_wstring(i3);
-  i4 = prepare_wstring(i4);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3_size;
@@ -2078,6 +1905,11 @@ static VALUE VirtualBox__create_machine(VALUE self, VALUE i0, VALUE i1, VALUE i2
   wstring_t v4;
   wstring_t v5;
   void * v6;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_array_wstring(i2);
+  i3 = prepare_wstring(i3);
+  i4 = prepare_wstring(i4);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -2093,9 +1925,9 @@ static VALUE VirtualBox__open_machine(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->open_machine(obj, v1, &v2));
   res = rb_ary_new();
@@ -2107,8 +1939,8 @@ static VALUE VirtualBox__register_machine(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMachine);
   void * v1;
+  i0 = prepare_interface(i0, cMachine);
   extract_interface(i0, &v1, cMachine);
   NS_CHECK(vtbl->register_machine(obj, v1));
   res = rb_ary_new();
@@ -2118,9 +1950,9 @@ static VALUE VirtualBox__find_machine(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_machine(obj, v1, &v2));
   res = rb_ary_new();
@@ -2132,11 +1964,11 @@ static VALUE VirtualBox__get_machines_by_groups(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_array_wstring(i0);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->get_machines_by_groups(obj, v1_size, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -2148,11 +1980,11 @@ static VALUE VirtualBox__get_machine_states(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_array_interface(i0, cMachine);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_array_interface(i0, cMachine);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->get_machine_states(obj, v1_size, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -2175,11 +2007,11 @@ static VALUE VirtualBox__create_hard_disk(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->create_hard_disk(obj, v1, v2, &v3));
@@ -2192,15 +2024,15 @@ static VALUE VirtualBox__open_medium(VALUE self, VALUE i0, VALUE i1, VALUE i2, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_enum(i1, cDeviceType);
-  i2 = prepare_enum(i2, cAccessMode);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   uint32_t v2;
   uint32_t v3;
   bool_t v4;
   void * v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_enum(i1, cDeviceType);
+  i2 = prepare_enum(i2, cAccessMode);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_enum(i1, &v2, cDeviceType);
   extract_enum(i2, &v3, cAccessMode);
@@ -2215,9 +2047,9 @@ static VALUE VirtualBox__get_guest_os_type(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_guest_os_type(obj, v1, &v2));
   res = rb_ary_new();
@@ -2229,14 +2061,14 @@ static VALUE VirtualBox__create_shared_folder(VALUE self, VALUE i0, VALUE i1, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_bool(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   wstring_t v2;
   bool_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_bool(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_bool(i2, &v3);
@@ -2249,8 +2081,8 @@ static VALUE VirtualBox__remove_shared_folder(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->remove_shared_folder(obj, v1));
   res = rb_ary_new();
@@ -2272,9 +2104,9 @@ static VALUE VirtualBox__get_extra_data(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_extra_data(obj, v1, &v2));
   res = rb_ary_new();
@@ -2286,10 +2118,10 @@ static VALUE VirtualBox__set_extra_data(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->set_extra_data(obj, v1, v2));
@@ -2300,8 +2132,8 @@ static VALUE VirtualBox__set_settings_secret(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->set_settings_secret(obj, v1));
   res = rb_ary_new();
@@ -2311,9 +2143,9 @@ static VALUE VirtualBox__create_dhcp_server(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->create_dhcp_server(obj, v1, &v2));
   res = rb_ary_new();
@@ -2325,9 +2157,9 @@ static VALUE VirtualBox__find_dhcp_server_by_network_name(VALUE self, VALUE i0) 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_dhcp_server_by_network_name(obj, v1, &v2));
   res = rb_ary_new();
@@ -2339,8 +2171,8 @@ static VALUE VirtualBox__remove_dhcp_server(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cDHCPServer);
   void * v1;
+  i0 = prepare_interface(i0, cDHCPServer);
   extract_interface(i0, &v1, cDHCPServer);
   NS_CHECK(vtbl->remove_dhcp_server(obj, v1));
   res = rb_ary_new();
@@ -2350,13 +2182,13 @@ static VALUE VirtualBox__check_firmware_present(VALUE self, VALUE i0, VALUE i1) 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualBox *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cFirmwareType);
-  i1 = prepare_wstring(i1);
   uint32_t v1;
   wstring_t v2;
   wstring_t v3;
   wstring_t v4;
   bool_t v5;
+  i0 = prepare_enum(i0, cFirmwareType);
+  i1 = prepare_wstring(i1);
   extract_enum(i0, &v1, cFirmwareType);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->check_firmware_present(obj, v1, v2, &v3, &v4, &v5));
@@ -2645,9 +2477,9 @@ static VALUE VFSExplorer__cd(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VFSExplorer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->cd(obj, v1, &v2));
   res = rb_ary_new();
@@ -2690,11 +2522,11 @@ static VALUE VFSExplorer__exists(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VFSExplorer *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_array_wstring(i0);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->exists(obj, v1_size, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -2706,10 +2538,10 @@ static VALUE VFSExplorer__remove(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VFSExplorer *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
   uint32_t v1_size;
   void * v1;
   void * v2;
+  i0 = prepare_array_wstring(i0);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->remove(obj, v1_size, v1, &v2));
   res = rb_ary_new();
@@ -2743,9 +2575,9 @@ static VALUE Appliance__read(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Appliance *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->read(obj, v1, &v2));
   res = rb_ary_new();
@@ -2765,10 +2597,10 @@ static VALUE Appliance__import_machines(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Appliance *vtbl = obj->vtbl;
-  i0 = prepare_array_enum(i0, cImportOptions);
   uint32_t v1_size;
   void * v1;
   void * v2;
+  i0 = prepare_array_enum(i0, cImportOptions);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->import_machines(obj, v1_size, v1, &v2));
   res = rb_ary_new();
@@ -2780,9 +2612,9 @@ static VALUE Appliance__create_vfs_explorer(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Appliance *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->create_vfs_explorer(obj, v1, &v2));
   res = rb_ary_new();
@@ -2794,13 +2626,13 @@ static VALUE Appliance__write(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Appliance *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_bool(i1);
-  i2 = prepare_wstring(i2);
   wstring_t v1;
   bool_t v2;
   wstring_t v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_bool(i1);
+  i2 = prepare_wstring(i2);
   extract_wstring(i0, &v1);
   extract_bool(i1, &v2);
   extract_wstring(i2, &v3);
@@ -2896,7 +2728,6 @@ static VALUE VirtualSystemDescription__get_description_by_type(VALUE self, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualSystemDescription *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cVirtualSystemDescriptionType);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
@@ -2908,6 +2739,7 @@ static VALUE VirtualSystemDescription__get_description_by_type(VALUE self, VALUE
   void * v5;
   uint32_t v6_size;
   void * v6;
+  i0 = prepare_enum(i0, cVirtualSystemDescriptionType);
   extract_enum(i0, &v1, cVirtualSystemDescriptionType);
   NS_CHECK(vtbl->get_description_by_type(obj, v1, &v2_size, &v2, &v3_size, &v3, &v4_size, &v4, &v5_size, &v5, &v6_size, &v6));
   res = rb_ary_new();
@@ -2922,12 +2754,12 @@ static VALUE VirtualSystemDescription__get_values_by_type(VALUE self, VALUE i0, 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualSystemDescription *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cVirtualSystemDescriptionType);
-  i1 = prepare_enum(i1, cVirtualSystemDescriptionValueType);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_enum(i0, cVirtualSystemDescriptionType);
+  i1 = prepare_enum(i1, cVirtualSystemDescriptionValueType);
   extract_enum(i0, &v1, cVirtualSystemDescriptionType);
   extract_enum(i1, &v2, cVirtualSystemDescriptionValueType);
   NS_CHECK(vtbl->get_values_by_type(obj, v1, v2, &v3_size, &v3));
@@ -2940,15 +2772,15 @@ static VALUE VirtualSystemDescription__set_final_values(VALUE self, VALUE i0, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualSystemDescription *vtbl = obj->vtbl;
-  i0 = prepare_array_bool(i0);
-  i1 = prepare_array_wstring(i1);
-  i2 = prepare_array_wstring(i2);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_array_bool(i0);
+  i1 = prepare_array_wstring(i1);
+  i2 = prepare_array_wstring(i2);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -2960,12 +2792,12 @@ static VALUE VirtualSystemDescription__add_description(VALUE self, VALUE i0, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VirtualSystemDescription *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cVirtualSystemDescriptionType);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
   uint32_t v1;
   wstring_t v2;
   wstring_t v3;
+  i0 = prepare_enum(i0, cVirtualSystemDescriptionType);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
   extract_enum(i0, &v1, cVirtualSystemDescriptionType);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -2988,8 +2820,8 @@ static VALUE InternalMachineControl__set_remove_saved_state_file(VALUE self, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->set_remove_saved_state_file(obj, v1));
   res = rb_ary_new();
@@ -2999,8 +2831,8 @@ static VALUE InternalMachineControl__update_state(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cMachineState);
   uint32_t v1;
+  i0 = prepare_enum(i0, cMachineState);
   extract_enum(i0, &v1, cMachineState);
   NS_CHECK(vtbl->update_state(obj, v1));
   res = rb_ary_new();
@@ -3021,8 +2853,8 @@ static VALUE InternalMachineControl__begin_power_up(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cProgress);
   void * v1;
+  i0 = prepare_interface(i0, cProgress);
   extract_interface(i0, &v1, cProgress);
   NS_CHECK(vtbl->begin_power_up(obj, v1));
   res = rb_ary_new();
@@ -3032,8 +2864,8 @@ static VALUE InternalMachineControl__end_power_up(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
   int32_t v1;
+  i0 = prepare_int32(i0);
   extract_int32(i0, &v1);
   NS_CHECK(vtbl->end_power_up(obj, v1));
   res = rb_ary_new();
@@ -3054,10 +2886,10 @@ static VALUE InternalMachineControl__end_powering_down(VALUE self, VALUE i0, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
-  i1 = prepare_wstring(i1);
   int32_t v1;
   wstring_t v2;
+  i0 = prepare_int32(i0);
+  i1 = prepare_wstring(i1);
   extract_int32(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->end_powering_down(obj, v1, v2));
@@ -3068,10 +2900,10 @@ static VALUE InternalMachineControl__run_usb_device_filters(VALUE self, VALUE i0
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cUSBDevice);
   void * v1;
   bool_t v2;
   uint32_t v3;
+  i0 = prepare_interface(i0, cUSBDevice);
   extract_interface(i0, &v1, cUSBDevice);
   NS_CHECK(vtbl->run_usb_device_filters(obj, v1, &v2, &v3));
   res = rb_ary_new();
@@ -3083,8 +2915,8 @@ static VALUE InternalMachineControl__capture_usb_device(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->capture_usb_device(obj, v1));
   res = rb_ary_new();
@@ -3094,10 +2926,10 @@ static VALUE InternalMachineControl__detach_usb_device(VALUE self, VALUE i0, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_bool(i1);
   wstring_t v1;
   bool_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_bool(i1);
   extract_wstring(i0, &v1);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->detach_usb_device(obj, v1, v2));
@@ -3116,8 +2948,8 @@ static VALUE InternalMachineControl__detach_all_usb_devices(VALUE self, VALUE i0
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->detach_all_usb_devices(obj, v1));
   res = rb_ary_new();
@@ -3127,9 +2959,9 @@ static VALUE InternalMachineControl__on_session_end(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cSession);
   void * v1;
   void * v2;
+  i0 = prepare_interface(i0, cSession);
   extract_interface(i0, &v1, cSession);
   NS_CHECK(vtbl->on_session_end(obj, v1, &v2));
   res = rb_ary_new();
@@ -3153,10 +2985,10 @@ static VALUE InternalMachineControl__end_saving_state(VALUE self, VALUE i0, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
-  i1 = prepare_wstring(i1);
   int32_t v1;
   wstring_t v2;
+  i0 = prepare_int32(i0);
+  i1 = prepare_wstring(i1);
   extract_int32(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->end_saving_state(obj, v1, v2));
@@ -3167,8 +2999,8 @@ static VALUE InternalMachineControl__adopt_saved_state(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->adopt_saved_state(obj, v1));
   res = rb_ary_new();
@@ -3178,17 +3010,17 @@ static VALUE InternalMachineControl__begin_taking_snapshot(VALUE self, VALUE i0,
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cConsole);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_interface(i3, cProgress);
-  i4 = prepare_bool(i4);
   void * v1;
   wstring_t v2;
   wstring_t v3;
   void * v4;
   bool_t v5;
   wstring_t v6;
+  i0 = prepare_interface(i0, cConsole);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_interface(i3, cProgress);
+  i4 = prepare_bool(i4);
   extract_interface(i0, &v1, cConsole);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -3204,8 +3036,8 @@ static VALUE InternalMachineControl__end_taking_snapshot(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->end_taking_snapshot(obj, v1));
   res = rb_ary_new();
@@ -3215,16 +3047,16 @@ static VALUE InternalMachineControl__delete_snapshot(VALUE self, VALUE i0, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cConsole);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_bool(i3);
   void * v1;
   wstring_t v2;
   wstring_t v3;
   bool_t v4;
   uint32_t v5;
   void * v6;
+  i0 = prepare_interface(i0, cConsole);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_bool(i3);
   extract_interface(i0, &v1, cConsole);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -3239,12 +3071,6 @@ static VALUE InternalMachineControl__finish_online_merge_medium(VALUE self, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMediumAttachment);
-  i1 = prepare_interface(i1, cMedium);
-  i2 = prepare_interface(i2, cMedium);
-  i3 = prepare_bool(i3);
-  i4 = prepare_interface(i4, cMedium);
-  i5 = prepare_array_interface(i5, cMedium);
   void * v1;
   void * v2;
   void * v3;
@@ -3252,6 +3078,12 @@ static VALUE InternalMachineControl__finish_online_merge_medium(VALUE self, VALU
   void * v5;
   uint32_t v6_size;
   void * v6;
+  i0 = prepare_interface(i0, cMediumAttachment);
+  i1 = prepare_interface(i1, cMedium);
+  i2 = prepare_interface(i2, cMedium);
+  i3 = prepare_bool(i3);
+  i4 = prepare_interface(i4, cMedium);
+  i5 = prepare_array_interface(i5, cMedium);
   extract_interface(i0, &v1, cMediumAttachment);
   extract_interface(i1, &v2, cMedium);
   extract_interface(i2, &v3, cMedium);
@@ -3266,12 +3098,12 @@ static VALUE InternalMachineControl__restore_snapshot(VALUE self, VALUE i0, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cConsole);
-  i1 = prepare_interface(i1, cSnapshot);
   void * v1;
   void * v2;
   uint32_t v3;
   void * v4;
+  i0 = prepare_interface(i0, cConsole);
+  i1 = prepare_interface(i1, cSnapshot);
   extract_interface(i0, &v1, cConsole);
   extract_interface(i1, &v2, cSnapshot);
   NS_CHECK(vtbl->restore_snapshot(obj, v1, v2, &v3, &v4));
@@ -3304,14 +3136,14 @@ static VALUE InternalMachineControl__push_guest_property(VALUE self, VALUE i0, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_int64(i2);
-  i3 = prepare_wstring(i3);
   wstring_t v1;
   wstring_t v2;
   int64_t v3;
   wstring_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_int64(i2);
+  i3 = prepare_wstring(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_int64(i2, &v3);
@@ -3340,9 +3172,9 @@ static VALUE InternalMachineControl__eject_medium(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMediumAttachment);
   void * v1;
   void * v2;
+  i0 = prepare_interface(i0, cMediumAttachment);
   extract_interface(i0, &v1, cMediumAttachment);
   NS_CHECK(vtbl->eject_medium(obj, v1, &v2));
   res = rb_ary_new();
@@ -3354,22 +3186,6 @@ static VALUE InternalMachineControl__report_vm_statistics(VALUE self, VALUE i0, 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalMachineControl *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_uint32(i4);
-  i5 = prepare_uint32(i5);
-  i6 = prepare_uint32(i6);
-  i7 = prepare_uint32(i7);
-  i8 = prepare_uint32(i8);
-  i9 = prepare_uint32(i9);
-  i10 = prepare_uint32(i10);
-  i11 = prepare_uint32(i11);
-  i12 = prepare_uint32(i12);
-  i13 = prepare_uint32(i13);
-  i14 = prepare_uint32(i14);
-  i15 = prepare_uint32(i15);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
@@ -3386,6 +3202,22 @@ static VALUE InternalMachineControl__report_vm_statistics(VALUE self, VALUE i0, 
   uint32_t v14;
   uint32_t v15;
   uint32_t v16;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_uint32(i4);
+  i5 = prepare_uint32(i5);
+  i6 = prepare_uint32(i6);
+  i7 = prepare_uint32(i7);
+  i8 = prepare_uint32(i8);
+  i9 = prepare_uint32(i9);
+  i10 = prepare_uint32(i10);
+  i11 = prepare_uint32(i11);
+  i12 = prepare_uint32(i12);
+  i13 = prepare_uint32(i13);
+  i14 = prepare_uint32(i14);
+  i15 = prepare_uint32(i15);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -3417,17 +3249,6 @@ static VALUE BIOSSettings__get_logo_fade_in(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE BIOSSettings__set_logo_fade_in(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_logo_fade_in(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE BIOSSettings__get_logo_fade_out(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3437,17 +3258,6 @@ static VALUE BIOSSettings__get_logo_fade_out(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE BIOSSettings__set_logo_fade_out(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_logo_fade_out(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE BIOSSettings__get_logo_display_time(VALUE self) {
@@ -3461,17 +3271,6 @@ static VALUE BIOSSettings__get_logo_display_time(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE BIOSSettings__set_logo_display_time(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_logo_display_time(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE BIOSSettings__get_logo_image_path(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3481,17 +3280,6 @@ static VALUE BIOSSettings__get_logo_image_path(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE BIOSSettings__set_logo_image_path(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_logo_image_path(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE BIOSSettings__get_boot_menu_mode(VALUE self) {
@@ -3505,17 +3293,6 @@ static VALUE BIOSSettings__get_boot_menu_mode(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE BIOSSettings__set_boot_menu_mode(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cBIOSBootMenuMode);
-  uint32_t v1;
-  extract_enum(i0, &v1, cBIOSBootMenuMode);
-  NS_CHECK(vtbl->set_boot_menu_mode(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE BIOSSettings__get_acpi_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3525,17 +3302,6 @@ static VALUE BIOSSettings__get_acpi_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE BIOSSettings__set_acpi_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_acpi_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE BIOSSettings__get_io_apic_enabled(VALUE self) {
@@ -3549,17 +3315,6 @@ static VALUE BIOSSettings__get_io_apic_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE BIOSSettings__set_io_apic_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_io_apic_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE BIOSSettings__get_time_offset(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3571,17 +3326,6 @@ static VALUE BIOSSettings__get_time_offset(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE BIOSSettings__set_time_offset(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  int64_t v1;
-  extract_int64(i0, &v1);
-  NS_CHECK(vtbl->set_time_offset(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE BIOSSettings__get_pxe_debug_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3591,17 +3335,6 @@ static VALUE BIOSSettings__get_pxe_debug_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE BIOSSettings__set_pxe_debug_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BIOSSettings *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_pxe_debug_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE PCIAddress__as_long(VALUE self) {
@@ -3619,8 +3352,8 @@ static VALUE PCIAddress__from_long(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct PCIAddress *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
   int32_t v1;
+  i0 = prepare_int32(i0);
   extract_int32(i0, &v1);
   NS_CHECK(vtbl->from_long(obj, v1));
   res = rb_ary_new();
@@ -3637,17 +3370,6 @@ static VALUE PCIAddress__get_bus(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE PCIAddress__set_bus(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct PCIAddress *vtbl = obj->vtbl;
-  i0 = prepare_int16(i0);
-  int16_t v1;
-  extract_int16(i0, &v1);
-  NS_CHECK(vtbl->set_bus(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE PCIAddress__get_device(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3659,17 +3381,6 @@ static VALUE PCIAddress__get_device(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE PCIAddress__set_device(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct PCIAddress *vtbl = obj->vtbl;
-  i0 = prepare_int16(i0);
-  int16_t v1;
-  extract_int16(i0, &v1);
-  NS_CHECK(vtbl->set_device(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE PCIAddress__get_dev_function(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -3679,17 +3390,6 @@ static VALUE PCIAddress__get_dev_function(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_int16(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE PCIAddress__set_dev_function(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct PCIAddress *vtbl = obj->vtbl;
-  i0 = prepare_int16(i0);
-  int16_t v1;
-  extract_int16(i0, &v1);
-  NS_CHECK(vtbl->set_dev_function(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE PCIDeviceAttachment__get_name(VALUE self) {
@@ -3740,10 +3440,10 @@ static VALUE Machine__lock_machine(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cSession);
-  i1 = prepare_enum(i1, cLockType);
   void * v1;
   uint32_t v2;
+  i0 = prepare_interface(i0, cSession);
+  i1 = prepare_enum(i1, cLockType);
   extract_interface(i0, &v1, cSession);
   extract_enum(i1, &v2, cLockType);
   NS_CHECK(vtbl->lock_machine(obj, v1, v2));
@@ -3754,13 +3454,13 @@ static VALUE Machine__launch_vm_process(VALUE self, VALUE i0, VALUE i1, VALUE i2
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cSession);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
   void * v1;
   wstring_t v2;
   wstring_t v3;
   void * v4;
+  i0 = prepare_interface(i0, cSession);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
   extract_interface(i0, &v1, cSession);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -3774,10 +3474,10 @@ static VALUE Machine__set_boot_order(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_enum(i1, cDeviceType);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_enum(i1, cDeviceType);
   extract_uint32(i0, &v1);
   extract_enum(i1, &v2, cDeviceType);
   NS_CHECK(vtbl->set_boot_order(obj, v1, v2));
@@ -3788,9 +3488,9 @@ static VALUE Machine__get_boot_order(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_boot_order(obj, v1, &v2));
   res = rb_ary_new();
@@ -3802,16 +3502,16 @@ static VALUE Machine__attach_device(VALUE self, VALUE i0, VALUE i1, VALUE i2, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_enum(i3, cDeviceType);
-  i4 = prepare_interface(i4, cMedium);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   uint32_t v4;
   void * v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_enum(i3, cDeviceType);
+  i4 = prepare_interface(i4, cMedium);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3825,14 +3525,14 @@ static VALUE Machine__attach_device_without_medium(VALUE self, VALUE i0, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_enum(i3, cDeviceType);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   uint32_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_enum(i3, cDeviceType);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3845,12 +3545,12 @@ static VALUE Machine__detach_device(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3862,14 +3562,14 @@ static VALUE Machine__passthrough_device(VALUE self, VALUE i0, VALUE i1, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3882,14 +3582,14 @@ static VALUE Machine__temporary_eject_device(VALUE self, VALUE i0, VALUE i1, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3902,14 +3602,14 @@ static VALUE Machine__non_rotational_device(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3922,14 +3622,14 @@ static VALUE Machine__set_auto_discard_for_device(VALUE self, VALUE i0, VALUE i1
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3942,14 +3642,14 @@ static VALUE Machine__set_bandwidth_group_for_device(VALUE self, VALUE i0, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_interface(i3, cBandwidthGroup);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_interface(i3, cBandwidthGroup);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3962,12 +3662,12 @@ static VALUE Machine__set_no_bandwidth_group_for_device(VALUE self, VALUE i0, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3979,14 +3679,14 @@ static VALUE Machine__unmount_medium(VALUE self, VALUE i0, VALUE i1, VALUE i2, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -3999,16 +3699,16 @@ static VALUE Machine__mount_medium(VALUE self, VALUE i0, VALUE i1, VALUE i2, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_interface(i3, cMedium);
-  i4 = prepare_bool(i4);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   void * v4;
   bool_t v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_interface(i3, cMedium);
+  i4 = prepare_bool(i4);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -4022,13 +3722,13 @@ static VALUE Machine__get_medium(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -4042,10 +3742,10 @@ static VALUE Machine__get_medium_attachments_of_controller(VALUE self, VALUE i0)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_medium_attachments_of_controller(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -4057,13 +3757,13 @@ static VALUE Machine__get_medium_attachment(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
   wstring_t v1;
   int32_t v2;
   int32_t v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
   extract_wstring(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -4077,12 +3777,12 @@ static VALUE Machine__attach_host_pci_device(VALUE self, VALUE i0, VALUE i1, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_bool(i2);
   int32_t v1;
   int32_t v2;
   bool_t v3;
+  i0 = prepare_int32(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_bool(i2);
   extract_int32(i0, &v1);
   extract_int32(i1, &v2);
   extract_bool(i2, &v3);
@@ -4094,8 +3794,8 @@ static VALUE Machine__detach_host_pci_device(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
   int32_t v1;
+  i0 = prepare_int32(i0);
   extract_int32(i0, &v1);
   NS_CHECK(vtbl->detach_host_pci_device(obj, v1));
   res = rb_ary_new();
@@ -4105,9 +3805,9 @@ static VALUE Machine__get_network_adapter(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_network_adapter(obj, v1, &v2));
   res = rb_ary_new();
@@ -4119,11 +3819,11 @@ static VALUE Machine__add_storage_controller(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_enum(i1, cStorageBus);
   wstring_t v1;
   uint32_t v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_enum(i1, cStorageBus);
   extract_wstring(i0, &v1);
   extract_enum(i1, &v2, cStorageBus);
   NS_CHECK(vtbl->add_storage_controller(obj, v1, v2, &v3));
@@ -4136,9 +3836,9 @@ static VALUE Machine__get_storage_controller_by_name(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_storage_controller_by_name(obj, v1, &v2));
   res = rb_ary_new();
@@ -4150,9 +3850,9 @@ static VALUE Machine__get_storage_controller_by_instance(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_storage_controller_by_instance(obj, v1, &v2));
   res = rb_ary_new();
@@ -4164,8 +3864,8 @@ static VALUE Machine__remove_storage_controller(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->remove_storage_controller(obj, v1));
   res = rb_ary_new();
@@ -4175,10 +3875,10 @@ static VALUE Machine__set_storage_controller_bootable(VALUE self, VALUE i0, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_bool(i1);
   wstring_t v1;
   bool_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_bool(i1);
   extract_wstring(i0, &v1);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->set_storage_controller_bootable(obj, v1, v2));
@@ -4189,9 +3889,9 @@ static VALUE Machine__get_serial_port(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_serial_port(obj, v1, &v2));
   res = rb_ary_new();
@@ -4203,9 +3903,9 @@ static VALUE Machine__get_parallel_port(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_parallel_port(obj, v1, &v2));
   res = rb_ary_new();
@@ -4229,9 +3929,9 @@ static VALUE Machine__get_extra_data(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_extra_data(obj, v1, &v2));
   res = rb_ary_new();
@@ -4243,10 +3943,10 @@ static VALUE Machine__set_extra_data(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->set_extra_data(obj, v1, v2));
@@ -4257,9 +3957,9 @@ static VALUE Machine__get_cpu_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cCPUPropertyType);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cCPUPropertyType);
   extract_enum(i0, &v1, cCPUPropertyType);
   NS_CHECK(vtbl->get_cpu_property(obj, v1, &v2));
   res = rb_ary_new();
@@ -4271,10 +3971,10 @@ static VALUE Machine__set_cpu_property(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cCPUPropertyType);
-  i1 = prepare_bool(i1);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cCPUPropertyType);
+  i1 = prepare_bool(i1);
   extract_enum(i0, &v1, cCPUPropertyType);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->set_cpu_property(obj, v1, v2));
@@ -4285,12 +3985,12 @@ static VALUE Machine__get_cpuid_leaf(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_cpuid_leaf(obj, v1, &v2, &v3, &v4, &v5));
   res = rb_ary_new();
@@ -4304,16 +4004,16 @@ static VALUE Machine__set_cpuid_leaf(VALUE self, VALUE i0, VALUE i1, VALUE i2, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_uint32(i4);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_uint32(i4);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -4327,8 +4027,8 @@ static VALUE Machine__remove_cpuid_leaf(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->remove_cpuid_leaf(obj, v1));
   res = rb_ary_new();
@@ -4346,9 +4046,9 @@ static VALUE Machine__get_hw_virt_ex_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cHWVirtExPropertyType);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cHWVirtExPropertyType);
   extract_enum(i0, &v1, cHWVirtExPropertyType);
   NS_CHECK(vtbl->get_hw_virt_ex_property(obj, v1, &v2));
   res = rb_ary_new();
@@ -4360,10 +4060,10 @@ static VALUE Machine__set_hw_virt_ex_property(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cHWVirtExPropertyType);
-  i1 = prepare_bool(i1);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cHWVirtExPropertyType);
+  i1 = prepare_bool(i1);
   extract_enum(i0, &v1, cHWVirtExPropertyType);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->set_hw_virt_ex_property(obj, v1, v2));
@@ -4390,10 +4090,10 @@ static VALUE Machine__unregister(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cCleanupMode);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_enum(i0, cCleanupMode);
   extract_enum(i0, &v1, cCleanupMode);
   NS_CHECK(vtbl->unregister(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -4405,10 +4105,10 @@ static VALUE Machine__delete(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_array_interface(i0, cMedium);
   uint32_t v1_size;
   void * v1;
   void * v2;
+  i0 = prepare_array_interface(i0, cMedium);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->delete(obj, v1_size, v1, &v2));
   res = rb_ary_new();
@@ -4420,11 +4120,11 @@ static VALUE Machine__export(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cAppliance);
-  i1 = prepare_wstring(i1);
   void * v1;
   wstring_t v2;
   void * v3;
+  i0 = prepare_interface(i0, cAppliance);
+  i1 = prepare_wstring(i1);
   extract_interface(i0, &v1, cAppliance);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->export(obj, v1, v2, &v3));
@@ -4437,9 +4137,9 @@ static VALUE Machine__find_snapshot(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_snapshot(obj, v1, &v2));
   res = rb_ary_new();
@@ -4451,14 +4151,14 @@ static VALUE Machine__create_shared_folder(VALUE self, VALUE i0, VALUE i1, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_bool(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   wstring_t v2;
   bool_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_bool(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_bool(i2, &v3);
@@ -4471,8 +4171,8 @@ static VALUE Machine__remove_shared_folder(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->remove_shared_folder(obj, v1));
   res = rb_ary_new();
@@ -4504,11 +4204,11 @@ static VALUE Machine__get_guest_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
   int64_t v3;
   wstring_t v4;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_guest_property(obj, v1, &v2, &v3, &v4));
   res = rb_ary_new();
@@ -4521,9 +4221,9 @@ static VALUE Machine__get_guest_property_value(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_guest_property_value(obj, v1, &v2));
   res = rb_ary_new();
@@ -4535,9 +4235,9 @@ static VALUE Machine__get_guest_property_timestamp(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   int64_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_guest_property_timestamp(obj, v1, &v2));
   res = rb_ary_new();
@@ -4549,12 +4249,12 @@ static VALUE Machine__set_guest_property(VALUE self, VALUE i0, VALUE i1, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -4566,10 +4266,10 @@ static VALUE Machine__set_guest_property_value(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->set_guest_property_value(obj, v1, v2));
@@ -4580,8 +4280,8 @@ static VALUE Machine__delete_guest_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->delete_guest_property(obj, v1));
   res = rb_ary_new();
@@ -4591,7 +4291,6 @@ static VALUE Machine__enumerate_guest_properties(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
@@ -4601,6 +4300,7 @@ static VALUE Machine__enumerate_guest_properties(VALUE self, VALUE i0) {
   void * v4;
   uint32_t v5_size;
   void * v5;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->enumerate_guest_properties(obj, v1, &v2_size, &v2, &v3_size, &v3, &v4_size, &v4, &v5_size, &v5));
   res = rb_ary_new();
@@ -4614,13 +4314,13 @@ static VALUE Machine__query_saved_guest_screen_info(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5;
   bool_t v6;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->query_saved_guest_screen_info(obj, v1, &v2, &v3, &v4, &v5, &v6));
   res = rb_ary_new();
@@ -4635,11 +4335,11 @@ static VALUE Machine__query_saved_thumbnail_size(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->query_saved_thumbnail_size(obj, v1, &v2, &v3, &v4));
   res = rb_ary_new();
@@ -4652,14 +4352,14 @@ static VALUE Machine__read_saved_thumbnail_to_array(VALUE self, VALUE i0, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_bool(i1);
   uint32_t v1;
   bool_t v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5_size;
   void * v5;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_bool(i1);
   extract_uint32(i0, &v1);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->read_saved_thumbnail_to_array(obj, v1, v2, &v3, &v4, &v5_size, &v5));
@@ -4673,12 +4373,12 @@ static VALUE Machine__read_saved_thumbnail_png_to_array(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->read_saved_thumbnail_png_to_array(obj, v1, &v2, &v3, &v4_size, &v4));
   res = rb_ary_new();
@@ -4691,11 +4391,11 @@ static VALUE Machine__query_saved_screenshot_png_size(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->query_saved_screenshot_png_size(obj, v1, &v2, &v3, &v4));
   res = rb_ary_new();
@@ -4708,12 +4408,12 @@ static VALUE Machine__read_saved_screenshot_png_to_array(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->read_saved_screenshot_png_to_array(obj, v1, &v2, &v3, &v4_size, &v4));
   res = rb_ary_new();
@@ -4726,8 +4426,8 @@ static VALUE Machine__hot_plug_cpu(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->hot_plug_cpu(obj, v1));
   res = rb_ary_new();
@@ -4737,8 +4437,8 @@ static VALUE Machine__hot_unplug_cpu(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->hot_unplug_cpu(obj, v1));
   res = rb_ary_new();
@@ -4748,9 +4448,9 @@ static VALUE Machine__get_cpu_status(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_cpu_status(obj, v1, &v2));
   res = rb_ary_new();
@@ -4762,9 +4462,9 @@ static VALUE Machine__query_log_filename(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   wstring_t v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->query_log_filename(obj, v1, &v2));
   res = rb_ary_new();
@@ -4776,14 +4476,14 @@ static VALUE Machine__read_log(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_int64(i1);
-  i2 = prepare_int64(i2);
   uint32_t v1;
   int64_t v2;
   int64_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_int64(i1);
+  i2 = prepare_int64(i2);
   extract_uint32(i0, &v1);
   extract_int64(i1, &v2);
   extract_int64(i2, &v3);
@@ -4797,14 +4497,14 @@ static VALUE Machine__clone_to(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMachine);
-  i1 = prepare_enum(i1, cCloneMode);
-  i2 = prepare_array_enum(i2, cCloneOptions);
   void * v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
   void * v4;
+  i0 = prepare_interface(i0, cMachine);
+  i1 = prepare_enum(i1, cCloneMode);
+  i2 = prepare_array_enum(i2, cCloneOptions);
   extract_interface(i0, &v1, cMachine);
   extract_enum(i1, &v2, cCloneMode);
   extract_carray(i2, &v3_size, &v3);
@@ -4858,17 +4558,6 @@ static VALUE Machine__get_name(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_name(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_name(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_description(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -4878,17 +4567,6 @@ static VALUE Machine__get_description(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_description(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_description(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_id(VALUE self) {
@@ -4914,18 +4592,6 @@ static VALUE Machine__get_groups(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_groups(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  uint32_t v1_size;
-  void * v1;
-  extract_carray(i0, &v1_size, &v1);
-  NS_CHECK(vtbl->set_groups(obj, v1_size, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_os_type_id(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -4935,17 +4601,6 @@ static VALUE Machine__get_os_type_id(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_os_type_id(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_os_type_id(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_hardware_version(VALUE self) {
@@ -4959,17 +4614,6 @@ static VALUE Machine__get_hardware_version(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_hardware_version(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_hardware_version(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_hardware_uuid(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -4979,17 +4623,6 @@ static VALUE Machine__get_hardware_uuid(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_hardware_uuid(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_hardware_uuid(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_cpu_count(VALUE self) {
@@ -5003,17 +4636,6 @@ static VALUE Machine__get_cpu_count(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_cpu_count(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_cpu_count(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_cpu_hot_plug_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5023,17 +4645,6 @@ static VALUE Machine__get_cpu_hot_plug_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_cpu_hot_plug_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_cpu_hot_plug_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_cpu_execution_cap(VALUE self) {
@@ -5047,17 +4658,6 @@ static VALUE Machine__get_cpu_execution_cap(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_cpu_execution_cap(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_cpu_execution_cap(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_memory_size(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5067,17 +4667,6 @@ static VALUE Machine__get_memory_size(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_memory_size(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_memory_size(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_memory_balloon_size(VALUE self) {
@@ -5091,17 +4680,6 @@ static VALUE Machine__get_memory_balloon_size(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_memory_balloon_size(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_memory_balloon_size(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_page_fusion_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5111,17 +4689,6 @@ static VALUE Machine__get_page_fusion_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_page_fusion_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_page_fusion_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_vram_size(VALUE self) {
@@ -5135,17 +4702,6 @@ static VALUE Machine__get_vram_size(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_vram_size(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_vram_size(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_accelerate_3d_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5155,17 +4711,6 @@ static VALUE Machine__get_accelerate_3d_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_accelerate_3d_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_accelerate_3d_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_accelerate_2d_video_enabled(VALUE self) {
@@ -5179,17 +4724,6 @@ static VALUE Machine__get_accelerate_2d_video_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_accelerate_2d_video_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_accelerate_2d_video_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_monitor_count(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5199,17 +4733,6 @@ static VALUE Machine__get_monitor_count(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_monitor_count(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_monitor_count(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_video_capture_enabled(VALUE self) {
@@ -5223,17 +4746,6 @@ static VALUE Machine__get_video_capture_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_video_capture_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_video_capture_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_video_capture_file(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5243,17 +4755,6 @@ static VALUE Machine__get_video_capture_file(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_video_capture_file(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_video_capture_file(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_video_capture_width(VALUE self) {
@@ -5267,17 +4768,6 @@ static VALUE Machine__get_video_capture_width(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_video_capture_width(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_video_capture_width(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_video_capture_height(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5287,17 +4777,6 @@ static VALUE Machine__get_video_capture_height(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_video_capture_height(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_video_capture_height(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_bios_settings(VALUE self) {
@@ -5322,17 +4801,6 @@ static VALUE Machine__get_firmware_type(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_firmware_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cFirmwareType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cFirmwareType);
-  NS_CHECK(vtbl->set_firmware_type(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_pointing_hid_type(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5342,17 +4810,6 @@ static VALUE Machine__get_pointing_hid_type(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cPointingHIDType));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_pointing_hid_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cPointingHIDType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cPointingHIDType);
-  NS_CHECK(vtbl->set_pointing_hid_type(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_keyboard_hid_type(VALUE self) {
@@ -5366,17 +4823,6 @@ static VALUE Machine__get_keyboard_hid_type(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_keyboard_hid_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cKeyboardHIDType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cKeyboardHIDType);
-  NS_CHECK(vtbl->set_keyboard_hid_type(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_hpet_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5386,17 +4832,6 @@ static VALUE Machine__get_hpet_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_hpet_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_hpet_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_chipset_type(VALUE self) {
@@ -5410,17 +4845,6 @@ static VALUE Machine__get_chipset_type(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_chipset_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cChipsetType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cChipsetType);
-  NS_CHECK(vtbl->set_chipset_type(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_snapshot_folder(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5430,17 +4854,6 @@ static VALUE Machine__get_snapshot_folder(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_snapshot_folder(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_snapshot_folder(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_vrde_server(VALUE self) {
@@ -5465,17 +4878,6 @@ static VALUE Machine__get_emulated_usb_webcamera_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_emulated_usb_webcamera_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_emulated_usb_webcamera_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_emulated_usb_card_reader_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5485,17 +4887,6 @@ static VALUE Machine__get_emulated_usb_card_reader_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_emulated_usb_card_reader_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_emulated_usb_card_reader_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_medium_attachments(VALUE self) {
@@ -5699,17 +5090,6 @@ static VALUE Machine__get_clipboard_mode(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_clipboard_mode(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cClipboardMode);
-  uint32_t v1;
-  extract_enum(i0, &v1, cClipboardMode);
-  NS_CHECK(vtbl->set_clipboard_mode(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_drag_and_drop_mode(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5719,17 +5099,6 @@ static VALUE Machine__get_drag_and_drop_mode(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cDragAndDropMode));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_drag_and_drop_mode(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cDragAndDropMode);
-  uint32_t v1;
-  extract_enum(i0, &v1, cDragAndDropMode);
-  NS_CHECK(vtbl->set_drag_and_drop_mode(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_guest_property_notification_patterns(VALUE self) {
@@ -5743,17 +5112,6 @@ static VALUE Machine__get_guest_property_notification_patterns(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_guest_property_notification_patterns(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_guest_property_notification_patterns(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_teleporter_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5763,17 +5121,6 @@ static VALUE Machine__get_teleporter_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_teleporter_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_teleporter_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_teleporter_port(VALUE self) {
@@ -5787,17 +5134,6 @@ static VALUE Machine__get_teleporter_port(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_teleporter_port(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_teleporter_port(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_teleporter_address(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5807,17 +5143,6 @@ static VALUE Machine__get_teleporter_address(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_teleporter_address(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_teleporter_address(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_teleporter_password(VALUE self) {
@@ -5831,17 +5156,6 @@ static VALUE Machine__get_teleporter_password(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_teleporter_password(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_teleporter_password(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_fault_tolerance_state(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5851,17 +5165,6 @@ static VALUE Machine__get_fault_tolerance_state(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cFaultToleranceState));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_fault_tolerance_state(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cFaultToleranceState);
-  uint32_t v1;
-  extract_enum(i0, &v1, cFaultToleranceState);
-  NS_CHECK(vtbl->set_fault_tolerance_state(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_fault_tolerance_port(VALUE self) {
@@ -5875,17 +5178,6 @@ static VALUE Machine__get_fault_tolerance_port(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_fault_tolerance_port(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_fault_tolerance_port(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_fault_tolerance_address(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5895,17 +5187,6 @@ static VALUE Machine__get_fault_tolerance_address(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_fault_tolerance_address(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_fault_tolerance_address(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_fault_tolerance_password(VALUE self) {
@@ -5919,17 +5200,6 @@ static VALUE Machine__get_fault_tolerance_password(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_fault_tolerance_password(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_fault_tolerance_password(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_fault_tolerance_sync_interval(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5939,17 +5209,6 @@ static VALUE Machine__get_fault_tolerance_sync_interval(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_fault_tolerance_sync_interval(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_fault_tolerance_sync_interval(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_rtc_use_utc(VALUE self) {
@@ -5963,17 +5222,6 @@ static VALUE Machine__get_rtc_use_utc(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_rtc_use_utc(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_rtc_use_utc(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_io_cache_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -5985,17 +5233,6 @@ static VALUE Machine__get_io_cache_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_io_cache_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_io_cache_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_io_cache_size(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -6005,17 +5242,6 @@ static VALUE Machine__get_io_cache_size(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_io_cache_size(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_io_cache_size(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_pci_device_assignments(VALUE self) {
@@ -6052,17 +5278,6 @@ static VALUE Machine__get_tracing_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_tracing_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_tracing_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_tracing_config(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -6072,17 +5287,6 @@ static VALUE Machine__get_tracing_config(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_tracing_config(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_tracing_config(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_allow_tracing_to_access_vm(VALUE self) {
@@ -6096,17 +5300,6 @@ static VALUE Machine__get_allow_tracing_to_access_vm(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_allow_tracing_to_access_vm(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_allow_tracing_to_access_vm(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_autostart_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -6116,17 +5309,6 @@ static VALUE Machine__get_autostart_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_autostart_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_autostart_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Machine__get_autostart_delay(VALUE self) {
@@ -6140,17 +5322,6 @@ static VALUE Machine__get_autostart_delay(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Machine__set_autostart_delay(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_autostart_delay(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Machine__get_autostop_type(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -6160,17 +5331,6 @@ static VALUE Machine__get_autostop_type(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cAutostopType));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Machine__set_autostop_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Machine *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cAutostopType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cAutostopType);
-  NS_CHECK(vtbl->set_autostop_type(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE VRDEServerInfo__get_active(VALUE self) {
@@ -6448,8 +5608,8 @@ static VALUE Console__adopt_saved_state(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->adopt_saved_state(obj, v1));
   res = rb_ary_new();
@@ -6459,8 +5619,8 @@ static VALUE Console__discard_saved_state(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->discard_saved_state(obj, v1));
   res = rb_ary_new();
@@ -6470,9 +5630,9 @@ static VALUE Console__get_device_activity(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cDeviceType);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_enum(i0, cDeviceType);
   extract_enum(i0, &v1, cDeviceType);
   NS_CHECK(vtbl->get_device_activity(obj, v1, &v2));
   res = rb_ary_new();
@@ -6484,8 +5644,8 @@ static VALUE Console__attach_usb_device(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->attach_usb_device(obj, v1));
   res = rb_ary_new();
@@ -6495,9 +5655,9 @@ static VALUE Console__detach_usb_device(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->detach_usb_device(obj, v1, &v2));
   res = rb_ary_new();
@@ -6509,9 +5669,9 @@ static VALUE Console__find_usb_device_by_address(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_usb_device_by_address(obj, v1, &v2));
   res = rb_ary_new();
@@ -6523,9 +5683,9 @@ static VALUE Console__find_usb_device_by_id(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_usb_device_by_id(obj, v1, &v2));
   res = rb_ary_new();
@@ -6537,14 +5697,14 @@ static VALUE Console__create_shared_folder(VALUE self, VALUE i0, VALUE i1, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_bool(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   wstring_t v2;
   bool_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_bool(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_bool(i2, &v3);
@@ -6557,8 +5717,8 @@ static VALUE Console__remove_shared_folder(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->remove_shared_folder(obj, v1));
   res = rb_ary_new();
@@ -6568,11 +5728,11 @@ static VALUE Console__take_snapshot(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->take_snapshot(obj, v1, v2, &v3));
@@ -6585,9 +5745,9 @@ static VALUE Console__delete_snapshot(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->delete_snapshot(obj, v1, &v2));
   res = rb_ary_new();
@@ -6599,9 +5759,9 @@ static VALUE Console__delete_snapshot_and_all_children(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->delete_snapshot_and_all_children(obj, v1, &v2));
   res = rb_ary_new();
@@ -6613,11 +5773,11 @@ static VALUE Console__delete_snapshot_range(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->delete_snapshot_range(obj, v1, v2, &v3));
@@ -6630,9 +5790,9 @@ static VALUE Console__restore_snapshot(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cSnapshot);
   void * v1;
   void * v2;
+  i0 = prepare_interface(i0, cSnapshot);
   extract_interface(i0, &v1, cSnapshot);
   NS_CHECK(vtbl->restore_snapshot(obj, v1, &v2));
   res = rb_ary_new();
@@ -6644,15 +5804,15 @@ static VALUE Console__teleport(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Console *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_uint32(i3);
   wstring_t v1;
   uint32_t v2;
   wstring_t v3;
   uint32_t v4;
   void * v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_uint32(i3);
   extract_wstring(i0, &v1);
   extract_uint32(i1, &v2);
   extract_wstring(i2, &v3);
@@ -6821,25 +5981,14 @@ static VALUE Console__get_use_host_clipboard(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Console__set_use_host_clipboard(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Console *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_use_host_clipboard(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE HostNetworkInterface__enable_static_ip_config(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct HostNetworkInterface *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->enable_static_ip_config(obj, v1, v2));
@@ -6850,10 +5999,10 @@ static VALUE HostNetworkInterface__enable_static_ip_config_v6(VALUE self, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct HostNetworkInterface *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_uint32(i1);
   wstring_t v1;
   uint32_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_uint32(i1);
   extract_wstring(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->enable_static_ip_config_v6(obj, v1, v2));
@@ -7023,9 +6172,9 @@ static VALUE Host__get_processor_speed(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_processor_speed(obj, v1, &v2));
   res = rb_ary_new();
@@ -7037,9 +6186,9 @@ static VALUE Host__get_processor_feature(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cProcessorFeature);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cProcessorFeature);
   extract_enum(i0, &v1, cProcessorFeature);
   NS_CHECK(vtbl->get_processor_feature(obj, v1, &v2));
   res = rb_ary_new();
@@ -7051,9 +6200,9 @@ static VALUE Host__get_processor_description(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   wstring_t v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_processor_description(obj, v1, &v2));
   res = rb_ary_new();
@@ -7065,9 +6214,6 @@ static VALUE Host__get_processor_cpuid_leaf(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
@@ -7075,6 +6221,9 @@ static VALUE Host__get_processor_cpuid_leaf(VALUE self, VALUE i0, VALUE i1, VALU
   uint32_t v5;
   uint32_t v6;
   uint32_t v7;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -7102,9 +6251,9 @@ static VALUE Host__remove_host_only_network_interface(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->remove_host_only_network_interface(obj, v1, &v2));
   res = rb_ary_new();
@@ -7116,9 +6265,9 @@ static VALUE Host__create_usb_device_filter(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->create_usb_device_filter(obj, v1, &v2));
   res = rb_ary_new();
@@ -7130,10 +6279,10 @@ static VALUE Host__insert_usb_device_filter(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_interface(i1, cHostUSBDeviceFilter);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_interface(i1, cHostUSBDeviceFilter);
   extract_uint32(i0, &v1);
   extract_interface(i1, &v2, cHostUSBDeviceFilter);
   NS_CHECK(vtbl->insert_usb_device_filter(obj, v1, v2));
@@ -7144,8 +6293,8 @@ static VALUE Host__remove_usb_device_filter(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->remove_usb_device_filter(obj, v1));
   res = rb_ary_new();
@@ -7155,9 +6304,9 @@ static VALUE Host__find_host_dvd_drive(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_host_dvd_drive(obj, v1, &v2));
   res = rb_ary_new();
@@ -7169,9 +6318,9 @@ static VALUE Host__find_host_floppy_drive(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_host_floppy_drive(obj, v1, &v2));
   res = rb_ary_new();
@@ -7183,9 +6332,9 @@ static VALUE Host__find_host_network_interface_by_name(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_host_network_interface_by_name(obj, v1, &v2));
   res = rb_ary_new();
@@ -7197,9 +6346,9 @@ static VALUE Host__find_host_network_interface_by_id(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_host_network_interface_by_id(obj, v1, &v2));
   res = rb_ary_new();
@@ -7211,10 +6360,10 @@ static VALUE Host__find_host_network_interfaces_of_type(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cHostNetworkInterfaceType);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_enum(i0, cHostNetworkInterfaceType);
   extract_enum(i0, &v1, cHostNetworkInterfaceType);
   NS_CHECK(vtbl->find_host_network_interfaces_of_type(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -7226,9 +6375,9 @@ static VALUE Host__find_usb_device_by_id(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_usb_device_by_id(obj, v1, &v2));
   res = rb_ary_new();
@@ -7240,9 +6389,9 @@ static VALUE Host__find_usb_device_by_address(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Host *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_usb_device_by_address(obj, v1, &v2));
   res = rb_ary_new();
@@ -7424,9 +6573,9 @@ static VALUE SystemProperties__get_max_network_adapters(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cChipsetType);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_enum(i0, cChipsetType);
   extract_enum(i0, &v1, cChipsetType);
   NS_CHECK(vtbl->get_max_network_adapters(obj, v1, &v2));
   res = rb_ary_new();
@@ -7438,11 +6587,11 @@ static VALUE SystemProperties__get_max_network_adapters_of_type(VALUE self, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cChipsetType);
-  i1 = prepare_enum(i1, cNetworkAttachmentType);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
+  i0 = prepare_enum(i0, cChipsetType);
+  i1 = prepare_enum(i1, cNetworkAttachmentType);
   extract_enum(i0, &v1, cChipsetType);
   extract_enum(i1, &v2, cNetworkAttachmentType);
   NS_CHECK(vtbl->get_max_network_adapters_of_type(obj, v1, v2, &v3));
@@ -7455,9 +6604,9 @@ static VALUE SystemProperties__get_max_devices_per_port_for_storage_bus(VALUE se
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cStorageBus);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_enum(i0, cStorageBus);
   extract_enum(i0, &v1, cStorageBus);
   NS_CHECK(vtbl->get_max_devices_per_port_for_storage_bus(obj, v1, &v2));
   res = rb_ary_new();
@@ -7469,9 +6618,9 @@ static VALUE SystemProperties__get_min_port_count_for_storage_bus(VALUE self, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cStorageBus);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_enum(i0, cStorageBus);
   extract_enum(i0, &v1, cStorageBus);
   NS_CHECK(vtbl->get_min_port_count_for_storage_bus(obj, v1, &v2));
   res = rb_ary_new();
@@ -7483,9 +6632,9 @@ static VALUE SystemProperties__get_max_port_count_for_storage_bus(VALUE self, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cStorageBus);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_enum(i0, cStorageBus);
   extract_enum(i0, &v1, cStorageBus);
   NS_CHECK(vtbl->get_max_port_count_for_storage_bus(obj, v1, &v2));
   res = rb_ary_new();
@@ -7497,11 +6646,11 @@ static VALUE SystemProperties__get_max_instances_of_storage_bus(VALUE self, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cChipsetType);
-  i1 = prepare_enum(i1, cStorageBus);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
+  i0 = prepare_enum(i0, cChipsetType);
+  i1 = prepare_enum(i1, cStorageBus);
   extract_enum(i0, &v1, cChipsetType);
   extract_enum(i1, &v2, cStorageBus);
   NS_CHECK(vtbl->get_max_instances_of_storage_bus(obj, v1, v2, &v3));
@@ -7514,10 +6663,10 @@ static VALUE SystemProperties__get_device_types_for_storage_bus(VALUE self, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cStorageBus);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_enum(i0, cStorageBus);
   extract_enum(i0, &v1, cStorageBus);
   NS_CHECK(vtbl->get_device_types_for_storage_bus(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -7529,9 +6678,9 @@ static VALUE SystemProperties__get_default_io_cache_setting_for_storage_controll
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cStorageControllerType);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cStorageControllerType);
   extract_enum(i0, &v1, cStorageControllerType);
   NS_CHECK(vtbl->get_default_io_cache_setting_for_storage_controller(obj, v1, &v2));
   res = rb_ary_new();
@@ -7671,17 +6820,6 @@ static VALUE SystemProperties__get_default_machine_folder(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_default_machine_folder(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_default_machine_folder(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_medium_formats(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7705,17 +6843,6 @@ static VALUE SystemProperties__get_default_hard_disk_format(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_default_hard_disk_format(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_default_hard_disk_format(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_free_disk_space_warning(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7725,17 +6852,6 @@ static VALUE SystemProperties__get_free_disk_space_warning(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_int64(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SystemProperties__set_free_disk_space_warning(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  int64_t v1;
-  extract_int64(i0, &v1);
-  NS_CHECK(vtbl->set_free_disk_space_warning(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SystemProperties__get_free_disk_space_percent_warning(VALUE self) {
@@ -7749,17 +6865,6 @@ static VALUE SystemProperties__get_free_disk_space_percent_warning(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_free_disk_space_percent_warning(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_free_disk_space_percent_warning(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_free_disk_space_error(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7769,17 +6874,6 @@ static VALUE SystemProperties__get_free_disk_space_error(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_int64(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SystemProperties__set_free_disk_space_error(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  int64_t v1;
-  extract_int64(i0, &v1);
-  NS_CHECK(vtbl->set_free_disk_space_error(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SystemProperties__get_free_disk_space_percent_error(VALUE self) {
@@ -7793,17 +6887,6 @@ static VALUE SystemProperties__get_free_disk_space_percent_error(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_free_disk_space_percent_error(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_free_disk_space_percent_error(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_vrde_auth_library(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7813,17 +6896,6 @@ static VALUE SystemProperties__get_vrde_auth_library(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SystemProperties__set_vrde_auth_library(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_vrde_auth_library(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SystemProperties__get_web_service_auth_library(VALUE self) {
@@ -7837,17 +6909,6 @@ static VALUE SystemProperties__get_web_service_auth_library(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_web_service_auth_library(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_web_service_auth_library(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_default_vrde_ext_pack(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7859,17 +6920,6 @@ static VALUE SystemProperties__get_default_vrde_ext_pack(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_default_vrde_ext_pack(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_default_vrde_ext_pack(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_log_history_count(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7879,17 +6929,6 @@ static VALUE SystemProperties__get_log_history_count(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SystemProperties__set_log_history_count(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_log_history_count(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SystemProperties__get_default_audio_driver(VALUE self) {
@@ -7914,17 +6953,6 @@ static VALUE SystemProperties__get_autostart_database_path(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SystemProperties__set_autostart_database_path(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_autostart_database_path(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SystemProperties__get_default_additions_iso(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -7934,17 +6962,6 @@ static VALUE SystemProperties__get_default_additions_iso(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SystemProperties__set_default_additions_iso(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SystemProperties *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_default_additions_iso(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE GuestOSType__get_family_id(VALUE self) {
@@ -8311,14 +7328,14 @@ static VALUE GuestSession__copy_from(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_array_enum(i2, cCopyFileFlag);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3_size;
   void * v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_array_enum(i2, cCopyFileFlag);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8332,14 +7349,14 @@ static VALUE GuestSession__copy_to(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_array_enum(i2, cCopyFileFlag);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3_size;
   void * v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_array_enum(i2, cCopyFileFlag);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8353,13 +7370,13 @@ static VALUE GuestSession__directory_create(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_array_enum(i2, cDirectoryCreateFlag);
   wstring_t v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_array_enum(i2, cDirectoryCreateFlag);
   extract_wstring(i0, &v1);
   extract_uint32(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8371,15 +7388,15 @@ static VALUE GuestSession__directory_create_temp(VALUE self, VALUE i0, VALUE i1,
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   uint32_t v2;
   wstring_t v3;
   bool_t v4;
   wstring_t v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_uint32(i1, &v2);
   extract_wstring(i2, &v3);
@@ -8394,9 +7411,9 @@ static VALUE GuestSession__directory_exists(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   bool_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->directory_exists(obj, v1, &v2));
   res = rb_ary_new();
@@ -8408,14 +7425,14 @@ static VALUE GuestSession__directory_open(VALUE self, VALUE i0, VALUE i1, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_array_enum(i2, cDirectoryOpenFlag);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3_size;
   void * v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_array_enum(i2, cDirectoryOpenFlag);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8429,9 +7446,9 @@ static VALUE GuestSession__directory_query_info(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->directory_query_info(obj, v1, &v2));
   res = rb_ary_new();
@@ -8443,8 +7460,8 @@ static VALUE GuestSession__directory_remove(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->directory_remove(obj, v1));
   res = rb_ary_new();
@@ -8454,12 +7471,12 @@ static VALUE GuestSession__directory_remove_recursive(VALUE self, VALUE i0, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_array_enum(i1, cDirectoryRemoveRecFlag);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_array_enum(i1, cDirectoryRemoveRecFlag);
   extract_wstring(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->directory_remove_recursive(obj, v1, v2_size, v2, &v3));
@@ -8472,13 +7489,13 @@ static VALUE GuestSession__directory_rename(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_array_enum(i2, cPathRenameFlag);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_array_enum(i2, cPathRenameFlag);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8490,10 +7507,10 @@ static VALUE GuestSession__directory_set_acl(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->directory_set_acl(obj, v1, v2));
@@ -8512,9 +7529,9 @@ static VALUE GuestSession__environment_get(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->environment_get(obj, v1, &v2));
   res = rb_ary_new();
@@ -8526,10 +7543,10 @@ static VALUE GuestSession__environment_set(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->environment_set(obj, v1, v2));
@@ -8540,8 +7557,8 @@ static VALUE GuestSession__environment_unset(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->environment_unset(obj, v1));
   res = rb_ary_new();
@@ -8551,15 +7568,15 @@ static VALUE GuestSession__file_create_temp(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   uint32_t v2;
   wstring_t v3;
   bool_t v4;
   void * v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_uint32(i1, &v2);
   extract_wstring(i2, &v3);
@@ -8574,9 +7591,9 @@ static VALUE GuestSession__file_exists(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   bool_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->file_exists(obj, v1, &v2));
   res = rb_ary_new();
@@ -8588,8 +7605,8 @@ static VALUE GuestSession__file_remove(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->file_remove(obj, v1));
   res = rb_ary_new();
@@ -8599,17 +7616,17 @@ static VALUE GuestSession__file_open(VALUE self, VALUE i0, VALUE i1, VALUE i2, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_int64(i4);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
   uint32_t v4;
   int64_t v5;
   void * v6;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_int64(i4);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -8625,9 +7642,9 @@ static VALUE GuestSession__file_query_info(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->file_query_info(obj, v1, &v2));
   res = rb_ary_new();
@@ -8639,9 +7656,9 @@ static VALUE GuestSession__file_query_size(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   int64_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->file_query_size(obj, v1, &v2));
   res = rb_ary_new();
@@ -8653,13 +7670,13 @@ static VALUE GuestSession__file_rename(VALUE self, VALUE i0, VALUE i1, VALUE i2)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_array_enum(i2, cPathRenameFlag);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_array_enum(i2, cPathRenameFlag);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8671,10 +7688,10 @@ static VALUE GuestSession__file_set_acl(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->file_set_acl(obj, v1, v2));
@@ -8685,11 +7702,6 @@ static VALUE GuestSession__process_create(VALUE self, VALUE i0, VALUE i1, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_array_wstring(i1);
-  i2 = prepare_array_wstring(i2);
-  i3 = prepare_array_enum(i3, cProcessCreateFlag);
-  i4 = prepare_uint32(i4);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
@@ -8699,6 +7711,11 @@ static VALUE GuestSession__process_create(VALUE self, VALUE i0, VALUE i1, VALUE 
   void * v4;
   uint32_t v5;
   void * v6;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_array_wstring(i1);
+  i2 = prepare_array_wstring(i2);
+  i3 = prepare_array_enum(i3, cProcessCreateFlag);
+  i4 = prepare_uint32(i4);
   extract_wstring(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8714,13 +7731,6 @@ static VALUE GuestSession__process_create_ex(VALUE self, VALUE i0, VALUE i1, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_array_wstring(i1);
-  i2 = prepare_array_wstring(i2);
-  i3 = prepare_array_enum(i3, cProcessCreateFlag);
-  i4 = prepare_uint32(i4);
-  i5 = prepare_enum(i5, cProcessPriority);
-  i6 = prepare_array_int32(i6);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
@@ -8733,6 +7743,13 @@ static VALUE GuestSession__process_create_ex(VALUE self, VALUE i0, VALUE i1, VAL
   uint32_t v7_size;
   void * v7;
   void * v8;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_array_wstring(i1);
+  i2 = prepare_array_wstring(i2);
+  i3 = prepare_array_enum(i3, cProcessCreateFlag);
+  i4 = prepare_uint32(i4);
+  i5 = prepare_enum(i5, cProcessPriority);
+  i6 = prepare_array_int32(i6);
   extract_wstring(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -8750,9 +7767,9 @@ static VALUE GuestSession__process_get(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->process_get(obj, v1, &v2));
   res = rb_ary_new();
@@ -8764,12 +7781,12 @@ static VALUE GuestSession__symlink_create(VALUE self, VALUE i0, VALUE i1, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_enum(i2, cSymlinkType);
   wstring_t v1;
   wstring_t v2;
   uint32_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_enum(i2, cSymlinkType);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_enum(i2, &v3, cSymlinkType);
@@ -8781,9 +7798,9 @@ static VALUE GuestSession__symlink_exists(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   bool_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->symlink_exists(obj, v1, &v2));
   res = rb_ary_new();
@@ -8795,12 +7812,12 @@ static VALUE GuestSession__symlink_read(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_array_enum(i1, cSymlinkReadFlag);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
   wstring_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_array_enum(i1, cSymlinkReadFlag);
   extract_wstring(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->symlink_read(obj, v1, v2_size, v2, &v3));
@@ -8813,8 +7830,8 @@ static VALUE GuestSession__symlink_remove_directory(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->symlink_remove_directory(obj, v1));
   res = rb_ary_new();
@@ -8824,8 +7841,8 @@ static VALUE GuestSession__symlink_remove_file(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->symlink_remove_file(obj, v1));
   res = rb_ary_new();
@@ -8898,18 +7915,6 @@ static VALUE GuestSession__get_environment(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE GuestSession__set_environment(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct GuestSession *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  uint32_t v1_size;
-  void * v1;
-  extract_carray(i0, &v1_size, &v1);
-  NS_CHECK(vtbl->set_environment(obj, v1_size, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE GuestSession__get_processes(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -8950,11 +7955,11 @@ static VALUE Process__wait_for(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Process *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->wait_for(obj, v1, v2, &v3));
@@ -8967,12 +7972,12 @@ static VALUE Process__wait_for_array(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Process *vtbl = obj->vtbl;
-  i0 = prepare_array_enum(i0, cProcessWaitForFlag);
-  i1 = prepare_uint32(i1);
   uint32_t v1_size;
   void * v1;
   uint32_t v2;
   uint32_t v3;
+  i0 = prepare_array_enum(i0, cProcessWaitForFlag);
+  i1 = prepare_uint32(i1);
   extract_carray(i0, &v1_size, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->wait_for_array(obj, v1_size, v1, v2, &v3));
@@ -8985,14 +7990,14 @@ static VALUE Process__read(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Process *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -9006,16 +8011,16 @@ static VALUE Process__write(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE i3) 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Process *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_blob(i2);
-  i3 = prepare_uint32(i3);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
   uint32_t v4;
   uint32_t v5;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_blob(i2);
+  i3 = prepare_uint32(i3);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_blob(i2, &v3_size, &v3);
@@ -9030,10 +8035,6 @@ static VALUE Process__write_array(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Process *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_array_enum(i1, cProcessInputFlag);
-  i2 = prepare_blob(i2);
-  i3 = prepare_uint32(i3);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
@@ -9041,6 +8042,10 @@ static VALUE Process__write_array(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALU
   void * v3;
   uint32_t v4;
   uint32_t v5;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_array_enum(i1, cProcessInputFlag);
+  i2 = prepare_blob(i2);
+  i3 = prepare_uint32(i3);
   extract_uint32(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   extract_blob(i2, &v3_size, &v3);
@@ -9202,12 +8207,12 @@ static VALUE File__read(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct File *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->read(obj, v1, v2, &v3_size, &v3));
@@ -9220,14 +8225,14 @@ static VALUE File__read_at(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct File *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
   int64_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_int64(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
   extract_int64(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -9241,10 +8246,10 @@ static VALUE File__seek(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct File *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  i1 = prepare_enum(i1, cFileSeekType);
   int64_t v1;
   uint32_t v2;
+  i0 = prepare_int64(i0);
+  i1 = prepare_enum(i1, cFileSeekType);
   extract_int64(i0, &v1);
   extract_enum(i1, &v2, cFileSeekType);
   NS_CHECK(vtbl->seek(obj, v1, v2));
@@ -9255,8 +8260,8 @@ static VALUE File__set_acl(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct File *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->set_acl(obj, v1));
   res = rb_ary_new();
@@ -9266,12 +8271,12 @@ static VALUE File__write(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct File *vtbl = obj->vtbl;
-  i0 = prepare_blob(i0);
-  i1 = prepare_uint32(i1);
   uint32_t v1_size;
   void * v1;
   uint32_t v2;
   uint32_t v3;
+  i0 = prepare_blob(i0);
+  i1 = prepare_uint32(i1);
   extract_blob(i0, &v1_size, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->write(obj, v1_size, v1, v2, &v3));
@@ -9284,14 +8289,14 @@ static VALUE File__write_at(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct File *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  i1 = prepare_blob(i1);
-  i2 = prepare_uint32(i2);
   int64_t v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3;
   uint32_t v4;
+  i0 = prepare_int64(i0);
+  i1 = prepare_blob(i1);
+  i2 = prepare_uint32(i2);
   extract_int64(i0, &v1);
   extract_blob(i1, &v2_size, &v2);
   extract_uint32(i2, &v3);
@@ -9614,10 +8619,10 @@ static VALUE Guest__get_facility_status(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cAdditionsFacilityType);
   uint32_t v1;
   int64_t v2;
   uint32_t v3;
+  i0 = prepare_enum(i0, cAdditionsFacilityType);
   extract_enum(i0, &v1, cAdditionsFacilityType);
   NS_CHECK(vtbl->get_facility_status(obj, v1, &v2, &v3));
   res = rb_ary_new();
@@ -9629,9 +8634,9 @@ static VALUE Guest__get_additions_status(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cAdditionsRunLevelType);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_enum(i0, cAdditionsRunLevelType);
   extract_enum(i0, &v1, cAdditionsRunLevelType);
   NS_CHECK(vtbl->get_additions_status(obj, v1, &v2));
   res = rb_ary_new();
@@ -9643,14 +8648,14 @@ static VALUE Guest__set_credentials(VALUE self, VALUE i0, VALUE i1, VALUE i2, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
   bool_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -9663,12 +8668,6 @@ static VALUE Guest__drag_hg_enter(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_enum(i3, cDragAndDropAction);
-  i4 = prepare_array_enum(i4, cDragAndDropAction);
-  i5 = prepare_array_wstring(i5);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
@@ -9678,6 +8677,12 @@ static VALUE Guest__drag_hg_enter(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALU
   uint32_t v6_size;
   void * v6;
   uint32_t v7;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_enum(i3, cDragAndDropAction);
+  i4 = prepare_array_enum(i4, cDragAndDropAction);
+  i5 = prepare_array_wstring(i5);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -9694,12 +8699,6 @@ static VALUE Guest__drag_hg_move(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_enum(i3, cDragAndDropAction);
-  i4 = prepare_array_enum(i4, cDragAndDropAction);
-  i5 = prepare_array_wstring(i5);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
@@ -9709,6 +8708,12 @@ static VALUE Guest__drag_hg_move(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE
   uint32_t v6_size;
   void * v6;
   uint32_t v7;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_enum(i3, cDragAndDropAction);
+  i4 = prepare_array_enum(i4, cDragAndDropAction);
+  i5 = prepare_array_wstring(i5);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -9725,8 +8730,8 @@ static VALUE Guest__drag_hg_leave(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->drag_hg_leave(obj, v1));
   res = rb_ary_new();
@@ -9736,12 +8741,6 @@ static VALUE Guest__drag_hg_drop(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_enum(i3, cDragAndDropAction);
-  i4 = prepare_array_enum(i4, cDragAndDropAction);
-  i5 = prepare_array_wstring(i5);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
@@ -9752,6 +8751,12 @@ static VALUE Guest__drag_hg_drop(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE
   void * v6;
   wstring_t v7;
   uint32_t v8;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_enum(i3, cDragAndDropAction);
+  i4 = prepare_array_enum(i4, cDragAndDropAction);
+  i5 = prepare_array_wstring(i5);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -9768,14 +8773,14 @@ static VALUE Guest__drag_hg_put_data(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_blob(i2);
   uint32_t v1;
   wstring_t v2;
   uint32_t v3_size;
   void * v3;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_blob(i2);
   extract_uint32(i0, &v1);
   extract_wstring(i1, &v2);
   extract_blob(i2, &v3_size, &v3);
@@ -9789,13 +8794,13 @@ static VALUE Guest__drag_gh_pending(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
   uint32_t v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->drag_gh_pending(obj, v1, &v2_size, &v2, &v3_size, &v3, &v4));
   res = rb_ary_new();
@@ -9808,11 +8813,11 @@ static VALUE Guest__drag_gh_dropped(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_enum(i1, cDragAndDropAction);
   wstring_t v1;
   uint32_t v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_enum(i1, cDragAndDropAction);
   extract_wstring(i0, &v1);
   extract_enum(i1, &v2, cDragAndDropAction);
   NS_CHECK(vtbl->drag_gh_dropped(obj, v1, v2, &v3));
@@ -9837,15 +8842,15 @@ static VALUE Guest__create_session(VALUE self, VALUE i0, VALUE i1, VALUE i2, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_wstring(i3);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
   wstring_t v4;
   void * v5;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_wstring(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -9860,10 +8865,10 @@ static VALUE Guest__find_session(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find_session(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -9875,12 +8880,12 @@ static VALUE Guest__update_guest_additions(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_array_enum(i1, cAdditionsUpdateFlag);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
   void * v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_array_enum(i1, cAdditionsUpdateFlag);
   extract_wstring(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->update_guest_additions(obj, v1, v2_size, v2, &v3));
@@ -9968,17 +8973,6 @@ static VALUE Guest__get_memory_balloon_size(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Guest__set_memory_balloon_size(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_memory_balloon_size(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Guest__get_statistics_update_interval(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -9990,23 +8984,12 @@ static VALUE Guest__get_statistics_update_interval(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Guest__set_statistics_update_interval(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Guest *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_statistics_update_interval(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Progress__set_current_operation_progress(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Progress *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->set_current_operation_progress(obj, v1));
   res = rb_ary_new();
@@ -10016,10 +8999,10 @@ static VALUE Progress__set_next_operation(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Progress *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_uint32(i1);
   wstring_t v1;
   uint32_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_uint32(i1);
   extract_wstring(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->set_next_operation(obj, v1, v2));
@@ -10030,8 +9013,8 @@ static VALUE Progress__wait_for_completion(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Progress *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
   int32_t v1;
+  i0 = prepare_int32(i0);
   extract_int32(i0, &v1);
   NS_CHECK(vtbl->wait_for_completion(obj, v1));
   res = rb_ary_new();
@@ -10041,10 +9024,10 @@ static VALUE Progress__wait_for_operation_completion(VALUE self, VALUE i0, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Progress *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_int32(i1);
   uint32_t v1;
   int32_t v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_int32(i1);
   extract_uint32(i0, &v1);
   extract_int32(i1, &v2);
   NS_CHECK(vtbl->wait_for_operation_completion(obj, v1, v2));
@@ -10055,8 +9038,8 @@ static VALUE Progress__wait_for_async_progress_completion(VALUE self, VALUE i0) 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Progress *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cProgress);
   void * v1;
+  i0 = prepare_interface(i0, cProgress);
   extract_interface(i0, &v1, cProgress);
   NS_CHECK(vtbl->wait_for_async_progress_completion(obj, v1));
   res = rb_ary_new();
@@ -10246,17 +9229,6 @@ static VALUE Progress__get_timeout(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Progress__set_timeout(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Progress *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_timeout(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Snapshot__get_children_count(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -10290,17 +9262,6 @@ static VALUE Snapshot__get_name(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Snapshot__set_name(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Snapshot *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_name(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Snapshot__get_description(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -10310,17 +9271,6 @@ static VALUE Snapshot__get_description(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Snapshot__set_description(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Snapshot *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_description(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Snapshot__get_time_stamp(VALUE self) {
@@ -10504,14 +9454,14 @@ static VALUE Medium__set_ids(VALUE self, VALUE i0, VALUE i1, VALUE i2, VALUE i3)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_bool(i2);
-  i3 = prepare_wstring(i3);
   bool_t v1;
   wstring_t v2;
   bool_t v3;
   wstring_t v4;
+  i0 = prepare_bool(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_bool(i2);
+  i3 = prepare_wstring(i3);
   extract_bool(i0, &v1);
   extract_wstring(i1, &v2);
   extract_bool(i2, &v3);
@@ -10535,10 +9485,10 @@ static VALUE Medium__get_snapshot_ids(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_snapshot_ids(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -10602,9 +9552,9 @@ static VALUE Medium__get_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_property(obj, v1, &v2));
   res = rb_ary_new();
@@ -10616,10 +9566,10 @@ static VALUE Medium__set_property(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->set_property(obj, v1, v2));
@@ -10630,12 +9580,12 @@ static VALUE Medium__get_properties(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_properties(obj, v1, &v2_size, &v2, &v3_size, &v3));
   res = rb_ary_new();
@@ -10647,12 +9597,12 @@ static VALUE Medium__set_properties(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  i1 = prepare_array_wstring(i1);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_array_wstring(i0);
+  i1 = prepare_array_wstring(i1);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->set_properties(obj, v1_size, v1, v2_size, v2));
@@ -10663,11 +9613,11 @@ static VALUE Medium__create_base_storage(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  i1 = prepare_uint32(i1);
   int64_t v1;
   uint32_t v2;
   void * v3;
+  i0 = prepare_int64(i0);
+  i1 = prepare_uint32(i1);
   extract_int64(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->create_base_storage(obj, v1, v2, &v3));
@@ -10691,11 +9641,11 @@ static VALUE Medium__create_diff_storage(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMedium);
-  i1 = prepare_uint32(i1);
   void * v1;
   uint32_t v2;
   void * v3;
+  i0 = prepare_interface(i0, cMedium);
+  i1 = prepare_uint32(i1);
   extract_interface(i0, &v1, cMedium);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->create_diff_storage(obj, v1, v2, &v3));
@@ -10708,9 +9658,9 @@ static VALUE Medium__merge_to(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMedium);
   void * v1;
   void * v2;
+  i0 = prepare_interface(i0, cMedium);
   extract_interface(i0, &v1, cMedium);
   NS_CHECK(vtbl->merge_to(obj, v1, &v2));
   res = rb_ary_new();
@@ -10722,13 +9672,13 @@ static VALUE Medium__clone_to(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMedium);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_interface(i2, cMedium);
   void * v1;
   uint32_t v2;
   void * v3;
   void * v4;
+  i0 = prepare_interface(i0, cMedium);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_interface(i2, cMedium);
   extract_interface(i0, &v1, cMedium);
   extract_uint32(i1, &v2);
   extract_interface(i2, &v3, cMedium);
@@ -10742,11 +9692,11 @@ static VALUE Medium__clone_to_base(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMedium);
-  i1 = prepare_uint32(i1);
   void * v1;
   uint32_t v2;
   void * v3;
+  i0 = prepare_interface(i0, cMedium);
+  i1 = prepare_uint32(i1);
   extract_interface(i0, &v1, cMedium);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->clone_to_base(obj, v1, v2, &v3));
@@ -10770,9 +9720,9 @@ static VALUE Medium__resize(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
   int64_t v1;
   void * v2;
+  i0 = prepare_int64(i0);
   extract_int64(i0, &v1);
   NS_CHECK(vtbl->resize(obj, v1, &v2));
   res = rb_ary_new();
@@ -10813,17 +9763,6 @@ static VALUE Medium__get_description(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Medium__set_description(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_description(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Medium__get_state(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -10855,17 +9794,6 @@ static VALUE Medium__get_location(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Medium__set_location(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_location(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Medium__get_name(VALUE self) {
@@ -10945,17 +9873,6 @@ static VALUE Medium__get_type(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE Medium__set_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cMediumType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cMediumType);
-  NS_CHECK(vtbl->set_type(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE Medium__get_allowed_types(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -11033,17 +9950,6 @@ static VALUE Medium__get_auto_reset(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE Medium__set_auto_reset(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct Medium *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_auto_reset(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE Medium__get_last_access_error(VALUE self) {
@@ -11143,8 +10049,8 @@ static VALUE Keyboard__put_scancode(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Keyboard *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
   int32_t v1;
+  i0 = prepare_int32(i0);
   extract_int32(i0, &v1);
   NS_CHECK(vtbl->put_scancode(obj, v1));
   res = rb_ary_new();
@@ -11154,10 +10060,10 @@ static VALUE Keyboard__put_scancodes(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Keyboard *vtbl = obj->vtbl;
-  i0 = prepare_array_int32(i0);
   uint32_t v1_size;
   void * v1;
   uint32_t v2;
+  i0 = prepare_array_int32(i0);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->put_scancodes(obj, v1_size, v1, &v2));
   res = rb_ary_new();
@@ -11188,16 +10094,16 @@ static VALUE Mouse__put_mouse_event(VALUE self, VALUE i0, VALUE i1, VALUE i2, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Mouse *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_int32(i3);
-  i4 = prepare_int32(i4);
   int32_t v1;
   int32_t v2;
   int32_t v3;
   int32_t v4;
   int32_t v5;
+  i0 = prepare_int32(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_int32(i3);
+  i4 = prepare_int32(i4);
   extract_int32(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -11211,16 +10117,16 @@ static VALUE Mouse__put_mouse_event_absolute(VALUE self, VALUE i0, VALUE i1, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Mouse *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
-  i1 = prepare_int32(i1);
-  i2 = prepare_int32(i2);
-  i3 = prepare_int32(i3);
-  i4 = prepare_int32(i4);
   int32_t v1;
   int32_t v2;
   int32_t v3;
   int32_t v4;
   int32_t v5;
+  i0 = prepare_int32(i0);
+  i1 = prepare_int32(i1);
+  i2 = prepare_int32(i2);
+  i3 = prepare_int32(i3);
+  i4 = prepare_int32(i4);
   extract_int32(i0, &v1);
   extract_int32(i1, &v2);
   extract_int32(i2, &v3);
@@ -11294,14 +10200,14 @@ static VALUE Framebuffer__notify_update(VALUE self, VALUE i0, VALUE i1, VALUE i2
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Framebuffer *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11314,13 +10220,6 @@ static VALUE Framebuffer__request_resize(VALUE self, VALUE i0, VALUE i1, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Framebuffer *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_ptr(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_uint32(i4);
-  i5 = prepare_uint32(i5);
-  i6 = prepare_uint32(i6);
   uint32_t v1;
   uint32_t v2;
   void * v3;
@@ -11329,6 +10228,13 @@ static VALUE Framebuffer__request_resize(VALUE self, VALUE i0, VALUE i1, VALUE i
   uint32_t v6;
   uint32_t v7;
   bool_t v8;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_ptr(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_uint32(i4);
+  i5 = prepare_uint32(i5);
+  i6 = prepare_uint32(i6);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_ptr(i2, &v3);
@@ -11346,13 +10252,13 @@ static VALUE Framebuffer__video_mode_supported(VALUE self, VALUE i0, VALUE i1, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Framebuffer *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   bool_t v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11366,11 +10272,11 @@ static VALUE Framebuffer__get_visible_region(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Framebuffer *vtbl = obj->vtbl;
-  i0 = prepare_ptr(i0);
-  i1 = prepare_uint32(i1);
   void * v1;
   uint32_t v2;
   uint32_t v3;
+  i0 = prepare_ptr(i0);
+  i1 = prepare_uint32(i1);
   extract_ptr(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->get_visible_region(obj, v1, v2, &v3));
@@ -11383,10 +10289,10 @@ static VALUE Framebuffer__set_visible_region(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Framebuffer *vtbl = obj->vtbl;
-  i0 = prepare_ptr(i0);
-  i1 = prepare_uint32(i1);
   void * v1;
   uint32_t v2;
+  i0 = prepare_ptr(i0);
+  i1 = prepare_uint32(i1);
   extract_ptr(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->set_visible_region(obj, v1, v2));
@@ -11397,8 +10303,8 @@ static VALUE Framebuffer__process_vhwa_command(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Framebuffer *vtbl = obj->vtbl;
-  i0 = prepare_ptr(i0);
   void * v1;
+  i0 = prepare_ptr(i0);
   extract_ptr(i0, &v1);
   NS_CHECK(vtbl->process_vhwa_command(obj, v1));
   res = rb_ary_new();
@@ -11518,10 +10424,10 @@ static VALUE FramebufferOverlay__move(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct FramebufferOverlay *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
   uint32_t v1;
   uint32_t v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->move(obj, v1, v2));
@@ -11576,11 +10482,11 @@ static VALUE Display__get_screen_resolution(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_screen_resolution(obj, v1, &v2, &v3, &v4));
   res = rb_ary_new();
@@ -11593,10 +10499,10 @@ static VALUE Display__set_framebuffer(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_interface(i1, cFramebuffer);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_interface(i1, cFramebuffer);
   extract_uint32(i0, &v1);
   extract_interface(i1, &v2, cFramebuffer);
   NS_CHECK(vtbl->set_framebuffer(obj, v1, v2));
@@ -11607,11 +10513,11 @@ static VALUE Display__get_framebuffer(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
   int32_t v3;
   int32_t v4;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_framebuffer(obj, v1, &v2, &v3, &v4));
   res = rb_ary_new();
@@ -11624,14 +10530,6 @@ static VALUE Display__set_video_mode_hint(VALUE self, VALUE i0, VALUE i1, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_bool(i1);
-  i2 = prepare_bool(i2);
-  i3 = prepare_int32(i3);
-  i4 = prepare_int32(i4);
-  i5 = prepare_uint32(i5);
-  i6 = prepare_uint32(i6);
-  i7 = prepare_uint32(i7);
   uint32_t v1;
   bool_t v2;
   bool_t v3;
@@ -11640,6 +10538,14 @@ static VALUE Display__set_video_mode_hint(VALUE self, VALUE i0, VALUE i1, VALUE 
   uint32_t v6;
   uint32_t v7;
   uint32_t v8;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_bool(i1);
+  i2 = prepare_bool(i2);
+  i3 = prepare_int32(i3);
+  i4 = prepare_int32(i4);
+  i5 = prepare_uint32(i5);
+  i6 = prepare_uint32(i6);
+  i7 = prepare_uint32(i7);
   extract_uint32(i0, &v1);
   extract_bool(i1, &v2);
   extract_bool(i2, &v3);
@@ -11656,8 +10562,8 @@ static VALUE Display__set_seamless_mode(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->set_seamless_mode(obj, v1));
   res = rb_ary_new();
@@ -11667,14 +10573,14 @@ static VALUE Display__take_screenshot(VALUE self, VALUE i0, VALUE i1, VALUE i2, 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_ptr(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
   uint32_t v1;
   void * v2;
   uint32_t v3;
   uint32_t v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_ptr(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
   extract_uint32(i0, &v1);
   extract_ptr(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11687,14 +10593,14 @@ static VALUE Display__take_screenshot_to_array(VALUE self, VALUE i0, VALUE i1, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11708,14 +10614,14 @@ static VALUE Display__take_screenshot_png_to_array(VALUE self, VALUE i0, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11729,18 +10635,18 @@ static VALUE Display__draw_to_screen(VALUE self, VALUE i0, VALUE i1, VALUE i2, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_ptr(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_uint32(i4);
-  i5 = prepare_uint32(i5);
   uint32_t v1;
   void * v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5;
   uint32_t v6;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_ptr(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_uint32(i4);
+  i5 = prepare_uint32(i5);
   extract_uint32(i0, &v1);
   extract_ptr(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11763,8 +10669,8 @@ static VALUE Display__resize_completed(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->resize_completed(obj, v1));
   res = rb_ary_new();
@@ -11774,8 +10680,8 @@ static VALUE Display__complete_vhwa_command(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_ptr(i0);
   void * v1;
+  i0 = prepare_ptr(i0);
   extract_ptr(i0, &v1);
   NS_CHECK(vtbl->complete_vhwa_command(obj, v1));
   res = rb_ary_new();
@@ -11785,16 +10691,16 @@ static VALUE Display__viewport_changed(VALUE self, VALUE i0, VALUE i1, VALUE i2,
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Display *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_uint32(i4);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_uint32(i4);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -11808,9 +10714,9 @@ static VALUE NetworkAdapter__get_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_property(obj, v1, &v2));
   res = rb_ary_new();
@@ -11822,10 +10728,10 @@ static VALUE NetworkAdapter__set_property(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->set_property(obj, v1, v2));
@@ -11836,12 +10742,12 @@ static VALUE NetworkAdapter__get_properties(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_properties(obj, v1, &v2_size, &v2, &v3_size, &v3));
   res = rb_ary_new();
@@ -11858,17 +10764,6 @@ static VALUE NetworkAdapter__get_adapter_type(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cNetworkAdapterType));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_adapter_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cNetworkAdapterType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cNetworkAdapterType);
-  NS_CHECK(vtbl->set_adapter_type(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_slot(VALUE self) {
@@ -11893,17 +10788,6 @@ static VALUE NetworkAdapter__get_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_mac_address(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -11913,17 +10797,6 @@ static VALUE NetworkAdapter__get_mac_address(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_mac_address(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_mac_address(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_attachment_type(VALUE self) {
@@ -11937,17 +10810,6 @@ static VALUE NetworkAdapter__get_attachment_type(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_attachment_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cNetworkAttachmentType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cNetworkAttachmentType);
-  NS_CHECK(vtbl->set_attachment_type(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_bridged_interface(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -11957,17 +10819,6 @@ static VALUE NetworkAdapter__get_bridged_interface(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_bridged_interface(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_bridged_interface(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_host_only_interface(VALUE self) {
@@ -11981,17 +10832,6 @@ static VALUE NetworkAdapter__get_host_only_interface(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_host_only_interface(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_host_only_interface(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_internal_network(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12001,17 +10841,6 @@ static VALUE NetworkAdapter__get_internal_network(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_internal_network(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_internal_network(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_nat_network(VALUE self) {
@@ -12025,17 +10854,6 @@ static VALUE NetworkAdapter__get_nat_network(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_nat_network(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_nat_network(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_generic_driver(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12045,17 +10863,6 @@ static VALUE NetworkAdapter__get_generic_driver(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_generic_driver(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_generic_driver(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_cable_connected(VALUE self) {
@@ -12069,17 +10876,6 @@ static VALUE NetworkAdapter__get_cable_connected(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_cable_connected(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_cable_connected(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_line_speed(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12089,17 +10885,6 @@ static VALUE NetworkAdapter__get_line_speed(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_line_speed(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_line_speed(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_promisc_mode_policy(VALUE self) {
@@ -12113,17 +10898,6 @@ static VALUE NetworkAdapter__get_promisc_mode_policy(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_promisc_mode_policy(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cNetworkAdapterPromiscModePolicy);
-  uint32_t v1;
-  extract_enum(i0, &v1, cNetworkAdapterPromiscModePolicy);
-  NS_CHECK(vtbl->set_promisc_mode_policy(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_trace_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12135,17 +10909,6 @@ static VALUE NetworkAdapter__get_trace_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_trace_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_trace_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_trace_file(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12155,17 +10918,6 @@ static VALUE NetworkAdapter__get_trace_file(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_trace_file(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_trace_file(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NetworkAdapter__get_nat_engine(VALUE self) {
@@ -12190,17 +10942,6 @@ static VALUE NetworkAdapter__get_boot_priority(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NetworkAdapter__set_boot_priority(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_boot_priority(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NetworkAdapter__get_bandwidth_group(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12210,17 +10951,6 @@ static VALUE NetworkAdapter__get_bandwidth_group(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_interface(v1, cBandwidthGroup));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NetworkAdapter__set_bandwidth_group(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NetworkAdapter *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cBandwidthGroup);
-  void * v1;
-  extract_interface(i0, &v1, cBandwidthGroup);
-  NS_CHECK(vtbl->set_bandwidth_group(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SerialPort__get_slot(VALUE self) {
@@ -12245,17 +10975,6 @@ static VALUE SerialPort__get_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SerialPort__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SerialPort *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SerialPort__get_io_base(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12265,17 +10984,6 @@ static VALUE SerialPort__get_io_base(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SerialPort__set_io_base(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SerialPort *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_io_base(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SerialPort__get_irq(VALUE self) {
@@ -12289,17 +10997,6 @@ static VALUE SerialPort__get_irq(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SerialPort__set_irq(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SerialPort *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_irq(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SerialPort__get_host_mode(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12309,17 +11006,6 @@ static VALUE SerialPort__get_host_mode(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cPortMode));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SerialPort__set_host_mode(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SerialPort *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cPortMode);
-  uint32_t v1;
-  extract_enum(i0, &v1, cPortMode);
-  NS_CHECK(vtbl->set_host_mode(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE SerialPort__get_server(VALUE self) {
@@ -12333,17 +11019,6 @@ static VALUE SerialPort__get_server(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE SerialPort__set_server(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SerialPort *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_server(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE SerialPort__get_path(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12353,17 +11028,6 @@ static VALUE SerialPort__get_path(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE SerialPort__set_path(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct SerialPort *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_path(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE ParallelPort__get_slot(VALUE self) {
@@ -12388,17 +11052,6 @@ static VALUE ParallelPort__get_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE ParallelPort__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct ParallelPort *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE ParallelPort__get_io_base(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12408,17 +11061,6 @@ static VALUE ParallelPort__get_io_base(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE ParallelPort__set_io_base(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct ParallelPort *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_io_base(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE ParallelPort__get_irq(VALUE self) {
@@ -12432,17 +11074,6 @@ static VALUE ParallelPort__get_irq(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE ParallelPort__set_irq(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct ParallelPort *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_irq(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE ParallelPort__get_path(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12454,25 +11085,14 @@ static VALUE ParallelPort__get_path(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE ParallelPort__set_path(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct ParallelPort *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_path(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE MachineDebugger__dump_guest_core(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->dump_guest_core(obj, v1, v2));
@@ -12483,10 +11103,10 @@ static VALUE MachineDebugger__dump_host_process_core(VALUE self, VALUE i0, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->dump_host_process_core(obj, v1, v2));
@@ -12497,11 +11117,11 @@ static VALUE MachineDebugger__info(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->info(obj, v1, v2, &v3));
@@ -12522,8 +11142,8 @@ static VALUE MachineDebugger__modify_log_groups(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->modify_log_groups(obj, v1));
   res = rb_ary_new();
@@ -12533,8 +11153,8 @@ static VALUE MachineDebugger__modify_log_flags(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->modify_log_flags(obj, v1));
   res = rb_ary_new();
@@ -12544,8 +11164,8 @@ static VALUE MachineDebugger__modify_log_destinations(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->modify_log_destinations(obj, v1));
   res = rb_ary_new();
@@ -12555,12 +11175,12 @@ static VALUE MachineDebugger__read_physical_memory(VALUE self, VALUE i0, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  i1 = prepare_uint32(i1);
   int64_t v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_int64(i0);
+  i1 = prepare_uint32(i1);
   extract_int64(i0, &v1);
   extract_uint32(i1, &v2);
   NS_CHECK(vtbl->read_physical_memory(obj, v1, v2, &v3_size, &v3));
@@ -12573,13 +11193,13 @@ static VALUE MachineDebugger__write_physical_memory(VALUE self, VALUE i0, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_blob(i2);
   int64_t v1;
   uint32_t v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_int64(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_blob(i2);
   extract_int64(i0, &v1);
   extract_uint32(i1, &v2);
   extract_blob(i2, &v3_size, &v3);
@@ -12591,14 +11211,14 @@ static VALUE MachineDebugger__read_virtual_memory(VALUE self, VALUE i0, VALUE i1
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_int64(i1);
-  i2 = prepare_uint32(i2);
   uint32_t v1;
   int64_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_int64(i1);
+  i2 = prepare_uint32(i2);
   extract_uint32(i0, &v1);
   extract_int64(i1, &v2);
   extract_uint32(i2, &v3);
@@ -12612,15 +11232,15 @@ static VALUE MachineDebugger__write_virtual_memory(VALUE self, VALUE i0, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_int64(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_blob(i3);
   uint32_t v1;
   int64_t v2;
   uint32_t v3;
   uint32_t v4_size;
   void * v4;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_int64(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_blob(i3);
   extract_uint32(i0, &v1);
   extract_int64(i1, &v2);
   extract_uint32(i2, &v3);
@@ -12644,11 +11264,11 @@ static VALUE MachineDebugger__get_register(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_wstring(i1);
   uint32_t v1;
   wstring_t v2;
   wstring_t v3;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_wstring(i1);
   extract_uint32(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->get_register(obj, v1, v2, &v3));
@@ -12661,12 +11281,12 @@ static VALUE MachineDebugger__get_registers(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->get_registers(obj, v1, &v2_size, &v2, &v3_size, &v3));
   res = rb_ary_new();
@@ -12678,12 +11298,12 @@ static VALUE MachineDebugger__set_register(VALUE self, VALUE i0, VALUE i1, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
   uint32_t v1;
   wstring_t v2;
   wstring_t v3;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
   extract_uint32(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -12695,14 +11315,14 @@ static VALUE MachineDebugger__set_registers(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_array_wstring(i1);
-  i2 = prepare_array_wstring(i2);
   uint32_t v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_array_wstring(i1);
+  i2 = prepare_array_wstring(i2);
   extract_uint32(i0, &v1);
   extract_carray(i1, &v2_size, &v2);
   extract_carray(i2, &v3_size, &v3);
@@ -12714,9 +11334,9 @@ static VALUE MachineDebugger__dump_guest_stack(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   wstring_t v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->dump_guest_stack(obj, v1, &v2));
   res = rb_ary_new();
@@ -12728,8 +11348,8 @@ static VALUE MachineDebugger__reset_stats(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->reset_stats(obj, v1));
   res = rb_ary_new();
@@ -12739,8 +11359,8 @@ static VALUE MachineDebugger__dump_stats(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->dump_stats(obj, v1));
   res = rb_ary_new();
@@ -12750,11 +11370,11 @@ static VALUE MachineDebugger__get_stats(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_bool(i1);
   wstring_t v1;
   bool_t v2;
   wstring_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_bool(i1);
   extract_wstring(i0, &v1);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->get_stats(obj, v1, v2, &v3));
@@ -12774,17 +11394,6 @@ static VALUE MachineDebugger__get_single_step(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE MachineDebugger__set_single_step(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_single_step(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE MachineDebugger__get_recompile_user(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12794,17 +11403,6 @@ static VALUE MachineDebugger__get_recompile_user(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE MachineDebugger__set_recompile_user(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_recompile_user(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE MachineDebugger__get_recompile_supervisor(VALUE self) {
@@ -12818,17 +11416,6 @@ static VALUE MachineDebugger__get_recompile_supervisor(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE MachineDebugger__set_recompile_supervisor(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_recompile_supervisor(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE MachineDebugger__get_patm_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12838,17 +11425,6 @@ static VALUE MachineDebugger__get_patm_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE MachineDebugger__set_patm_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_patm_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE MachineDebugger__get_csam_enabled(VALUE self) {
@@ -12862,17 +11438,6 @@ static VALUE MachineDebugger__get_csam_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE MachineDebugger__set_csam_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_csam_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE MachineDebugger__get_log_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -12882,17 +11447,6 @@ static VALUE MachineDebugger__get_log_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE MachineDebugger__set_log_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_log_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE MachineDebugger__get_log_dbg_flags(VALUE self) {
@@ -13038,17 +11592,6 @@ static VALUE MachineDebugger__get_virtual_time_rate(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE MachineDebugger__set_virtual_time_rate(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct MachineDebugger *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_virtual_time_rate(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE MachineDebugger__get_vm(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13064,9 +11607,9 @@ static VALUE USBController__create_device_filter(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct USBController *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->create_device_filter(obj, v1, &v2));
   res = rb_ary_new();
@@ -13078,10 +11621,10 @@ static VALUE USBController__insert_device_filter(VALUE self, VALUE i0, VALUE i1)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct USBController *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_interface(i1, cUSBDeviceFilter);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_interface(i1, cUSBDeviceFilter);
   extract_uint32(i0, &v1);
   extract_interface(i1, &v2, cUSBDeviceFilter);
   NS_CHECK(vtbl->insert_device_filter(obj, v1, v2));
@@ -13092,9 +11635,9 @@ static VALUE USBController__remove_device_filter(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct USBController *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
   void * v2;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->remove_device_filter(obj, v1, &v2));
   res = rb_ary_new();
@@ -13113,17 +11656,6 @@ static VALUE USBController__get_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBController__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBController *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBController__get_enabled_ehci(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13133,17 +11665,6 @@ static VALUE USBController__get_enabled_ehci(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE USBController__set_enabled_ehci(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBController *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled_ehci(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE USBController__get_proxy_available(VALUE self) {
@@ -13323,17 +11844,6 @@ static VALUE USBDeviceFilter__get_name(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBDeviceFilter__set_name(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_name(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBDeviceFilter__get_active(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13343,17 +11853,6 @@ static VALUE USBDeviceFilter__get_active(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE USBDeviceFilter__set_active(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_active(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE USBDeviceFilter__get_vendor_id(VALUE self) {
@@ -13367,17 +11866,6 @@ static VALUE USBDeviceFilter__get_vendor_id(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBDeviceFilter__set_vendor_id(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_vendor_id(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBDeviceFilter__get_product_id(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13387,17 +11875,6 @@ static VALUE USBDeviceFilter__get_product_id(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE USBDeviceFilter__set_product_id(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_product_id(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE USBDeviceFilter__get_revision(VALUE self) {
@@ -13411,17 +11888,6 @@ static VALUE USBDeviceFilter__get_revision(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBDeviceFilter__set_revision(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_revision(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBDeviceFilter__get_manufacturer(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13431,17 +11897,6 @@ static VALUE USBDeviceFilter__get_manufacturer(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE USBDeviceFilter__set_manufacturer(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_manufacturer(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE USBDeviceFilter__get_product(VALUE self) {
@@ -13455,17 +11910,6 @@ static VALUE USBDeviceFilter__get_product(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBDeviceFilter__set_product(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_product(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBDeviceFilter__get_serial_number(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13475,17 +11919,6 @@ static VALUE USBDeviceFilter__get_serial_number(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE USBDeviceFilter__set_serial_number(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_serial_number(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE USBDeviceFilter__get_port(VALUE self) {
@@ -13499,17 +11932,6 @@ static VALUE USBDeviceFilter__get_port(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBDeviceFilter__set_port(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_port(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBDeviceFilter__get_remote(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13521,17 +11943,6 @@ static VALUE USBDeviceFilter__get_remote(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE USBDeviceFilter__set_remote(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_remote(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE USBDeviceFilter__get_masked_interfaces(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13541,17 +11952,6 @@ static VALUE USBDeviceFilter__get_masked_interfaces(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE USBDeviceFilter__set_masked_interfaces(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct USBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_masked_interfaces(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE HostUSBDevice__get_state(VALUE self) {
@@ -13576,17 +11976,6 @@ static VALUE HostUSBDeviceFilter__get_action(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE HostUSBDeviceFilter__set_action(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct HostUSBDeviceFilter *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cUSBDeviceFilterAction);
-  uint32_t v1;
-  extract_enum(i0, &v1, cUSBDeviceFilterAction);
-  NS_CHECK(vtbl->set_action(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE AudioAdapter__get_enabled(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13596,17 +11985,6 @@ static VALUE AudioAdapter__get_enabled(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE AudioAdapter__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct AudioAdapter *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE AudioAdapter__get_audio_controller(VALUE self) {
@@ -13620,17 +11998,6 @@ static VALUE AudioAdapter__get_audio_controller(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE AudioAdapter__set_audio_controller(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct AudioAdapter *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cAudioControllerType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cAudioControllerType);
-  NS_CHECK(vtbl->set_audio_controller(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE AudioAdapter__get_audio_driver(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13642,25 +12009,14 @@ static VALUE AudioAdapter__get_audio_driver(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE AudioAdapter__set_audio_driver(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct AudioAdapter *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cAudioDriverType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cAudioDriverType);
-  NS_CHECK(vtbl->set_audio_driver(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE VRDEServer__set_vrde_property(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->set_vrde_property(obj, v1, v2));
@@ -13671,9 +12027,9 @@ static VALUE VRDEServer__get_vrde_property(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   wstring_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_vrde_property(obj, v1, &v2));
   res = rb_ary_new();
@@ -13692,17 +12048,6 @@ static VALUE VRDEServer__get_enabled(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE VRDEServer__set_enabled(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_enabled(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE VRDEServer__get_auth_type(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13712,17 +12057,6 @@ static VALUE VRDEServer__get_auth_type(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_enum(v1, cAuthType));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE VRDEServer__set_auth_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cAuthType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cAuthType);
-  NS_CHECK(vtbl->set_auth_type(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE VRDEServer__get_auth_timeout(VALUE self) {
@@ -13736,17 +12070,6 @@ static VALUE VRDEServer__get_auth_timeout(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE VRDEServer__set_auth_timeout(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_auth_timeout(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE VRDEServer__get_allow_multi_connection(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13756,17 +12079,6 @@ static VALUE VRDEServer__get_allow_multi_connection(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE VRDEServer__set_allow_multi_connection(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_allow_multi_connection(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE VRDEServer__get_reuse_single_connection(VALUE self) {
@@ -13780,17 +12092,6 @@ static VALUE VRDEServer__get_reuse_single_connection(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE VRDEServer__set_reuse_single_connection(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_reuse_single_connection(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE VRDEServer__get_vrde_ext_pack(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13802,17 +12103,6 @@ static VALUE VRDEServer__get_vrde_ext_pack(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE VRDEServer__set_vrde_ext_pack(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_vrde_ext_pack(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE VRDEServer__get_auth_library(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -13822,17 +12112,6 @@ static VALUE VRDEServer__get_auth_library(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE VRDEServer__set_auth_library(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct VRDEServer *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_auth_library(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE VRDEServer__get_vrde_properties(VALUE self) {
@@ -13939,10 +12218,10 @@ static VALUE InternalSessionControl__assign_machine(VALUE self, VALUE i0, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMachine);
-  i1 = prepare_enum(i1, cLockType);
   void * v1;
   uint32_t v2;
+  i0 = prepare_interface(i0, cMachine);
+  i1 = prepare_enum(i1, cLockType);
   extract_interface(i0, &v1, cMachine);
   extract_enum(i1, &v2, cLockType);
   NS_CHECK(vtbl->assign_machine(obj, v1, v2));
@@ -13953,10 +12232,10 @@ static VALUE InternalSessionControl__assign_remote_machine(VALUE self, VALUE i0,
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMachine);
-  i1 = prepare_interface(i1, cConsole);
   void * v1;
   void * v2;
+  i0 = prepare_interface(i0, cMachine);
+  i1 = prepare_interface(i1, cConsole);
   extract_interface(i0, &v1, cMachine);
   extract_interface(i1, &v2, cConsole);
   NS_CHECK(vtbl->assign_remote_machine(obj, v1, v2));
@@ -13967,8 +12246,8 @@ static VALUE InternalSessionControl__update_machine_state(VALUE self, VALUE i0) 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cMachineState);
   uint32_t v1;
+  i0 = prepare_enum(i0, cMachineState);
   extract_enum(i0, &v1, cMachineState);
   NS_CHECK(vtbl->update_machine_state(obj, v1));
   res = rb_ary_new();
@@ -13986,10 +12265,10 @@ static VALUE InternalSessionControl__on_network_adapter_change(VALUE self, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cNetworkAdapter);
-  i1 = prepare_bool(i1);
   void * v1;
   bool_t v2;
+  i0 = prepare_interface(i0, cNetworkAdapter);
+  i1 = prepare_bool(i1);
   extract_interface(i0, &v1, cNetworkAdapter);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->on_network_adapter_change(obj, v1, v2));
@@ -14000,8 +12279,8 @@ static VALUE InternalSessionControl__on_serial_port_change(VALUE self, VALUE i0)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cSerialPort);
   void * v1;
+  i0 = prepare_interface(i0, cSerialPort);
   extract_interface(i0, &v1, cSerialPort);
   NS_CHECK(vtbl->on_serial_port_change(obj, v1));
   res = rb_ary_new();
@@ -14011,8 +12290,8 @@ static VALUE InternalSessionControl__on_parallel_port_change(VALUE self, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cParallelPort);
   void * v1;
+  i0 = prepare_interface(i0, cParallelPort);
   extract_interface(i0, &v1, cParallelPort);
   NS_CHECK(vtbl->on_parallel_port_change(obj, v1));
   res = rb_ary_new();
@@ -14030,10 +12309,10 @@ static VALUE InternalSessionControl__on_medium_change(VALUE self, VALUE i0, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMediumAttachment);
-  i1 = prepare_bool(i1);
   void * v1;
   bool_t v2;
+  i0 = prepare_interface(i0, cMediumAttachment);
+  i1 = prepare_bool(i1);
   extract_interface(i0, &v1, cMediumAttachment);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->on_medium_change(obj, v1, v2));
@@ -14044,10 +12323,10 @@ static VALUE InternalSessionControl__on_storage_device_change(VALUE self, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMediumAttachment);
-  i1 = prepare_bool(i1);
   void * v1;
   bool_t v2;
+  i0 = prepare_interface(i0, cMediumAttachment);
+  i1 = prepare_bool(i1);
   extract_interface(i0, &v1, cMediumAttachment);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->on_storage_device_change(obj, v1, v2));
@@ -14058,8 +12337,8 @@ static VALUE InternalSessionControl__on_clipboard_mode_change(VALUE self, VALUE 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cClipboardMode);
   uint32_t v1;
+  i0 = prepare_enum(i0, cClipboardMode);
   extract_enum(i0, &v1, cClipboardMode);
   NS_CHECK(vtbl->on_clipboard_mode_change(obj, v1));
   res = rb_ary_new();
@@ -14069,8 +12348,8 @@ static VALUE InternalSessionControl__on_drag_and_drop_mode_change(VALUE self, VA
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cDragAndDropMode);
   uint32_t v1;
+  i0 = prepare_enum(i0, cDragAndDropMode);
   extract_enum(i0, &v1, cDragAndDropMode);
   NS_CHECK(vtbl->on_drag_and_drop_mode_change(obj, v1));
   res = rb_ary_new();
@@ -14080,10 +12359,10 @@ static VALUE InternalSessionControl__on_cpu_change(VALUE self, VALUE i0, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_bool(i1);
   uint32_t v1;
   bool_t v2;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_bool(i1);
   extract_uint32(i0, &v1);
   extract_bool(i1, &v2);
   NS_CHECK(vtbl->on_cpu_change(obj, v1, v2));
@@ -14094,8 +12373,8 @@ static VALUE InternalSessionControl__on_cpu_execution_cap_change(VALUE self, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
   uint32_t v1;
+  i0 = prepare_uint32(i0);
   extract_uint32(i0, &v1);
   NS_CHECK(vtbl->on_cpu_execution_cap_change(obj, v1));
   res = rb_ary_new();
@@ -14105,8 +12384,8 @@ static VALUE InternalSessionControl__on_vrde_server_change(VALUE self, VALUE i0)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->on_vrde_server_change(obj, v1));
   res = rb_ary_new();
@@ -14124,8 +12403,8 @@ static VALUE InternalSessionControl__on_shared_folder_change(VALUE self, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->on_shared_folder_change(obj, v1));
   res = rb_ary_new();
@@ -14135,12 +12414,12 @@ static VALUE InternalSessionControl__on_usb_device_attach(VALUE self, VALUE i0, 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cUSBDevice);
-  i1 = prepare_interface(i1, cVirtualBoxErrorInfo);
-  i2 = prepare_uint32(i2);
   void * v1;
   void * v2;
   uint32_t v3;
+  i0 = prepare_interface(i0, cUSBDevice);
+  i1 = prepare_interface(i1, cVirtualBoxErrorInfo);
+  i2 = prepare_uint32(i2);
   extract_interface(i0, &v1, cUSBDevice);
   extract_interface(i1, &v2, cVirtualBoxErrorInfo);
   extract_uint32(i2, &v3);
@@ -14152,10 +12431,10 @@ static VALUE InternalSessionControl__on_usb_device_detach(VALUE self, VALUE i0, 
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_interface(i1, cVirtualBoxErrorInfo);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_interface(i1, cVirtualBoxErrorInfo);
   extract_wstring(i0, &v1);
   extract_interface(i1, &v2, cVirtualBoxErrorInfo);
   NS_CHECK(vtbl->on_usb_device_detach(obj, v1, v2));
@@ -14166,10 +12445,10 @@ static VALUE InternalSessionControl__on_show_window(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
   bool_t v2;
   int64_t v3;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->on_show_window(obj, v1, &v2, &v3));
   res = rb_ary_new();
@@ -14181,8 +12460,8 @@ static VALUE InternalSessionControl__on_bandwidth_group_change(VALUE self, VALUE
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cBandwidthGroup);
   void * v1;
+  i0 = prepare_interface(i0, cBandwidthGroup);
   extract_interface(i0, &v1, cBandwidthGroup);
   NS_CHECK(vtbl->on_bandwidth_group_change(obj, v1));
   res = rb_ary_new();
@@ -14192,10 +12471,6 @@ static VALUE InternalSessionControl__access_guest_property(VALUE self, VALUE i0,
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_bool(i3);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
@@ -14203,6 +12478,10 @@ static VALUE InternalSessionControl__access_guest_property(VALUE self, VALUE i0,
   wstring_t v5;
   int64_t v6;
   wstring_t v7;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_bool(i3);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -14218,7 +12497,6 @@ static VALUE InternalSessionControl__enumerate_guest_properties(VALUE self, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
@@ -14228,6 +12506,7 @@ static VALUE InternalSessionControl__enumerate_guest_properties(VALUE self, VALU
   void * v4;
   uint32_t v5_size;
   void * v5;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->enumerate_guest_properties(obj, v1, &v2_size, &v2, &v3_size, &v3, &v4_size, &v4, &v5_size, &v5));
   res = rb_ary_new();
@@ -14241,15 +12520,6 @@ static VALUE InternalSessionControl__online_merge_medium(VALUE self, VALUE i0, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cMediumAttachment);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_interface(i3, cMedium);
-  i4 = prepare_interface(i4, cMedium);
-  i5 = prepare_bool(i5);
-  i6 = prepare_interface(i6, cMedium);
-  i7 = prepare_array_interface(i7, cMedium);
-  i8 = prepare_interface(i8, cProgress);
   void * v1;
   uint32_t v2;
   uint32_t v3;
@@ -14260,6 +12530,15 @@ static VALUE InternalSessionControl__online_merge_medium(VALUE self, VALUE i0, V
   uint32_t v8_size;
   void * v8;
   void * v9;
+  i0 = prepare_interface(i0, cMediumAttachment);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_interface(i3, cMedium);
+  i4 = prepare_interface(i4, cMedium);
+  i5 = prepare_bool(i5);
+  i6 = prepare_interface(i6, cMedium);
+  i7 = prepare_array_interface(i7, cMedium);
+  i8 = prepare_interface(i8, cProgress);
   extract_interface(i0, &v1, cMediumAttachment);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -14277,8 +12556,8 @@ static VALUE InternalSessionControl__enable_vm_m_statistics(VALUE self, VALUE i0
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct InternalSessionControl *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
   bool_t v1;
+  i0 = prepare_bool(i0);
   extract_bool(i0, &v1);
   NS_CHECK(vtbl->enable_vm_m_statistics(obj, v1));
   res = rb_ary_new();
@@ -14391,17 +12670,6 @@ static VALUE StorageController__get_instance(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE StorageController__set_instance(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct StorageController *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_instance(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE StorageController__get_port_count(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14411,17 +12679,6 @@ static VALUE StorageController__get_port_count(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE StorageController__set_port_count(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct StorageController *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_port_count(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE StorageController__get_bus(VALUE self) {
@@ -14446,17 +12703,6 @@ static VALUE StorageController__get_controller_type(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE StorageController__set_controller_type(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct StorageController *vtbl = obj->vtbl;
-  i0 = prepare_enum(i0, cStorageControllerType);
-  uint32_t v1;
-  extract_enum(i0, &v1, cStorageControllerType);
-  NS_CHECK(vtbl->set_controller_type(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE StorageController__get_use_host_io_cache(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14466,17 +12712,6 @@ static VALUE StorageController__get_use_host_io_cache(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE StorageController__set_use_host_io_cache(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct StorageController *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_use_host_io_cache(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE StorageController__get_bootable(VALUE self) {
@@ -14582,14 +12817,14 @@ static VALUE PerformanceCollector__get_metrics(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct PerformanceCollector *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  i1 = prepare_array_interface(i1, cNSISupports);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_array_wstring(i0);
+  i1 = prepare_array_interface(i1, cNSISupports);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->get_metrics(obj, v1_size, v1, v2_size, v2, &v3_size, &v3));
@@ -14602,10 +12837,6 @@ static VALUE PerformanceCollector__setup_metrics(VALUE self, VALUE i0, VALUE i1,
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct PerformanceCollector *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  i1 = prepare_array_interface(i1, cNSISupports);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
@@ -14614,6 +12845,10 @@ static VALUE PerformanceCollector__setup_metrics(VALUE self, VALUE i0, VALUE i1,
   uint32_t v4;
   uint32_t v5_size;
   void * v5;
+  i0 = prepare_array_wstring(i0);
+  i1 = prepare_array_interface(i1, cNSISupports);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   extract_uint32(i2, &v3);
@@ -14628,14 +12863,14 @@ static VALUE PerformanceCollector__enable_metrics(VALUE self, VALUE i0, VALUE i1
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct PerformanceCollector *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  i1 = prepare_array_interface(i1, cNSISupports);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_array_wstring(i0);
+  i1 = prepare_array_interface(i1, cNSISupports);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->enable_metrics(obj, v1_size, v1, v2_size, v2, &v3_size, &v3));
@@ -14648,14 +12883,14 @@ static VALUE PerformanceCollector__disable_metrics(VALUE self, VALUE i0, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct PerformanceCollector *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  i1 = prepare_array_interface(i1, cNSISupports);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
   void * v2;
   uint32_t v3_size;
   void * v3;
+  i0 = prepare_array_wstring(i0);
+  i1 = prepare_array_interface(i1, cNSISupports);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->disable_metrics(obj, v1_size, v1, v2_size, v2, &v3_size, &v3));
@@ -14668,8 +12903,6 @@ static VALUE PerformanceCollector__query_metrics_data(VALUE self, VALUE i0, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct PerformanceCollector *vtbl = obj->vtbl;
-  i0 = prepare_array_wstring(i0);
-  i1 = prepare_array_interface(i1, cNSISupports);
   uint32_t v1_size;
   void * v1;
   uint32_t v2_size;
@@ -14690,6 +12923,8 @@ static VALUE PerformanceCollector__query_metrics_data(VALUE self, VALUE i0, VALU
   void * v9;
   uint32_t v10_size;
   void * v10;
+  i0 = prepare_array_wstring(i0);
+  i1 = prepare_array_interface(i1, cNSISupports);
   extract_carray(i0, &v1_size, &v1);
   extract_carray(i1, &v2_size, &v2);
   NS_CHECK(vtbl->query_metrics_data(obj, v1_size, v1, v2_size, v2, &v3_size, &v3, &v4_size, &v4, &v5_size, &v5, &v6_size, &v6, &v7_size, &v7, &v8_size, &v8, &v9_size, &v9, &v10_size, &v10));
@@ -14720,16 +12955,16 @@ static VALUE NATEngine__set_network_settings(VALUE self, VALUE i0, VALUE i1, VAL
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  i1 = prepare_uint32(i1);
-  i2 = prepare_uint32(i2);
-  i3 = prepare_uint32(i3);
-  i4 = prepare_uint32(i4);
   uint32_t v1;
   uint32_t v2;
   uint32_t v3;
   uint32_t v4;
   uint32_t v5;
+  i0 = prepare_uint32(i0);
+  i1 = prepare_uint32(i1);
+  i2 = prepare_uint32(i2);
+  i3 = prepare_uint32(i3);
+  i4 = prepare_uint32(i4);
   extract_uint32(i0, &v1);
   extract_uint32(i1, &v2);
   extract_uint32(i2, &v3);
@@ -14761,18 +12996,18 @@ static VALUE NATEngine__add_redirect(VALUE self, VALUE i0, VALUE i1, VALUE i2, V
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_enum(i1, cNATProtocol);
-  i2 = prepare_wstring(i2);
-  i3 = prepare_uint16(i3);
-  i4 = prepare_wstring(i4);
-  i5 = prepare_uint16(i5);
   wstring_t v1;
   uint32_t v2;
   wstring_t v3;
   uint16_t v4;
   wstring_t v5;
   uint16_t v6;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_enum(i1, cNATProtocol);
+  i2 = prepare_wstring(i2);
+  i3 = prepare_uint16(i3);
+  i4 = prepare_wstring(i4);
+  i5 = prepare_uint16(i5);
   extract_wstring(i0, &v1);
   extract_enum(i1, &v2, cNATProtocol);
   extract_wstring(i2, &v3);
@@ -14787,8 +13022,8 @@ static VALUE NATEngine__remove_redirect(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->remove_redirect(obj, v1));
   res = rb_ary_new();
@@ -14805,17 +13040,6 @@ static VALUE NATEngine__get_network(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NATEngine__set_network(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_network(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NATEngine__get_host_ip(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14825,17 +13049,6 @@ static VALUE NATEngine__get_host_ip(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NATEngine__set_host_ip(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_host_ip(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NATEngine__get_tftp_prefix(VALUE self) {
@@ -14849,17 +13062,6 @@ static VALUE NATEngine__get_tftp_prefix(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NATEngine__set_tftp_prefix(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_tftp_prefix(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NATEngine__get_tftp_boot_file(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14869,17 +13071,6 @@ static VALUE NATEngine__get_tftp_boot_file(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_wstring(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NATEngine__set_tftp_boot_file(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_tftp_boot_file(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NATEngine__get_tftp_next_server(VALUE self) {
@@ -14893,17 +13084,6 @@ static VALUE NATEngine__get_tftp_next_server(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NATEngine__set_tftp_next_server(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  wstring_t v1;
-  extract_wstring(i0, &v1);
-  NS_CHECK(vtbl->set_tftp_next_server(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NATEngine__get_alias_mode(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14913,17 +13093,6 @@ static VALUE NATEngine__get_alias_mode(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_uint32(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NATEngine__set_alias_mode(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_uint32(i0);
-  uint32_t v1;
-  extract_uint32(i0, &v1);
-  NS_CHECK(vtbl->set_alias_mode(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NATEngine__get_dns_pass_domain(VALUE self) {
@@ -14937,17 +13106,6 @@ static VALUE NATEngine__get_dns_pass_domain(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NATEngine__set_dns_pass_domain(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_dns_pass_domain(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NATEngine__get_dns_proxy(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14959,17 +13117,6 @@ static VALUE NATEngine__get_dns_proxy(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE NATEngine__set_dns_proxy(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_dns_proxy(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE NATEngine__get_dns_use_host_resolver(VALUE self) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
@@ -14979,17 +13126,6 @@ static VALUE NATEngine__get_dns_use_host_resolver(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_bool(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE NATEngine__set_dns_use_host_resolver(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct NATEngine *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  bool_t v1;
-  extract_bool(i0, &v1);
-  NS_CHECK(vtbl->set_dns_use_host_resolver(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NATEngine__get_redirects(VALUE self) {
@@ -15052,13 +13188,13 @@ static VALUE ExtPackBase__query_license(VALUE self, VALUE i0, VALUE i1, VALUE i2
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackBase *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_wstring(i1);
-  i2 = prepare_wstring(i2);
   wstring_t v1;
   wstring_t v2;
   wstring_t v3;
   wstring_t v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_wstring(i1);
+  i2 = prepare_wstring(i2);
   extract_wstring(i0, &v1);
   extract_wstring(i1, &v2);
   extract_wstring(i2, &v3);
@@ -15194,9 +13330,9 @@ static VALUE ExtPack__query_object(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPack *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->query_object(obj, v1, &v2));
   res = rb_ary_new();
@@ -15208,11 +13344,11 @@ static VALUE ExtPackFile__install(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackFile *vtbl = obj->vtbl;
-  i0 = prepare_bool(i0);
-  i1 = prepare_wstring(i1);
   bool_t v1;
   wstring_t v2;
   void * v3;
+  i0 = prepare_bool(i0);
+  i1 = prepare_wstring(i1);
   extract_bool(i0, &v1);
   extract_wstring(i1, &v2);
   NS_CHECK(vtbl->install(obj, v1, v2, &v3));
@@ -15236,9 +13372,9 @@ static VALUE ExtPackManager__find(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackManager *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->find(obj, v1, &v2));
   res = rb_ary_new();
@@ -15250,9 +13386,9 @@ static VALUE ExtPackManager__open_ext_pack_file(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackManager *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->open_ext_pack_file(obj, v1, &v2));
   res = rb_ary_new();
@@ -15264,13 +13400,13 @@ static VALUE ExtPackManager__uninstall(VALUE self, VALUE i0, VALUE i1, VALUE i2)
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackManager *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_bool(i1);
-  i2 = prepare_wstring(i2);
   wstring_t v1;
   bool_t v2;
   wstring_t v3;
   void * v4;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_bool(i1);
+  i2 = prepare_wstring(i2);
   extract_wstring(i0, &v1);
   extract_bool(i1, &v2);
   extract_wstring(i2, &v3);
@@ -15292,10 +13428,10 @@ static VALUE ExtPackManager__query_all_plug_ins_for_frontend(VALUE self, VALUE i
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackManager *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   uint32_t v2_size;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->query_all_plug_ins_for_frontend(obj, v1, &v2_size, &v2));
   res = rb_ary_new();
@@ -15307,9 +13443,9 @@ static VALUE ExtPackManager__is_ext_pack_usable(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct ExtPackManager *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   bool_t v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->is_ext_pack_usable(obj, v1, &v2));
   res = rb_ary_new();
@@ -15373,27 +13509,16 @@ static VALUE BandwidthGroup__get_max_bytes_per_sec(VALUE self) {
   res = rb_ary_entry(res, 0);
   return res;
 }
-static VALUE BandwidthGroup__set_max_bytes_per_sec(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct BandwidthGroup *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  int64_t v1;
-  extract_int64(i0, &v1);
-  NS_CHECK(vtbl->set_max_bytes_per_sec(obj, v1));
-  res = rb_ary_new();
-  return res;
-}
 static VALUE BandwidthControl__create_bandwidth_group(VALUE self, VALUE i0, VALUE i1, VALUE i2) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct BandwidthControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
-  i1 = prepare_enum(i1, cBandwidthGroupType);
-  i2 = prepare_int64(i2);
   wstring_t v1;
   uint32_t v2;
   int64_t v3;
+  i0 = prepare_wstring(i0);
+  i1 = prepare_enum(i1, cBandwidthGroupType);
+  i2 = prepare_int64(i2);
   extract_wstring(i0, &v1);
   extract_enum(i1, &v2, cBandwidthGroupType);
   extract_int64(i2, &v3);
@@ -15405,8 +13530,8 @@ static VALUE BandwidthControl__delete_bandwidth_group(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct BandwidthControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->delete_bandwidth_group(obj, v1));
   res = rb_ary_new();
@@ -15416,9 +13541,9 @@ static VALUE BandwidthControl__get_bandwidth_group(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct BandwidthControl *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
   void * v2;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->get_bandwidth_group(obj, v1, &v2));
   res = rb_ary_new();
@@ -15497,10 +13622,10 @@ static VALUE EventSource__create_aggregator(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventSource *vtbl = obj->vtbl;
-  i0 = prepare_array_interface(i0, cEventSource);
   uint32_t v1_size;
   void * v1;
   void * v2;
+  i0 = prepare_array_interface(i0, cEventSource);
   extract_carray(i0, &v1_size, &v1);
   NS_CHECK(vtbl->create_aggregator(obj, v1_size, v1, &v2));
   res = rb_ary_new();
@@ -15512,13 +13637,13 @@ static VALUE EventSource__register_listener(VALUE self, VALUE i0, VALUE i1, VALU
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventSource *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cEventListener);
-  i1 = prepare_array_enum(i1, cVBoxEventType);
-  i2 = prepare_bool(i2);
   void * v1;
   uint32_t v2_size;
   void * v2;
   bool_t v3;
+  i0 = prepare_interface(i0, cEventListener);
+  i1 = prepare_array_enum(i1, cVBoxEventType);
+  i2 = prepare_bool(i2);
   extract_interface(i0, &v1, cEventListener);
   extract_carray(i1, &v2_size, &v2);
   extract_bool(i2, &v3);
@@ -15530,8 +13655,8 @@ static VALUE EventSource__unregister_listener(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventSource *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cEventListener);
   void * v1;
+  i0 = prepare_interface(i0, cEventListener);
   extract_interface(i0, &v1, cEventListener);
   NS_CHECK(vtbl->unregister_listener(obj, v1));
   res = rb_ary_new();
@@ -15541,11 +13666,11 @@ static VALUE EventSource__fire_event(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventSource *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cEvent);
-  i1 = prepare_int32(i1);
   void * v1;
   int32_t v2;
   bool_t v3;
+  i0 = prepare_interface(i0, cEvent);
+  i1 = prepare_int32(i1);
   extract_interface(i0, &v1, cEvent);
   extract_int32(i1, &v2);
   NS_CHECK(vtbl->fire_event(obj, v1, v2, &v3));
@@ -15558,11 +13683,11 @@ static VALUE EventSource__get_event(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventSource *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cEventListener);
-  i1 = prepare_int32(i1);
   void * v1;
   int32_t v2;
   void * v3;
+  i0 = prepare_interface(i0, cEventListener);
+  i1 = prepare_int32(i1);
   extract_interface(i0, &v1, cEventListener);
   extract_int32(i1, &v2);
   NS_CHECK(vtbl->get_event(obj, v1, v2, &v3));
@@ -15575,10 +13700,10 @@ static VALUE EventSource__event_processed(VALUE self, VALUE i0, VALUE i1) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventSource *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cEventListener);
-  i1 = prepare_interface(i1, cEvent);
   void * v1;
   void * v2;
+  i0 = prepare_interface(i0, cEventListener);
+  i1 = prepare_interface(i1, cEvent);
   extract_interface(i0, &v1, cEventListener);
   extract_interface(i1, &v2, cEvent);
   NS_CHECK(vtbl->event_processed(obj, v1, v2));
@@ -15589,8 +13714,8 @@ static VALUE EventListener__handle_event(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct EventListener *vtbl = obj->vtbl;
-  i0 = prepare_interface(i0, cEvent);
   void * v1;
+  i0 = prepare_interface(i0, cEvent);
   extract_interface(i0, &v1, cEvent);
   NS_CHECK(vtbl->handle_event(obj, v1));
   res = rb_ary_new();
@@ -15608,9 +13733,9 @@ static VALUE Event__wait_processed(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct Event *vtbl = obj->vtbl;
-  i0 = prepare_int32(i0);
   int32_t v1;
   bool_t v2;
+  i0 = prepare_int32(i0);
   extract_int32(i0, &v1);
   NS_CHECK(vtbl->wait_processed(obj, v1, &v2));
   res = rb_ary_new();
@@ -16270,8 +14395,8 @@ static VALUE VetoEvent__add_veto(VALUE self, VALUE i0) {
   VALUE  res      = Qundef;
   struct obj *obj = DATA_PTR(self);
   struct VetoEvent *vtbl = obj->vtbl;
-  i0 = prepare_wstring(i0);
   wstring_t v1;
+  i0 = prepare_wstring(i0);
   extract_wstring(i0, &v1);
   NS_CHECK(vtbl->add_veto(obj, v1));
   res = rb_ary_new();
@@ -16342,17 +14467,6 @@ static VALUE ShowWindowEvent__get_win_id(VALUE self) {
   res = rb_ary_new();
   rb_ary_push(res, convert_int64(v1));
   res = rb_ary_entry(res, 0);
-  return res;
-}
-static VALUE ShowWindowEvent__set_win_id(VALUE self, VALUE i0) {
-  VALUE  res      = Qundef;
-  struct obj *obj = DATA_PTR(self);
-  struct ShowWindowEvent *vtbl = obj->vtbl;
-  i0 = prepare_int64(i0);
-  int64_t v1;
-  extract_int64(i0, &v1);
-  NS_CHECK(vtbl->set_win_id(obj, v1));
-  res = rb_ary_new();
   return res;
 }
 static VALUE NATRedirectEvent__get_slot(VALUE self) {
@@ -17803,7 +15917,6 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "enabled", DHCPServer__get_enabled, 0);
-    rb_define_method(c, "enabled=", DHCPServer__set_enabled, 1);
     rb_define_method(c, "ip_address", DHCPServer__get_ip_address, 0);
     rb_define_method(c, "network_mask", DHCPServer__get_network_mask, 0);
     rb_define_method(c, "network_name", DHCPServer__get_network_name, 0);
@@ -17949,23 +16062,14 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "logo_fade_in", BIOSSettings__get_logo_fade_in, 0);
-    rb_define_method(c, "logo_fade_in=", BIOSSettings__set_logo_fade_in, 1);
     rb_define_method(c, "logo_fade_out", BIOSSettings__get_logo_fade_out, 0);
-    rb_define_method(c, "logo_fade_out=", BIOSSettings__set_logo_fade_out, 1);
     rb_define_method(c, "logo_display_time", BIOSSettings__get_logo_display_time, 0);
-    rb_define_method(c, "logo_display_time=", BIOSSettings__set_logo_display_time, 1);
     rb_define_method(c, "logo_image_path", BIOSSettings__get_logo_image_path, 0);
-    rb_define_method(c, "logo_image_path=", BIOSSettings__set_logo_image_path, 1);
     rb_define_method(c, "boot_menu_mode", BIOSSettings__get_boot_menu_mode, 0);
-    rb_define_method(c, "boot_menu_mode=", BIOSSettings__set_boot_menu_mode, 1);
     rb_define_method(c, "acpi_enabled", BIOSSettings__get_acpi_enabled, 0);
-    rb_define_method(c, "acpi_enabled=", BIOSSettings__set_acpi_enabled, 1);
     rb_define_method(c, "io_apic_enabled", BIOSSettings__get_io_apic_enabled, 0);
-    rb_define_method(c, "io_apic_enabled=", BIOSSettings__set_io_apic_enabled, 1);
     rb_define_method(c, "time_offset", BIOSSettings__get_time_offset, 0);
-    rb_define_method(c, "time_offset=", BIOSSettings__set_time_offset, 1);
     rb_define_method(c, "pxe_debug_enabled", BIOSSettings__get_pxe_debug_enabled, 0);
-    rb_define_method(c, "pxe_debug_enabled=", BIOSSettings__set_pxe_debug_enabled, 1);
   }
   {
     iid_t iid  = {0xD88B324F, 0xDB19, 0x4D3B, {0xA1, 0xA9, 0xBF, 0x5B, 0x12, 0x71, 0x99, 0xA8}};
@@ -17974,11 +16078,8 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "bus", PCIAddress__get_bus, 0);
-    rb_define_method(c, "bus=", PCIAddress__set_bus, 1);
     rb_define_method(c, "device", PCIAddress__get_device, 0);
-    rb_define_method(c, "device=", PCIAddress__set_device, 1);
     rb_define_method(c, "dev_function", PCIAddress__get_dev_function, 0);
-    rb_define_method(c, "dev_function=", PCIAddress__set_dev_function, 1);
     rb_define_method(c, "as_long", PCIAddress__as_long, 0);
     rb_define_method(c, "from_long", PCIAddress__from_long, 1);
   }
@@ -18003,64 +16104,36 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "accessible", Machine__get_accessible, 0);
     rb_define_method(c, "access_error", Machine__get_access_error, 0);
     rb_define_method(c, "name", Machine__get_name, 0);
-    rb_define_method(c, "name=", Machine__set_name, 1);
     rb_define_method(c, "description", Machine__get_description, 0);
-    rb_define_method(c, "description=", Machine__set_description, 1);
     rb_define_method(c, "id", Machine__get_id, 0);
     rb_define_method(c, "groups", Machine__get_groups, 0);
-    rb_define_method(c, "groups=", Machine__set_groups, 1);
     rb_define_method(c, "os_type_id", Machine__get_os_type_id, 0);
-    rb_define_method(c, "os_type_id=", Machine__set_os_type_id, 1);
     rb_define_method(c, "hardware_version", Machine__get_hardware_version, 0);
-    rb_define_method(c, "hardware_version=", Machine__set_hardware_version, 1);
     rb_define_method(c, "hardware_uuid", Machine__get_hardware_uuid, 0);
-    rb_define_method(c, "hardware_uuid=", Machine__set_hardware_uuid, 1);
     rb_define_method(c, "cpu_count", Machine__get_cpu_count, 0);
-    rb_define_method(c, "cpu_count=", Machine__set_cpu_count, 1);
     rb_define_method(c, "cpu_hot_plug_enabled", Machine__get_cpu_hot_plug_enabled, 0);
-    rb_define_method(c, "cpu_hot_plug_enabled=", Machine__set_cpu_hot_plug_enabled, 1);
     rb_define_method(c, "cpu_execution_cap", Machine__get_cpu_execution_cap, 0);
-    rb_define_method(c, "cpu_execution_cap=", Machine__set_cpu_execution_cap, 1);
     rb_define_method(c, "memory_size", Machine__get_memory_size, 0);
-    rb_define_method(c, "memory_size=", Machine__set_memory_size, 1);
     rb_define_method(c, "memory_balloon_size", Machine__get_memory_balloon_size, 0);
-    rb_define_method(c, "memory_balloon_size=", Machine__set_memory_balloon_size, 1);
     rb_define_method(c, "page_fusion_enabled", Machine__get_page_fusion_enabled, 0);
-    rb_define_method(c, "page_fusion_enabled=", Machine__set_page_fusion_enabled, 1);
     rb_define_method(c, "vram_size", Machine__get_vram_size, 0);
-    rb_define_method(c, "vram_size=", Machine__set_vram_size, 1);
     rb_define_method(c, "accelerate_3d_enabled", Machine__get_accelerate_3d_enabled, 0);
-    rb_define_method(c, "accelerate_3d_enabled=", Machine__set_accelerate_3d_enabled, 1);
     rb_define_method(c, "accelerate_2d_video_enabled", Machine__get_accelerate_2d_video_enabled, 0);
-    rb_define_method(c, "accelerate_2d_video_enabled=", Machine__set_accelerate_2d_video_enabled, 1);
     rb_define_method(c, "monitor_count", Machine__get_monitor_count, 0);
-    rb_define_method(c, "monitor_count=", Machine__set_monitor_count, 1);
     rb_define_method(c, "video_capture_enabled", Machine__get_video_capture_enabled, 0);
-    rb_define_method(c, "video_capture_enabled=", Machine__set_video_capture_enabled, 1);
     rb_define_method(c, "video_capture_file", Machine__get_video_capture_file, 0);
-    rb_define_method(c, "video_capture_file=", Machine__set_video_capture_file, 1);
     rb_define_method(c, "video_capture_width", Machine__get_video_capture_width, 0);
-    rb_define_method(c, "video_capture_width=", Machine__set_video_capture_width, 1);
     rb_define_method(c, "video_capture_height", Machine__get_video_capture_height, 0);
-    rb_define_method(c, "video_capture_height=", Machine__set_video_capture_height, 1);
     rb_define_method(c, "bios_settings", Machine__get_bios_settings, 0);
     rb_define_method(c, "firmware_type", Machine__get_firmware_type, 0);
-    rb_define_method(c, "firmware_type=", Machine__set_firmware_type, 1);
     rb_define_method(c, "pointing_hid_type", Machine__get_pointing_hid_type, 0);
-    rb_define_method(c, "pointing_hid_type=", Machine__set_pointing_hid_type, 1);
     rb_define_method(c, "keyboard_hid_type", Machine__get_keyboard_hid_type, 0);
-    rb_define_method(c, "keyboard_hid_type=", Machine__set_keyboard_hid_type, 1);
     rb_define_method(c, "hpet_enabled", Machine__get_hpet_enabled, 0);
-    rb_define_method(c, "hpet_enabled=", Machine__set_hpet_enabled, 1);
     rb_define_method(c, "chipset_type", Machine__get_chipset_type, 0);
-    rb_define_method(c, "chipset_type=", Machine__set_chipset_type, 1);
     rb_define_method(c, "snapshot_folder", Machine__get_snapshot_folder, 0);
-    rb_define_method(c, "snapshot_folder=", Machine__set_snapshot_folder, 1);
     rb_define_method(c, "vrde_server", Machine__get_vrde_server, 0);
     rb_define_method(c, "emulated_usb_webcamera_enabled", Machine__get_emulated_usb_webcamera_enabled, 0);
-    rb_define_method(c, "emulated_usb_webcamera_enabled=", Machine__set_emulated_usb_webcamera_enabled, 1);
     rb_define_method(c, "emulated_usb_card_reader_enabled", Machine__get_emulated_usb_card_reader_enabled, 0);
-    rb_define_method(c, "emulated_usb_card_reader_enabled=", Machine__set_emulated_usb_card_reader_enabled, 1);
     rb_define_method(c, "medium_attachments", Machine__get_medium_attachments, 0);
     rb_define_method(c, "usb_controller", Machine__get_usb_controller, 0);
     rb_define_method(c, "audio_adapter", Machine__get_audio_adapter, 0);
@@ -18079,49 +16152,28 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "current_state_modified", Machine__get_current_state_modified, 0);
     rb_define_method(c, "shared_folders", Machine__get_shared_folders, 0);
     rb_define_method(c, "clipboard_mode", Machine__get_clipboard_mode, 0);
-    rb_define_method(c, "clipboard_mode=", Machine__set_clipboard_mode, 1);
     rb_define_method(c, "drag_and_drop_mode", Machine__get_drag_and_drop_mode, 0);
-    rb_define_method(c, "drag_and_drop_mode=", Machine__set_drag_and_drop_mode, 1);
     rb_define_method(c, "guest_property_notification_patterns", Machine__get_guest_property_notification_patterns, 0);
-    rb_define_method(c, "guest_property_notification_patterns=", Machine__set_guest_property_notification_patterns, 1);
     rb_define_method(c, "teleporter_enabled", Machine__get_teleporter_enabled, 0);
-    rb_define_method(c, "teleporter_enabled=", Machine__set_teleporter_enabled, 1);
     rb_define_method(c, "teleporter_port", Machine__get_teleporter_port, 0);
-    rb_define_method(c, "teleporter_port=", Machine__set_teleporter_port, 1);
     rb_define_method(c, "teleporter_address", Machine__get_teleporter_address, 0);
-    rb_define_method(c, "teleporter_address=", Machine__set_teleporter_address, 1);
     rb_define_method(c, "teleporter_password", Machine__get_teleporter_password, 0);
-    rb_define_method(c, "teleporter_password=", Machine__set_teleporter_password, 1);
     rb_define_method(c, "fault_tolerance_state", Machine__get_fault_tolerance_state, 0);
-    rb_define_method(c, "fault_tolerance_state=", Machine__set_fault_tolerance_state, 1);
     rb_define_method(c, "fault_tolerance_port", Machine__get_fault_tolerance_port, 0);
-    rb_define_method(c, "fault_tolerance_port=", Machine__set_fault_tolerance_port, 1);
     rb_define_method(c, "fault_tolerance_address", Machine__get_fault_tolerance_address, 0);
-    rb_define_method(c, "fault_tolerance_address=", Machine__set_fault_tolerance_address, 1);
     rb_define_method(c, "fault_tolerance_password", Machine__get_fault_tolerance_password, 0);
-    rb_define_method(c, "fault_tolerance_password=", Machine__set_fault_tolerance_password, 1);
     rb_define_method(c, "fault_tolerance_sync_interval", Machine__get_fault_tolerance_sync_interval, 0);
-    rb_define_method(c, "fault_tolerance_sync_interval=", Machine__set_fault_tolerance_sync_interval, 1);
     rb_define_method(c, "rtc_use_utc", Machine__get_rtc_use_utc, 0);
-    rb_define_method(c, "rtc_use_utc=", Machine__set_rtc_use_utc, 1);
     rb_define_method(c, "io_cache_enabled", Machine__get_io_cache_enabled, 0);
-    rb_define_method(c, "io_cache_enabled=", Machine__set_io_cache_enabled, 1);
     rb_define_method(c, "io_cache_size", Machine__get_io_cache_size, 0);
-    rb_define_method(c, "io_cache_size=", Machine__set_io_cache_size, 1);
     rb_define_method(c, "pci_device_assignments", Machine__get_pci_device_assignments, 0);
     rb_define_method(c, "bandwidth_control", Machine__get_bandwidth_control, 0);
     rb_define_method(c, "tracing_enabled", Machine__get_tracing_enabled, 0);
-    rb_define_method(c, "tracing_enabled=", Machine__set_tracing_enabled, 1);
     rb_define_method(c, "tracing_config", Machine__get_tracing_config, 0);
-    rb_define_method(c, "tracing_config=", Machine__set_tracing_config, 1);
     rb_define_method(c, "allow_tracing_to_access_vm", Machine__get_allow_tracing_to_access_vm, 0);
-    rb_define_method(c, "allow_tracing_to_access_vm=", Machine__set_allow_tracing_to_access_vm, 1);
     rb_define_method(c, "autostart_enabled", Machine__get_autostart_enabled, 0);
-    rb_define_method(c, "autostart_enabled=", Machine__set_autostart_enabled, 1);
     rb_define_method(c, "autostart_delay", Machine__get_autostart_delay, 0);
-    rb_define_method(c, "autostart_delay=", Machine__set_autostart_delay, 1);
     rb_define_method(c, "autostop_type", Machine__get_autostop_type, 0);
-    rb_define_method(c, "autostop_type=", Machine__set_autostop_type, 1);
     rb_define_method(c, "lock_machine", Machine__lock_machine, 2);
     rb_define_method(c, "launch_vm_process", Machine__launch_vm_process, 3);
     rb_define_method(c, "set_boot_order", Machine__set_boot_order, 2);
@@ -18233,7 +16285,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "event_source", Console__get_event_source, 0);
     rb_define_method(c, "attached_pci_devices", Console__get_attached_pci_devices, 0);
     rb_define_method(c, "use_host_clipboard", Console__get_use_host_clipboard, 0);
-    rb_define_method(c, "use_host_clipboard=", Console__set_use_host_clipboard, 1);
     rb_define_method(c, "power_up", Console__power_up, 0);
     rb_define_method(c, "power_up_paused", Console__power_up_paused, 0);
     rb_define_method(c, "power_down", Console__power_down, 0);
@@ -18341,31 +16392,19 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "parallel_port_count", SystemProperties__get_parallel_port_count, 0);
     rb_define_method(c, "max_boot_position", SystemProperties__get_max_boot_position, 0);
     rb_define_method(c, "default_machine_folder", SystemProperties__get_default_machine_folder, 0);
-    rb_define_method(c, "default_machine_folder=", SystemProperties__set_default_machine_folder, 1);
     rb_define_method(c, "medium_formats", SystemProperties__get_medium_formats, 0);
     rb_define_method(c, "default_hard_disk_format", SystemProperties__get_default_hard_disk_format, 0);
-    rb_define_method(c, "default_hard_disk_format=", SystemProperties__set_default_hard_disk_format, 1);
     rb_define_method(c, "free_disk_space_warning", SystemProperties__get_free_disk_space_warning, 0);
-    rb_define_method(c, "free_disk_space_warning=", SystemProperties__set_free_disk_space_warning, 1);
     rb_define_method(c, "free_disk_space_percent_warning", SystemProperties__get_free_disk_space_percent_warning, 0);
-    rb_define_method(c, "free_disk_space_percent_warning=", SystemProperties__set_free_disk_space_percent_warning, 1);
     rb_define_method(c, "free_disk_space_error", SystemProperties__get_free_disk_space_error, 0);
-    rb_define_method(c, "free_disk_space_error=", SystemProperties__set_free_disk_space_error, 1);
     rb_define_method(c, "free_disk_space_percent_error", SystemProperties__get_free_disk_space_percent_error, 0);
-    rb_define_method(c, "free_disk_space_percent_error=", SystemProperties__set_free_disk_space_percent_error, 1);
     rb_define_method(c, "vrde_auth_library", SystemProperties__get_vrde_auth_library, 0);
-    rb_define_method(c, "vrde_auth_library=", SystemProperties__set_vrde_auth_library, 1);
     rb_define_method(c, "web_service_auth_library", SystemProperties__get_web_service_auth_library, 0);
-    rb_define_method(c, "web_service_auth_library=", SystemProperties__set_web_service_auth_library, 1);
     rb_define_method(c, "default_vrde_ext_pack", SystemProperties__get_default_vrde_ext_pack, 0);
-    rb_define_method(c, "default_vrde_ext_pack=", SystemProperties__set_default_vrde_ext_pack, 1);
     rb_define_method(c, "log_history_count", SystemProperties__get_log_history_count, 0);
-    rb_define_method(c, "log_history_count=", SystemProperties__set_log_history_count, 1);
     rb_define_method(c, "default_audio_driver", SystemProperties__get_default_audio_driver, 0);
     rb_define_method(c, "autostart_database_path", SystemProperties__get_autostart_database_path, 0);
-    rb_define_method(c, "autostart_database_path=", SystemProperties__set_autostart_database_path, 1);
     rb_define_method(c, "default_additions_iso", SystemProperties__get_default_additions_iso, 0);
-    rb_define_method(c, "default_additions_iso=", SystemProperties__set_default_additions_iso, 1);
     rb_define_method(c, "get_max_network_adapters", SystemProperties__get_max_network_adapters, 1);
     rb_define_method(c, "get_max_network_adapters_of_type", SystemProperties__get_max_network_adapters_of_type, 2);
     rb_define_method(c, "get_max_devices_per_port_for_storage_bus", SystemProperties__get_max_devices_per_port_for_storage_bus, 1);
@@ -18433,7 +16472,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "id", GuestSession__get_id, 0);
     rb_define_method(c, "timeout", GuestSession__get_timeout, 0);
     rb_define_method(c, "environment", GuestSession__get_environment, 0);
-    rb_define_method(c, "environment=", GuestSession__set_environment, 1);
     rb_define_method(c, "processes", GuestSession__get_processes, 0);
     rb_define_method(c, "directories", GuestSession__get_directories, 0);
     rb_define_method(c, "files", GuestSession__get_files, 0);
@@ -18589,9 +16627,7 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "facilities", Guest__get_facilities, 0);
     rb_define_method(c, "sessions", Guest__get_sessions, 0);
     rb_define_method(c, "memory_balloon_size", Guest__get_memory_balloon_size, 0);
-    rb_define_method(c, "memory_balloon_size=", Guest__set_memory_balloon_size, 1);
     rb_define_method(c, "statistics_update_interval", Guest__get_statistics_update_interval, 0);
-    rb_define_method(c, "statistics_update_interval=", Guest__set_statistics_update_interval, 1);
     rb_define_method(c, "internal_get_statistics", Guest__internal_get_statistics, 0);
     rb_define_method(c, "get_facility_status", Guest__get_facility_status, 1);
     rb_define_method(c, "get_additions_status", Guest__get_additions_status, 1);
@@ -18630,7 +16666,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "operation_percent", Progress__get_operation_percent, 0);
     rb_define_method(c, "operation_weight", Progress__get_operation_weight, 0);
     rb_define_method(c, "timeout", Progress__get_timeout, 0);
-    rb_define_method(c, "timeout=", Progress__set_timeout, 1);
     rb_define_method(c, "set_current_operation_progress", Progress__set_current_operation_progress, 1);
     rb_define_method(c, "set_next_operation", Progress__set_next_operation, 2);
     rb_define_method(c, "wait_for_completion", Progress__wait_for_completion, 1);
@@ -18646,9 +16681,7 @@ static void comclass_init(VALUE under) {
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "id", Snapshot__get_id, 0);
     rb_define_method(c, "name", Snapshot__get_name, 0);
-    rb_define_method(c, "name=", Snapshot__set_name, 1);
     rb_define_method(c, "description", Snapshot__get_description, 0);
-    rb_define_method(c, "description=", Snapshot__set_description, 1);
     rb_define_method(c, "time_stamp", Snapshot__get_time_stamp, 0);
     rb_define_method(c, "online", Snapshot__get_online, 0);
     rb_define_method(c, "machine", Snapshot__get_machine, 0);
@@ -18682,11 +16715,9 @@ static void comclass_init(VALUE under) {
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "id", Medium__get_id, 0);
     rb_define_method(c, "description", Medium__get_description, 0);
-    rb_define_method(c, "description=", Medium__set_description, 1);
     rb_define_method(c, "state", Medium__get_state, 0);
     rb_define_method(c, "variant", Medium__get_variant, 0);
     rb_define_method(c, "location", Medium__get_location, 0);
-    rb_define_method(c, "location=", Medium__set_location, 1);
     rb_define_method(c, "name", Medium__get_name, 0);
     rb_define_method(c, "device_type", Medium__get_device_type, 0);
     rb_define_method(c, "host_drive", Medium__get_host_drive, 0);
@@ -18694,7 +16725,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "format", Medium__get_format, 0);
     rb_define_method(c, "medium_format", Medium__get_medium_format, 0);
     rb_define_method(c, "type", Medium__get_type, 0);
-    rb_define_method(c, "type=", Medium__set_type, 1);
     rb_define_method(c, "allowed_types", Medium__get_allowed_types, 0);
     rb_define_method(c, "parent", Medium__get_parent, 0);
     rb_define_method(c, "children", Medium__get_children, 0);
@@ -18702,7 +16732,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "read_only", Medium__get_read_only, 0);
     rb_define_method(c, "logical_size", Medium__get_logical_size, 0);
     rb_define_method(c, "auto_reset", Medium__get_auto_reset, 0);
-    rb_define_method(c, "auto_reset=", Medium__set_auto_reset, 1);
     rb_define_method(c, "last_access_error", Medium__get_last_access_error, 0);
     rb_define_method(c, "machine_ids", Medium__get_machine_ids, 0);
     rb_define_method(c, "set_ids", Medium__set_ids, 4);
@@ -18827,39 +16856,23 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "adapter_type", NetworkAdapter__get_adapter_type, 0);
-    rb_define_method(c, "adapter_type=", NetworkAdapter__set_adapter_type, 1);
     rb_define_method(c, "slot", NetworkAdapter__get_slot, 0);
     rb_define_method(c, "enabled", NetworkAdapter__get_enabled, 0);
-    rb_define_method(c, "enabled=", NetworkAdapter__set_enabled, 1);
     rb_define_method(c, "mac_address", NetworkAdapter__get_mac_address, 0);
-    rb_define_method(c, "mac_address=", NetworkAdapter__set_mac_address, 1);
     rb_define_method(c, "attachment_type", NetworkAdapter__get_attachment_type, 0);
-    rb_define_method(c, "attachment_type=", NetworkAdapter__set_attachment_type, 1);
     rb_define_method(c, "bridged_interface", NetworkAdapter__get_bridged_interface, 0);
-    rb_define_method(c, "bridged_interface=", NetworkAdapter__set_bridged_interface, 1);
     rb_define_method(c, "host_only_interface", NetworkAdapter__get_host_only_interface, 0);
-    rb_define_method(c, "host_only_interface=", NetworkAdapter__set_host_only_interface, 1);
     rb_define_method(c, "internal_network", NetworkAdapter__get_internal_network, 0);
-    rb_define_method(c, "internal_network=", NetworkAdapter__set_internal_network, 1);
     rb_define_method(c, "nat_network", NetworkAdapter__get_nat_network, 0);
-    rb_define_method(c, "nat_network=", NetworkAdapter__set_nat_network, 1);
     rb_define_method(c, "generic_driver", NetworkAdapter__get_generic_driver, 0);
-    rb_define_method(c, "generic_driver=", NetworkAdapter__set_generic_driver, 1);
     rb_define_method(c, "cable_connected", NetworkAdapter__get_cable_connected, 0);
-    rb_define_method(c, "cable_connected=", NetworkAdapter__set_cable_connected, 1);
     rb_define_method(c, "line_speed", NetworkAdapter__get_line_speed, 0);
-    rb_define_method(c, "line_speed=", NetworkAdapter__set_line_speed, 1);
     rb_define_method(c, "promisc_mode_policy", NetworkAdapter__get_promisc_mode_policy, 0);
-    rb_define_method(c, "promisc_mode_policy=", NetworkAdapter__set_promisc_mode_policy, 1);
     rb_define_method(c, "trace_enabled", NetworkAdapter__get_trace_enabled, 0);
-    rb_define_method(c, "trace_enabled=", NetworkAdapter__set_trace_enabled, 1);
     rb_define_method(c, "trace_file", NetworkAdapter__get_trace_file, 0);
-    rb_define_method(c, "trace_file=", NetworkAdapter__set_trace_file, 1);
     rb_define_method(c, "nat_engine", NetworkAdapter__get_nat_engine, 0);
     rb_define_method(c, "boot_priority", NetworkAdapter__get_boot_priority, 0);
-    rb_define_method(c, "boot_priority=", NetworkAdapter__set_boot_priority, 1);
     rb_define_method(c, "bandwidth_group", NetworkAdapter__get_bandwidth_group, 0);
-    rb_define_method(c, "bandwidth_group=", NetworkAdapter__set_bandwidth_group, 1);
     rb_define_method(c, "get_property", NetworkAdapter__get_property, 1);
     rb_define_method(c, "set_property", NetworkAdapter__set_property, 2);
     rb_define_method(c, "get_properties", NetworkAdapter__get_properties, 1);
@@ -18872,17 +16885,11 @@ static void comclass_init(VALUE under) {
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "slot", SerialPort__get_slot, 0);
     rb_define_method(c, "enabled", SerialPort__get_enabled, 0);
-    rb_define_method(c, "enabled=", SerialPort__set_enabled, 1);
     rb_define_method(c, "io_base", SerialPort__get_io_base, 0);
-    rb_define_method(c, "io_base=", SerialPort__set_io_base, 1);
     rb_define_method(c, "irq", SerialPort__get_irq, 0);
-    rb_define_method(c, "irq=", SerialPort__set_irq, 1);
     rb_define_method(c, "host_mode", SerialPort__get_host_mode, 0);
-    rb_define_method(c, "host_mode=", SerialPort__set_host_mode, 1);
     rb_define_method(c, "server", SerialPort__get_server, 0);
-    rb_define_method(c, "server=", SerialPort__set_server, 1);
     rb_define_method(c, "path", SerialPort__get_path, 0);
-    rb_define_method(c, "path=", SerialPort__set_path, 1);
   }
   {
     iid_t iid  = {0x0c925f06, 0xdd10, 0x4b77, {0x8d, 0xe8, 0x29, 0x4d, 0x73, 0x8c, 0x32, 0x14}};
@@ -18892,13 +16899,9 @@ static void comclass_init(VALUE under) {
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "slot", ParallelPort__get_slot, 0);
     rb_define_method(c, "enabled", ParallelPort__get_enabled, 0);
-    rb_define_method(c, "enabled=", ParallelPort__set_enabled, 1);
     rb_define_method(c, "io_base", ParallelPort__get_io_base, 0);
-    rb_define_method(c, "io_base=", ParallelPort__set_io_base, 1);
     rb_define_method(c, "irq", ParallelPort__get_irq, 0);
-    rb_define_method(c, "irq=", ParallelPort__set_irq, 1);
     rb_define_method(c, "path", ParallelPort__get_path, 0);
-    rb_define_method(c, "path=", ParallelPort__set_path, 1);
   }
   {
     iid_t iid  = {0xa9abbb7c, 0xd678, 0x43b2, {0xbe, 0xd2, 0x19, 0xec, 0x0e, 0x32, 0x30, 0x3d}};
@@ -18907,17 +16910,11 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "single_step", MachineDebugger__get_single_step, 0);
-    rb_define_method(c, "single_step=", MachineDebugger__set_single_step, 1);
     rb_define_method(c, "recompile_user", MachineDebugger__get_recompile_user, 0);
-    rb_define_method(c, "recompile_user=", MachineDebugger__set_recompile_user, 1);
     rb_define_method(c, "recompile_supervisor", MachineDebugger__get_recompile_supervisor, 0);
-    rb_define_method(c, "recompile_supervisor=", MachineDebugger__set_recompile_supervisor, 1);
     rb_define_method(c, "patm_enabled", MachineDebugger__get_patm_enabled, 0);
-    rb_define_method(c, "patm_enabled=", MachineDebugger__set_patm_enabled, 1);
     rb_define_method(c, "csam_enabled", MachineDebugger__get_csam_enabled, 0);
-    rb_define_method(c, "csam_enabled=", MachineDebugger__set_csam_enabled, 1);
     rb_define_method(c, "log_enabled", MachineDebugger__get_log_enabled, 0);
-    rb_define_method(c, "log_enabled=", MachineDebugger__set_log_enabled, 1);
     rb_define_method(c, "log_dbg_flags", MachineDebugger__get_log_dbg_flags, 0);
     rb_define_method(c, "log_dbg_groups", MachineDebugger__get_log_dbg_groups, 0);
     rb_define_method(c, "log_dbg_destinations", MachineDebugger__get_log_dbg_destinations, 0);
@@ -18931,7 +16928,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "os_version", MachineDebugger__get_os_version, 0);
     rb_define_method(c, "pae_enabled", MachineDebugger__get_pae_enabled, 0);
     rb_define_method(c, "virtual_time_rate", MachineDebugger__get_virtual_time_rate, 0);
-    rb_define_method(c, "virtual_time_rate=", MachineDebugger__set_virtual_time_rate, 1);
     rb_define_method(c, "vm", MachineDebugger__get_vm, 0);
     rb_define_method(c, "dump_guest_core", MachineDebugger__dump_guest_core, 2);
     rb_define_method(c, "dump_host_process_core", MachineDebugger__dump_host_process_core, 2);
@@ -18961,9 +16957,7 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "enabled", USBController__get_enabled, 0);
-    rb_define_method(c, "enabled=", USBController__set_enabled, 1);
     rb_define_method(c, "enabled_ehci", USBController__get_enabled_ehci, 0);
-    rb_define_method(c, "enabled_ehci=", USBController__set_enabled_ehci, 1);
     rb_define_method(c, "proxy_available", USBController__get_proxy_available, 0);
     rb_define_method(c, "usb_standard", USBController__get_usb_standard, 0);
     rb_define_method(c, "device_filters", USBController__get_device_filters, 0);
@@ -18997,27 +16991,16 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "name", USBDeviceFilter__get_name, 0);
-    rb_define_method(c, "name=", USBDeviceFilter__set_name, 1);
     rb_define_method(c, "active", USBDeviceFilter__get_active, 0);
-    rb_define_method(c, "active=", USBDeviceFilter__set_active, 1);
     rb_define_method(c, "vendor_id", USBDeviceFilter__get_vendor_id, 0);
-    rb_define_method(c, "vendor_id=", USBDeviceFilter__set_vendor_id, 1);
     rb_define_method(c, "product_id", USBDeviceFilter__get_product_id, 0);
-    rb_define_method(c, "product_id=", USBDeviceFilter__set_product_id, 1);
     rb_define_method(c, "revision", USBDeviceFilter__get_revision, 0);
-    rb_define_method(c, "revision=", USBDeviceFilter__set_revision, 1);
     rb_define_method(c, "manufacturer", USBDeviceFilter__get_manufacturer, 0);
-    rb_define_method(c, "manufacturer=", USBDeviceFilter__set_manufacturer, 1);
     rb_define_method(c, "product", USBDeviceFilter__get_product, 0);
-    rb_define_method(c, "product=", USBDeviceFilter__set_product, 1);
     rb_define_method(c, "serial_number", USBDeviceFilter__get_serial_number, 0);
-    rb_define_method(c, "serial_number=", USBDeviceFilter__set_serial_number, 1);
     rb_define_method(c, "port", USBDeviceFilter__get_port, 0);
-    rb_define_method(c, "port=", USBDeviceFilter__set_port, 1);
     rb_define_method(c, "remote", USBDeviceFilter__get_remote, 0);
-    rb_define_method(c, "remote=", USBDeviceFilter__set_remote, 1);
     rb_define_method(c, "masked_interfaces", USBDeviceFilter__get_masked_interfaces, 0);
-    rb_define_method(c, "masked_interfaces=", USBDeviceFilter__set_masked_interfaces, 1);
   }
   {
     iid_t iid  = {0x173b4b44, 0xd268, 0x4334, {0xa0, 0x0d, 0xb6, 0x52, 0x1c, 0x9a, 0x74, 0x0a}};
@@ -19034,7 +17017,6 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "action", HostUSBDeviceFilter__get_action, 0);
-    rb_define_method(c, "action=", HostUSBDeviceFilter__set_action, 1);
   }
   {
     iid_t iid  = {0x921873db, 0x5f3f, 0x4b69, {0x91, 0xf9, 0x7b, 0xe9, 0xe5, 0x35, 0xa2, 0xcb}};
@@ -19043,11 +17025,8 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "enabled", AudioAdapter__get_enabled, 0);
-    rb_define_method(c, "enabled=", AudioAdapter__set_enabled, 1);
     rb_define_method(c, "audio_controller", AudioAdapter__get_audio_controller, 0);
-    rb_define_method(c, "audio_controller=", AudioAdapter__set_audio_controller, 1);
     rb_define_method(c, "audio_driver", AudioAdapter__get_audio_driver, 0);
-    rb_define_method(c, "audio_driver=", AudioAdapter__set_audio_driver, 1);
   }
   {
     iid_t iid  = {0xd38de40a, 0xc2c1, 0x4e95, {0xb5, 0xa4, 0x16, 0x7b, 0x05, 0xf5, 0x69, 0x4c}};
@@ -19056,19 +17035,12 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "enabled", VRDEServer__get_enabled, 0);
-    rb_define_method(c, "enabled=", VRDEServer__set_enabled, 1);
     rb_define_method(c, "auth_type", VRDEServer__get_auth_type, 0);
-    rb_define_method(c, "auth_type=", VRDEServer__set_auth_type, 1);
     rb_define_method(c, "auth_timeout", VRDEServer__get_auth_timeout, 0);
-    rb_define_method(c, "auth_timeout=", VRDEServer__set_auth_timeout, 1);
     rb_define_method(c, "allow_multi_connection", VRDEServer__get_allow_multi_connection, 0);
-    rb_define_method(c, "allow_multi_connection=", VRDEServer__set_allow_multi_connection, 1);
     rb_define_method(c, "reuse_single_connection", VRDEServer__get_reuse_single_connection, 0);
-    rb_define_method(c, "reuse_single_connection=", VRDEServer__set_reuse_single_connection, 1);
     rb_define_method(c, "vrde_ext_pack", VRDEServer__get_vrde_ext_pack, 0);
-    rb_define_method(c, "vrde_ext_pack=", VRDEServer__set_vrde_ext_pack, 1);
     rb_define_method(c, "auth_library", VRDEServer__get_auth_library, 0);
-    rb_define_method(c, "auth_library=", VRDEServer__set_auth_library, 1);
     rb_define_method(c, "vrde_properties", VRDEServer__get_vrde_properties, 0);
     rb_define_method(c, "set_vrde_property", VRDEServer__set_vrde_property, 2);
     rb_define_method(c, "get_vrde_property", VRDEServer__get_vrde_property, 1);
@@ -19143,14 +17115,10 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "min_port_count", StorageController__get_min_port_count, 0);
     rb_define_method(c, "max_port_count", StorageController__get_max_port_count, 0);
     rb_define_method(c, "instance", StorageController__get_instance, 0);
-    rb_define_method(c, "instance=", StorageController__set_instance, 1);
     rb_define_method(c, "port_count", StorageController__get_port_count, 0);
-    rb_define_method(c, "port_count=", StorageController__set_port_count, 1);
     rb_define_method(c, "bus", StorageController__get_bus, 0);
     rb_define_method(c, "controller_type", StorageController__get_controller_type, 0);
-    rb_define_method(c, "controller_type=", StorageController__set_controller_type, 1);
     rb_define_method(c, "use_host_io_cache", StorageController__get_use_host_io_cache, 0);
-    rb_define_method(c, "use_host_io_cache=", StorageController__set_use_host_io_cache, 1);
     rb_define_method(c, "bootable", StorageController__get_bootable, 0);
   }
   {
@@ -19188,23 +17156,14 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "network", NATEngine__get_network, 0);
-    rb_define_method(c, "network=", NATEngine__set_network, 1);
     rb_define_method(c, "host_ip", NATEngine__get_host_ip, 0);
-    rb_define_method(c, "host_ip=", NATEngine__set_host_ip, 1);
     rb_define_method(c, "tftp_prefix", NATEngine__get_tftp_prefix, 0);
-    rb_define_method(c, "tftp_prefix=", NATEngine__set_tftp_prefix, 1);
     rb_define_method(c, "tftp_boot_file", NATEngine__get_tftp_boot_file, 0);
-    rb_define_method(c, "tftp_boot_file=", NATEngine__set_tftp_boot_file, 1);
     rb_define_method(c, "tftp_next_server", NATEngine__get_tftp_next_server, 0);
-    rb_define_method(c, "tftp_next_server=", NATEngine__set_tftp_next_server, 1);
     rb_define_method(c, "alias_mode", NATEngine__get_alias_mode, 0);
-    rb_define_method(c, "alias_mode=", NATEngine__set_alias_mode, 1);
     rb_define_method(c, "dns_pass_domain", NATEngine__get_dns_pass_domain, 0);
-    rb_define_method(c, "dns_pass_domain=", NATEngine__set_dns_pass_domain, 1);
     rb_define_method(c, "dns_proxy", NATEngine__get_dns_proxy, 0);
-    rb_define_method(c, "dns_proxy=", NATEngine__set_dns_proxy, 1);
     rb_define_method(c, "dns_use_host_resolver", NATEngine__get_dns_use_host_resolver, 0);
-    rb_define_method(c, "dns_use_host_resolver=", NATEngine__set_dns_use_host_resolver, 1);
     rb_define_method(c, "redirects", NATEngine__get_redirects, 0);
     rb_define_method(c, "set_network_settings", NATEngine__set_network_settings, 5);
     rb_define_method(c, "get_network_settings", NATEngine__get_network_settings, 0);
@@ -19282,7 +17241,6 @@ static void comclass_init(VALUE under) {
     rb_define_method(c, "type", BandwidthGroup__get_type, 0);
     rb_define_method(c, "reference", BandwidthGroup__get_reference, 0);
     rb_define_method(c, "max_bytes_per_sec", BandwidthGroup__get_max_bytes_per_sec, 0);
-    rb_define_method(c, "max_bytes_per_sec=", BandwidthGroup__set_max_bytes_per_sec, 1);
   }
   {
     iid_t iid  = {0xe2eb3930, 0xd2f4, 0x4f87, {0xbe, 0x17, 0x07, 0x07, 0xe3, 0x0f, 0x01, 0x9f}};
@@ -19682,7 +17640,6 @@ static void comclass_init(VALUE under) {
     no_instantiation(c);
     rb_const_set(c, _IID, iid__new(&iid));
     rb_define_method(c, "win_id", ShowWindowEvent__get_win_id, 0);
-    rb_define_method(c, "win_id=", ShowWindowEvent__set_win_id, 1);
   }
   {
     iid_t iid  = {0x24eef068, 0xc380, 0x4510, {0xbc, 0x7c, 0x19, 0x31, 0x4a, 0x73, 0x52, 0xf1}};

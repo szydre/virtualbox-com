@@ -30,8 +30,6 @@ class AbstractModel
     end
 end
 
-
-
 class AbstractInterface < AbstractModel
     class << self
 
@@ -80,8 +78,6 @@ class AbstractInterface < AbstractModel
         private
         def h ; @h ||= {} ; end
     end
-
-
 end
 
 end

@@ -70,34 +70,33 @@ class Sig
 
 
     def to_c_func(name, vtbl, fun)
-        io = $stdout
         ins = self.in;
 
         args= ([ 'self' ] + ins.size.times.map {|i| "i#{i}"})
             .map {|v| "VALUE #{v}"}.join(', ')
 
-        io << "static VALUE #{name}(#{args}) {\n"
-        io << "  VALUE  res      = Qundef;\n"
-        io << "  struct obj *obj = DATA_PTR(self);\n"
-        io << "  struct #{vtbl} *vtbl = obj->vtbl;\n"
-
-        ins.each_index{|i| type, = ins[i]
-            io << "  i#{i} = " << do_prepare(type, "i#{i}") << ";\n"
-        }
+        OUT << "static VALUE #{name}(#{args}) {\n"
+        OUT << "  VALUE  res      = Qundef;\n"
+        OUT << "  struct obj *obj = DATA_PTR(self);\n"
+        OUT << "  struct #{vtbl} *vtbl = obj->vtbl;\n"
 
 
         args = self.with_var_decl
 
         args.each{|type, way, *vdecl|
             vdecl.each{|var, decl|
-                io << "  #{decl} #{var};\n"
+                OUT << "  #{decl} #{var};\n"
             }
+        }
+
+        ins.each_index{|i| type, = ins[i]
+            OUT << "  i#{i} = " << do_prepare(type, "i#{i}") << ";\n"
         }
 
         i = 0;
         args.each {|type, way, *vdec| is_array = type.is_a?(Array)
             if way == :in
-                io << "  " << get_extract(type, "i#{i}", vdec.map{|var, dec|
+                OUT << "  " << get_extract(type, "i#{i}", vdec.map{|var, dec|
                                        "&#{var}"}) << ";\n"
             end
             i += 1
@@ -106,25 +105,25 @@ class Sig
         a = args.map {|type, way, *vdec| vdec.map{|var, dec|
                 if way == :out then "&#{var}" else var end } }.flatten
         a.unshift('obj');
-        io << "  NS_CHECK(vtbl->#{fun}(" << a.join(', ') << "));\n"
+        OUT << "  NS_CHECK(vtbl->#{fun}(" << a.join(', ') << "));\n"
 
 
 
-        io << "  res = rb_ary_new();\n"
+        OUT << "  res = rb_ary_new();\n"
         i = 0
         o = 0
         args.each {|type, way, *vdec| is_array = type.is_a?(Array)
             if way == :out
-                io << "  rb_ary_push(res, " << get_convert(type, vdec.map{|var, dec|
+                OUT << "  rb_ary_push(res, " << get_convert(type, vdec.map{|var, dec|
                                        "#{var}"}) << ");\n"
                 o += 1
             end
             i += 1
         }
 
-        io << "  res = rb_ary_entry(res, 0);\n" if o == 1
-        io << "  return res;\n"
-        io << "}\n"
+        OUT << "  res = rb_ary_entry(res, 0);\n" if o == 1
+        OUT << "  return res;\n"
+        OUT << "}\n"
 
     end
 
@@ -197,9 +196,6 @@ class Sig
             end
         end
     end
-
-
-    
 end
 
 end

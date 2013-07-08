@@ -1,3 +1,6 @@
+require 'bundler/setup'
+require 'getoptlong'
+
 module VirtualBox
     module COM
         WSTRING = 'wstring_t'
@@ -32,42 +35,70 @@ module VirtualBox
     end
 end
 
-require_relative '../lib/virtualbox/com/abstracts'
+require 'virtualbox/com/abstracts'
 require_relative 'abstracts'
 require_relative 'sig'
 require_relative 'spec'
-require_relative '../lib/virtualbox/com/model/4.2-generated'
+
+
+
+opts = GetoptLong.new(
+	[ "--api",		GetoptLong::REQUIRED_ARGUMENT ],
+	[ "--file",		GetoptLong::REQUIRED_ARGUMENT ],
+	[ "--help",		GetoptLong::NO_ARGUMENT ] )
+
+api  = nil
+file = nil
+
+begin
+    opts.each do |opt, arg|
+	case opt
+	when "--api"  then api  = arg
+	when "--file" then file = arg
+        when "--help" then raise
+	end
+    end
+    raise if api.nil?
+rescue
+    $stderr.print <<EOT
+usage: xidl-conv.rb: --api version [--file output]
+    --api         Model description 
+    --file        path to generated output
+    --help        Show this message.
+
+EOT
+    exit 0
+end
+
+
+require "virtualbox/com/model/#{api}-generated"
+OUT = file.nil? ? $stdout : File.open(file, 'w')
 
 
 
 
 
-
-
-
-M = VirtualBox::COM::Model
-io = $stdout
-
+M  = VirtualBox::COM::Model
 
 
 M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
     next unless model <= VirtualBox::COM::AbstractInterface
-    puts "struct #{name} {"
+    OUT << "struct #{name} {\n"
     if (s = model.superclass) < VirtualBox::COM::AbstractInterface
-        puts "  struct #{s.nickname} #{s.nickname};"
+        OUT << "  struct #{s.nickname} #{s.nickname};\n"
     end
     model.members.each {|spec|
         spec.signatures.each {|n, sig|
-            puts "  uint32_t (*#{n})(#{sig.to_c.join(', ')});"
+            OUT << "  uint32_t (*#{n})(#{sig.to_c.join(', ')});\n"
         }    
     }
-    puts "};"
+    OUT << "};\n"
 }
 
 
 
 M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
-    io << "static VALUE c#{name} = Qundef;\n"
+    OUT << "static VALUE c#{name} = Qundef;\n"
 }
 
 
@@ -87,23 +118,23 @@ M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
 }
 
 
-io << "static void comclass_init(VALUE under) {\n"
+OUT << "static void comclass_init(VALUE under) {\n"
 M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
     kAbstract = 'c' + model.superclass.name.split('::')[-1]
     
-    io << "  {\n"
-    io << "    iid_t iid  = #{model::IID.to_struct};\n"
-    io << "    VALUE c    = c#{name}\n"
-    io << "      = rb_define_class_under(under, \"#{name}\", #{kAbstract});\n"
-    io << "    no_instantiation(c);\n"
-    io << "    rb_const_set(c, _IID, iid__new(&iid));\n"
+    OUT << "  {\n"
+    OUT << "    iid_t iid  = #{model::IID.to_struct};\n"
+    OUT << "    VALUE c    = c#{name}\n"
+    OUT << "      = rb_define_class_under(under, \"#{name}\", #{kAbstract});\n"
+    OUT << "    no_instantiation(c);\n"
+    OUT << "    rb_const_set(c, _IID, iid__new(&iid));\n"
     
     if model <= VirtualBox::COM::AbstractEnum
-        io << "    VALUE h    = rb_hash_new();\n"
+        OUT << "    VALUE h    = rb_hash_new();\n"
         model.map.each {|sym, val|
-            io << "    rb_funcall(h, _bracketseq, 2, SYM(\"#{sym}\"), ULL2NUM(#{val}));\n"
+            OUT << "    rb_funcall(h, _bracketseq, 2, SYM(\"#{sym}\"), ULL2NUM(#{val}));\n"
         }
-        io << "    rb_funcall(c, _map, 1, h);\n"
+        OUT << "    rb_funcall(c, _map, 1, h);\n"
     elsif model <= VirtualBox::COM::AbstractInterface
         model.members.each {|spec|
             next if spec.hide?
@@ -113,14 +144,14 @@ M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
                     warn "Binding for #{model.nickname}\##{spec.name} need to be handcrafted"
                     next
                 end
-                io << "    rb_define_method(c, \"#{spec.name}\", #{model.nickname}__#{spec.name}, #{spec.to_call.in.size});\n"                
+                OUT << "    rb_define_method(c, \"#{spec.name}\", #{model.nickname}__#{spec.name}, #{spec.to_call.in.size});\n"                
             when VirtualBox::COM::Spec::Property
-                io << "    rb_define_method(c, \"#{spec.name}\", #{model.nickname}__#{spec.getter}, 0);\n"
+                OUT << "    rb_define_method(c, \"#{spec.name}\", #{model.nickname}__#{spec.getter}, 0);\n"
                 
-                io << "    rb_define_method(c, \"#{spec.name}=\", #{model.nickname}__#{spec.setter}, 1);\n" if !spec.readonly?
+                OUT << "    rb_define_method(c, \"#{spec.name}=\", #{model.nickname}__#{spec.setter}, 1);\n" if !spec.readonly?
             end
         }
     end
-    io << "  }\n"
+    OUT << "  }\n"
 }
-io << "}\n"
+OUT << "}\n"

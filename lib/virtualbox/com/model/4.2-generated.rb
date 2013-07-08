@@ -4,9 +4,6 @@
 
 module VirtualBox
 module COM
-
-MODEL_VERSION = "4.2"
-
 module Model
 
 class NSISupports < AbstractInterface
@@ -969,7 +966,7 @@ end
 
 class DHCPServer < NSISupports
   iid      "6cfe387c-74fb-4ca7-bff6-973bec8af7a3"
-  property :enabled, BOOL
+  property :enabled, BOOL, :readonly => true
   property :ip_address, WSTRING, :readonly => true
   property :network_mask, WSTRING, :readonly => true
   property :network_name, WSTRING, :readonly => true
@@ -1097,22 +1094,22 @@ end
 
 class BIOSSettings < NSISupports
   iid      "38b54279-dc35-4f5e-a431-835b867c6b5e"
-  property :logo_fade_in, BOOL
-  property :logo_fade_out, BOOL
-  property :logo_display_time, UINT32
-  property :logo_image_path, WSTRING
-  property :boot_menu_mode, :BIOSBootMenuMode
-  property :acpi_enabled, BOOL
-  property :io_apic_enabled, BOOL
-  property :time_offset, INT64
-  property :pxe_debug_enabled, BOOL
+  property :logo_fade_in, BOOL, :readonly => true
+  property :logo_fade_out, BOOL, :readonly => true
+  property :logo_display_time, UINT32, :readonly => true
+  property :logo_image_path, WSTRING, :readonly => true
+  property :boot_menu_mode, :BIOSBootMenuMode, :readonly => true
+  property :acpi_enabled, BOOL, :readonly => true
+  property :io_apic_enabled, BOOL, :readonly => true
+  property :time_offset, INT64, :readonly => true
+  property :pxe_debug_enabled, BOOL, :readonly => true
 end
 
 class PCIAddress < NSISupports
   iid      "D88B324F-DB19-4D3B-A1A9-BF5B127199A8"
-  property :bus, INT16
-  property :device, INT16
-  property :dev_function, INT16
+  property :bus, INT16, :readonly => true
+  property :device, INT16, :readonly => true
+  property :dev_function, INT16, :readonly => true
   function :as_long, INT32, []
   function :from_long, nil, [INT32]
 end
@@ -1130,37 +1127,37 @@ class Machine < NSISupports
   property :parent, :VirtualBox, :readonly => true
   property :accessible, BOOL, :readonly => true
   property :access_error, :VirtualBoxErrorInfo, :readonly => true
-  property :name, WSTRING
-  property :description, WSTRING
+  property :name, WSTRING, :readonly => true
+  property :description, WSTRING, :readonly => true
   property :id, WSTRING, :readonly => true
-  property :groups, [WSTRING]
-  property :os_type_id, WSTRING
-  property :hardware_version, WSTRING
-  property :hardware_uuid, WSTRING
-  property :cpu_count, UINT32
-  property :cpu_hot_plug_enabled, BOOL
-  property :cpu_execution_cap, UINT32
-  property :memory_size, UINT32
-  property :memory_balloon_size, UINT32
-  property :page_fusion_enabled, BOOL
-  property :vram_size, UINT32
-  property :accelerate_3d_enabled, BOOL
-  property :accelerate_2d_video_enabled, BOOL
-  property :monitor_count, UINT32
-  property :video_capture_enabled, BOOL
-  property :video_capture_file, WSTRING
-  property :video_capture_width, UINT32
-  property :video_capture_height, UINT32
+  property :groups, [WSTRING], :readonly => true
+  property :os_type_id, WSTRING, :readonly => true
+  property :hardware_version, WSTRING, :readonly => true
+  property :hardware_uuid, WSTRING, :readonly => true
+  property :cpu_count, UINT32, :readonly => true
+  property :cpu_hot_plug_enabled, BOOL, :readonly => true
+  property :cpu_execution_cap, UINT32, :readonly => true
+  property :memory_size, UINT32, :readonly => true
+  property :memory_balloon_size, UINT32, :readonly => true
+  property :page_fusion_enabled, BOOL, :readonly => true
+  property :vram_size, UINT32, :readonly => true
+  property :accelerate_3d_enabled, BOOL, :readonly => true
+  property :accelerate_2d_video_enabled, BOOL, :readonly => true
+  property :monitor_count, UINT32, :readonly => true
+  property :video_capture_enabled, BOOL, :readonly => true
+  property :video_capture_file, WSTRING, :readonly => true
+  property :video_capture_width, UINT32, :readonly => true
+  property :video_capture_height, UINT32, :readonly => true
   property :bios_settings, :BIOSSettings, :readonly => true
-  property :firmware_type, :FirmwareType
-  property :pointing_hid_type, :PointingHIDType
-  property :keyboard_hid_type, :KeyboardHIDType
-  property :hpet_enabled, BOOL
-  property :chipset_type, :ChipsetType
-  property :snapshot_folder, WSTRING
+  property :firmware_type, :FirmwareType, :readonly => true
+  property :pointing_hid_type, :PointingHIDType, :readonly => true
+  property :keyboard_hid_type, :KeyboardHIDType, :readonly => true
+  property :hpet_enabled, BOOL, :readonly => true
+  property :chipset_type, :ChipsetType, :readonly => true
+  property :snapshot_folder, WSTRING, :readonly => true
   property :vrde_server, :VRDEServer, :readonly => true
-  property :emulated_usb_webcamera_enabled, BOOL
-  property :emulated_usb_card_reader_enabled, BOOL
+  property :emulated_usb_webcamera_enabled, BOOL, :readonly => true
+  property :emulated_usb_card_reader_enabled, BOOL, :readonly => true
   property :medium_attachments, [:MediumAttachment], :readonly => true
   property :usb_controller, :USBController, :readonly => true
   property :audio_adapter, :AudioAdapter, :readonly => true
@@ -1178,29 +1175,29 @@ class Machine < NSISupports
   property :snapshot_count, UINT32, :readonly => true
   property :current_state_modified, BOOL, :readonly => true
   property :shared_folders, [:SharedFolder], :readonly => true
-  property :clipboard_mode, :ClipboardMode
-  property :drag_and_drop_mode, :DragAndDropMode
-  property :guest_property_notification_patterns, WSTRING
-  property :teleporter_enabled, BOOL
-  property :teleporter_port, UINT32
-  property :teleporter_address, WSTRING
-  property :teleporter_password, WSTRING
-  property :fault_tolerance_state, :FaultToleranceState
-  property :fault_tolerance_port, UINT32
-  property :fault_tolerance_address, WSTRING
-  property :fault_tolerance_password, WSTRING
-  property :fault_tolerance_sync_interval, UINT32
-  property :rtc_use_utc, BOOL
-  property :io_cache_enabled, BOOL
-  property :io_cache_size, UINT32
+  property :clipboard_mode, :ClipboardMode, :readonly => true
+  property :drag_and_drop_mode, :DragAndDropMode, :readonly => true
+  property :guest_property_notification_patterns, WSTRING, :readonly => true
+  property :teleporter_enabled, BOOL, :readonly => true
+  property :teleporter_port, UINT32, :readonly => true
+  property :teleporter_address, WSTRING, :readonly => true
+  property :teleporter_password, WSTRING, :readonly => true
+  property :fault_tolerance_state, :FaultToleranceState, :readonly => true
+  property :fault_tolerance_port, UINT32, :readonly => true
+  property :fault_tolerance_address, WSTRING, :readonly => true
+  property :fault_tolerance_password, WSTRING, :readonly => true
+  property :fault_tolerance_sync_interval, UINT32, :readonly => true
+  property :rtc_use_utc, BOOL, :readonly => true
+  property :io_cache_enabled, BOOL, :readonly => true
+  property :io_cache_size, UINT32, :readonly => true
   property :pci_device_assignments, [:PCIDeviceAttachment], :readonly => true
   property :bandwidth_control, :BandwidthControl, :readonly => true
-  property :tracing_enabled, BOOL
-  property :tracing_config, WSTRING
-  property :allow_tracing_to_access_vm, BOOL
-  property :autostart_enabled, BOOL
-  property :autostart_delay, UINT32
-  property :autostop_type, :AutostopType
+  property :tracing_enabled, BOOL, :readonly => true
+  property :tracing_config, WSTRING, :readonly => true
+  property :allow_tracing_to_access_vm, BOOL, :readonly => true
+  property :autostart_enabled, BOOL, :readonly => true
+  property :autostart_delay, UINT32, :readonly => true
+  property :autostop_type, :AutostopType, :readonly => true
   function :lock_machine, nil, [:Session, :LockType]
   function :launch_vm_process, :Progress, [:Session, WSTRING, WSTRING]
   function :set_boot_order, nil, [UINT32, :DeviceType]
@@ -1305,7 +1302,7 @@ class Console < NSISupports
   property :vrde_server_info, :VRDEServerInfo, :readonly => true
   property :event_source, :EventSource, :readonly => true
   property :attached_pci_devices, [:PCIDeviceAttachment], :readonly => true
-  property :use_host_clipboard, BOOL
+  property :use_host_clipboard, BOOL, :readonly => true
   function :power_up, :Progress, []
   function :power_up_paused, :Progress, []
   function :power_down, :Progress, []
@@ -1403,20 +1400,20 @@ class SystemProperties < NSISupports
   property :serial_port_count, UINT32, :readonly => true
   property :parallel_port_count, UINT32, :readonly => true
   property :max_boot_position, UINT32, :readonly => true
-  property :default_machine_folder, WSTRING
+  property :default_machine_folder, WSTRING, :readonly => true
   property :medium_formats, [:MediumFormat], :readonly => true
-  property :default_hard_disk_format, WSTRING
-  property :free_disk_space_warning, INT64
-  property :free_disk_space_percent_warning, UINT32
-  property :free_disk_space_error, INT64
-  property :free_disk_space_percent_error, UINT32
-  property :vrde_auth_library, WSTRING
-  property :web_service_auth_library, WSTRING
-  property :default_vrde_ext_pack, WSTRING
-  property :log_history_count, UINT32
+  property :default_hard_disk_format, WSTRING, :readonly => true
+  property :free_disk_space_warning, INT64, :readonly => true
+  property :free_disk_space_percent_warning, UINT32, :readonly => true
+  property :free_disk_space_error, INT64, :readonly => true
+  property :free_disk_space_percent_error, UINT32, :readonly => true
+  property :vrde_auth_library, WSTRING, :readonly => true
+  property :web_service_auth_library, WSTRING, :readonly => true
+  property :default_vrde_ext_pack, WSTRING, :readonly => true
+  property :log_history_count, UINT32, :readonly => true
   property :default_audio_driver, :AudioDriverType, :readonly => true
-  property :autostart_database_path, WSTRING
-  property :default_additions_iso, WSTRING
+  property :autostart_database_path, WSTRING, :readonly => true
+  property :default_additions_iso, WSTRING, :readonly => true
   function :get_max_network_adapters, UINT32, [:ChipsetType]
   function :get_max_network_adapters_of_type, UINT32, [:ChipsetType, :NetworkAttachmentType]
   function :get_max_devices_per_port_for_storage_bus, UINT32, [:StorageBus]
@@ -1474,7 +1471,7 @@ class GuestSession < NSISupports
   property :name, WSTRING, :readonly => true
   property :id, UINT32, :readonly => true
   property :timeout, UINT32, :readonly => true
-  property :environment, [WSTRING]
+  property :environment, [WSTRING], :readonly => true
   property :processes, [:GuestProcess], :readonly => true
   property :directories, [:GuestDirectory], :readonly => true
   property :files, [:GuestFile], :readonly => true
@@ -1602,8 +1599,8 @@ class Guest < NSISupports
   property :additions_revision, UINT32, :readonly => true
   property :facilities, [:AdditionsFacility], :readonly => true
   property :sessions, [:GuestSession], :readonly => true
-  property :memory_balloon_size, UINT32
-  property :statistics_update_interval, UINT32
+  property :memory_balloon_size, UINT32, :readonly => true
+  property :statistics_update_interval, UINT32, :readonly => true
   function :internal_get_statistics, nil, [[:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32]]
   function :get_facility_status, :AdditionsFacilityStatus, [:AdditionsFacilityType, [:out, INT64]]
   function :get_additions_status, BOOL, [:AdditionsRunLevelType]
@@ -1638,7 +1635,7 @@ class Progress < NSISupports
   property :operation_description, WSTRING, :readonly => true
   property :operation_percent, UINT32, :readonly => true
   property :operation_weight, UINT32, :readonly => true
-  property :timeout, UINT32
+  property :timeout, UINT32, :readonly => true
   function :set_current_operation_progress, nil, [UINT32]
   function :set_next_operation, nil, [WSTRING, UINT32]
   function :wait_for_completion, nil, [INT32]
@@ -1650,8 +1647,8 @@ end
 class Snapshot < NSISupports
   iid      "0472823b-c6e7-472a-8e9f-d732e86b8463"
   property :id, WSTRING, :readonly => true
-  property :name, WSTRING
-  property :description, WSTRING
+  property :name, WSTRING, :readonly => true
+  property :description, WSTRING, :readonly => true
   property :time_stamp, INT64, :readonly => true
   property :online, BOOL, :readonly => true
   property :machine, :Machine, :readonly => true
@@ -1678,24 +1675,24 @@ end
 class Medium < NSISupports
   iid      "29989373-b111-4654-8493-2e1176cba890"
   property :id, WSTRING, :readonly => true
-  property :description, WSTRING
+  property :description, WSTRING, :readonly => true
   property :state, :MediumState, :readonly => true
   property :variant, UINT32, :readonly => true
-  property :location, WSTRING
+  property :location, WSTRING, :readonly => true
   property :name, WSTRING, :readonly => true
   property :device_type, :DeviceType, :readonly => true
   property :host_drive, BOOL, :readonly => true
   property :size, INT64, :readonly => true
   property :format, WSTRING, :readonly => true
   property :medium_format, :MediumFormat, :readonly => true
-  property :type, :MediumType
+  property :type, :MediumType, :readonly => true
   property :allowed_types, [:MediumType], :readonly => true
   property :parent, :Medium, :readonly => true
   property :children, [:Medium], :readonly => true
   property :base, :Medium, :readonly => true
   property :read_only, BOOL, :readonly => true
   property :logical_size, INT64, :readonly => true
-  property :auto_reset, BOOL
+  property :auto_reset, BOOL, :readonly => true
   property :last_access_error, WSTRING, :readonly => true
   property :machine_ids, [WSTRING], :readonly => true
   function :set_ids, nil, [BOOL, WSTRING, BOOL, WSTRING]
@@ -1798,24 +1795,24 @@ end
 
 class NetworkAdapter < NSISupports
   iid      "efa0f965-63c7-4c60-afdf-b1cc9943b9c0"
-  property :adapter_type, :NetworkAdapterType
+  property :adapter_type, :NetworkAdapterType, :readonly => true
   property :slot, UINT32, :readonly => true
-  property :enabled, BOOL
-  property :mac_address, WSTRING
-  property :attachment_type, :NetworkAttachmentType
-  property :bridged_interface, WSTRING
-  property :host_only_interface, WSTRING
-  property :internal_network, WSTRING
-  property :nat_network, WSTRING
-  property :generic_driver, WSTRING
-  property :cable_connected, BOOL
-  property :line_speed, UINT32
-  property :promisc_mode_policy, :NetworkAdapterPromiscModePolicy
-  property :trace_enabled, BOOL
-  property :trace_file, WSTRING
+  property :enabled, BOOL, :readonly => true
+  property :mac_address, WSTRING, :readonly => true
+  property :attachment_type, :NetworkAttachmentType, :readonly => true
+  property :bridged_interface, WSTRING, :readonly => true
+  property :host_only_interface, WSTRING, :readonly => true
+  property :internal_network, WSTRING, :readonly => true
+  property :nat_network, WSTRING, :readonly => true
+  property :generic_driver, WSTRING, :readonly => true
+  property :cable_connected, BOOL, :readonly => true
+  property :line_speed, UINT32, :readonly => true
+  property :promisc_mode_policy, :NetworkAdapterPromiscModePolicy, :readonly => true
+  property :trace_enabled, BOOL, :readonly => true
+  property :trace_file, WSTRING, :readonly => true
   property :nat_engine, :NATEngine, :readonly => true
-  property :boot_priority, UINT32
-  property :bandwidth_group, :BandwidthGroup
+  property :boot_priority, UINT32, :readonly => true
+  property :bandwidth_group, :BandwidthGroup, :readonly => true
   function :get_property, WSTRING, [WSTRING]
   function :set_property, nil, [WSTRING, WSTRING]
   function :get_properties, [WSTRING], [WSTRING, [:out, [WSTRING]]]
@@ -1824,31 +1821,31 @@ end
 class SerialPort < NSISupports
   iid      "937f6970-5103-4745-b78e-d28dcf1479a8"
   property :slot, UINT32, :readonly => true
-  property :enabled, BOOL
-  property :io_base, UINT32
-  property :irq, UINT32
-  property :host_mode, :PortMode
-  property :server, BOOL
-  property :path, WSTRING
+  property :enabled, BOOL, :readonly => true
+  property :io_base, UINT32, :readonly => true
+  property :irq, UINT32, :readonly => true
+  property :host_mode, :PortMode, :readonly => true
+  property :server, BOOL, :readonly => true
+  property :path, WSTRING, :readonly => true
 end
 
 class ParallelPort < NSISupports
   iid      "0c925f06-dd10-4b77-8de8-294d738c3214"
   property :slot, UINT32, :readonly => true
-  property :enabled, BOOL
-  property :io_base, UINT32
-  property :irq, UINT32
-  property :path, WSTRING
+  property :enabled, BOOL, :readonly => true
+  property :io_base, UINT32, :readonly => true
+  property :irq, UINT32, :readonly => true
+  property :path, WSTRING, :readonly => true
 end
 
 class MachineDebugger < NSISupports
   iid      "a9abbb7c-d678-43b2-bed2-19ec0e32303d"
-  property :single_step, BOOL
-  property :recompile_user, BOOL
-  property :recompile_supervisor, BOOL
-  property :patm_enabled, BOOL
-  property :csam_enabled, BOOL
-  property :log_enabled, BOOL
+  property :single_step, BOOL, :readonly => true
+  property :recompile_user, BOOL, :readonly => true
+  property :recompile_supervisor, BOOL, :readonly => true
+  property :patm_enabled, BOOL, :readonly => true
+  property :csam_enabled, BOOL, :readonly => true
+  property :log_enabled, BOOL, :readonly => true
   property :log_dbg_flags, WSTRING, :readonly => true
   property :log_dbg_groups, WSTRING, :readonly => true
   property :log_dbg_destinations, WSTRING, :readonly => true
@@ -1861,7 +1858,7 @@ class MachineDebugger < NSISupports
   property :os_name, WSTRING, :readonly => true
   property :os_version, WSTRING, :readonly => true
   property :pae_enabled, BOOL, :readonly => true
-  property :virtual_time_rate, UINT32
+  property :virtual_time_rate, UINT32, :readonly => true
   property :vm, INT64, :readonly => true
   function :dump_guest_core, nil, [WSTRING, WSTRING]
   function :dump_host_process_core, nil, [WSTRING, WSTRING]
@@ -1887,8 +1884,8 @@ end
 
 class USBController < NSISupports
   iid      "01e6f13a-0580-452f-a40f-74e32a5e4921"
-  property :enabled, BOOL
-  property :enabled_ehci, BOOL
+  property :enabled, BOOL, :readonly => true
+  property :enabled_ehci, BOOL, :readonly => true
   property :proxy_available, BOOL, :readonly => true
   property :usb_standard, UINT16, :readonly => true
   property :device_filters, [:USBDeviceFilter], :readonly => true
@@ -1915,17 +1912,17 @@ end
 
 class USBDeviceFilter < NSISupports
   iid      "d6831fb4-1a94-4c2c-96ef-8d0d6192066d"
-  property :name, WSTRING
-  property :active, BOOL
-  property :vendor_id, WSTRING
-  property :product_id, WSTRING
-  property :revision, WSTRING
-  property :manufacturer, WSTRING
-  property :product, WSTRING
-  property :serial_number, WSTRING
-  property :port, WSTRING
-  property :remote, WSTRING
-  property :masked_interfaces, UINT32
+  property :name, WSTRING, :readonly => true
+  property :active, BOOL, :readonly => true
+  property :vendor_id, WSTRING, :readonly => true
+  property :product_id, WSTRING, :readonly => true
+  property :revision, WSTRING, :readonly => true
+  property :manufacturer, WSTRING, :readonly => true
+  property :product, WSTRING, :readonly => true
+  property :serial_number, WSTRING, :readonly => true
+  property :port, WSTRING, :readonly => true
+  property :remote, WSTRING, :readonly => true
+  property :masked_interfaces, UINT32, :readonly => true
 end
 
 class HostUSBDevice < USBDevice
@@ -1935,25 +1932,25 @@ end
 
 class HostUSBDeviceFilter < USBDeviceFilter
   iid      "4cc70246-d74a-400f-8222-3900489c0374"
-  property :action, :USBDeviceFilterAction
+  property :action, :USBDeviceFilterAction, :readonly => true
 end
 
 class AudioAdapter < NSISupports
   iid      "921873db-5f3f-4b69-91f9-7be9e535a2cb"
-  property :enabled, BOOL
-  property :audio_controller, :AudioControllerType
-  property :audio_driver, :AudioDriverType
+  property :enabled, BOOL, :readonly => true
+  property :audio_controller, :AudioControllerType, :readonly => true
+  property :audio_driver, :AudioDriverType, :readonly => true
 end
 
 class VRDEServer < NSISupports
   iid      "d38de40a-c2c1-4e95-b5a4-167b05f5694c"
-  property :enabled, BOOL
-  property :auth_type, :AuthType
-  property :auth_timeout, UINT32
-  property :allow_multi_connection, BOOL
-  property :reuse_single_connection, BOOL
-  property :vrde_ext_pack, WSTRING
-  property :auth_library, WSTRING
+  property :enabled, BOOL, :readonly => true
+  property :auth_type, :AuthType, :readonly => true
+  property :auth_timeout, UINT32, :readonly => true
+  property :allow_multi_connection, BOOL, :readonly => true
+  property :reuse_single_connection, BOOL, :readonly => true
+  property :vrde_ext_pack, WSTRING, :readonly => true
+  property :auth_library, WSTRING, :readonly => true
   property :vrde_properties, [WSTRING], :readonly => true
   function :set_vrde_property, nil, [WSTRING, WSTRING]
   function :get_vrde_property, WSTRING, [WSTRING]
@@ -2015,11 +2012,11 @@ class StorageController < NSISupports
   property :max_devices_per_port_count, UINT32, :readonly => true
   property :min_port_count, UINT32, :readonly => true
   property :max_port_count, UINT32, :readonly => true
-  property :instance, UINT32
-  property :port_count, UINT32
+  property :instance, UINT32, :readonly => true
+  property :port_count, UINT32, :readonly => true
   property :bus, :StorageBus, :readonly => true
-  property :controller_type, :StorageControllerType
-  property :use_host_io_cache, BOOL
+  property :controller_type, :StorageControllerType, :readonly => true
+  property :use_host_io_cache, BOOL, :readonly => true
   property :bootable, BOOL, :readonly => true
 end
 
@@ -2047,15 +2044,15 @@ end
 
 class NATEngine < NSISupports
   iid      "26451b99-3b2d-4dcb-8e4b-d63654218175"
-  property :network, WSTRING
-  property :host_ip, WSTRING
-  property :tftp_prefix, WSTRING
-  property :tftp_boot_file, WSTRING
-  property :tftp_next_server, WSTRING
-  property :alias_mode, UINT32
-  property :dns_pass_domain, BOOL
-  property :dns_proxy, BOOL
-  property :dns_use_host_resolver, BOOL
+  property :network, WSTRING, :readonly => true
+  property :host_ip, WSTRING, :readonly => true
+  property :tftp_prefix, WSTRING, :readonly => true
+  property :tftp_boot_file, WSTRING, :readonly => true
+  property :tftp_next_server, WSTRING, :readonly => true
+  property :alias_mode, UINT32, :readonly => true
+  property :dns_pass_domain, BOOL, :readonly => true
+  property :dns_proxy, BOOL, :readonly => true
+  property :dns_use_host_resolver, BOOL, :readonly => true
   property :redirects, [WSTRING], :readonly => true
   function :set_network_settings, nil, [UINT32, UINT32, UINT32, UINT32, UINT32]
   function :get_network_settings, nil, [[:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32], [:out, UINT32]]
@@ -2114,7 +2111,7 @@ class BandwidthGroup < NSISupports
   property :name, WSTRING, :readonly => true
   property :type, :BandwidthGroupType, :readonly => true
   property :reference, UINT32, :readonly => true
-  property :max_bytes_per_sec, INT64
+  property :max_bytes_per_sec, INT64, :readonly => true
 end
 
 class BandwidthControl < NSISupports
@@ -2378,7 +2375,7 @@ end
 
 class ShowWindowEvent < Event
   iid      "B0A0904D-2F05-4D28-855F-488F96BAD2B2"
-  property :win_id, INT64
+  property :win_id, INT64, :readonly => true
 end
 
 class NATRedirectEvent < MachineEvent

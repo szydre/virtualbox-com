@@ -36,22 +36,22 @@ end
 
 XIDL    = Nokogiri::XML(File.new(xidl))
 LIB     = XIDL.root.xpath('library')
-IO      = file.nil? ? $stdout : File.open(file, 'w')
+OUT      = file.nil? ? $stdout : File.open(file, 'w')
 
-IO << <<-EOT
+OUT << <<-EOT
 #
 # This file has been automatically generated from the VirtualBox.xidl
 #
 
 EOT
 
-IO << "module VirtualBox\n"
-IO << "module COM\n"
-IO << "module Model\n"
-IO << "\n"
+OUT << "module VirtualBox\n"
+OUT << "module COM\n"
+OUT << "module Model\n"
+OUT << "\n"
 
 
-IO << <<-EOT
+OUT << <<-EOT
 class NSISupports < AbstractInterface
   iid      "00000000-0000-0000-c000-000000000046"
   function :QueryInterface, PTR, [ PTR ], :hide => true
@@ -123,14 +123,14 @@ end
 
 # Enumeration
 for enum in LIB.xpath('enum')
-    IO << "class #{enum[:name]} < AbstractEnum\n"
-    IO << "  iid \"#{enum[:uuid]}\"\n"
-    IO << "  map({\n"    
+    OUT << "class #{enum[:name]} < AbstractEnum\n"
+    OUT << "  iid \"#{enum[:uuid]}\"\n"
+    OUT << "  map({\n"    
     enum.xpath('const').each {|c|
-        IO << "    :%-40s => %s,\n" % [ c[:name].uncamelize, c[:value] ] }
-    IO << "  })\n"
-    IO << "end\n"
-    IO << "\n"
+        OUT << "    :%-40s => %s,\n" % [ c[:name].uncamelize, c[:value] ] }
+    OUT << "  })\n"
+    OUT << "end\n"
+    OUT << "\n"
 end
 
 # Interface
@@ -143,8 +143,8 @@ for interface in LIB.xpath('interface')
             else raise "Unknown extension"
             end
 
-    IO << "class #{interface[:name][1..-1]} < #{klass}\n"
-    IO << "  iid      \"#{interface[:uuid]}\"\n"
+    OUT << "class #{interface[:name][1..-1]} < #{klass}\n"
+    OUT << "  iid      \"#{interface[:uuid]}\"\n"
 
     interface.xpath('attribute').each {|a|
         name = ':' + a[:name].uncamelize
@@ -153,7 +153,7 @@ for interface in LIB.xpath('interface')
         args = [ name, type ]
         args << opts if opts && !opts.empty?
 
-        IO << "  property " << args.join(', ') << "\n"
+        OUT << "  property " << args.join(', ') << "\n"
     }
     interface.xpath('method').each {|m|
         name = ':' + m[:name].uncamelize
@@ -167,16 +167,16 @@ for interface in LIB.xpath('interface')
             t
         }.join(', ') + ']'
 
-        IO << "  function " << [name, ret, param].join(', ') << "\n"
+        OUT << "  function " << [name, ret, param].join(', ') << "\n"
     }
 
-    IO << "end\n"
-    IO << "\n"
+    OUT << "end\n"
+    OUT << "\n"
 end
 
 
-IO << "end\n"
-IO << "end\n"
-IO << "end\n"
+OUT << "end\n"
+OUT << "end\n"
+OUT << "end\n"
 
-IO.flush
+OUT.flush
