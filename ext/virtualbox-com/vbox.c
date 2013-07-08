@@ -760,7 +760,6 @@ static VALUE NSISupports__cast(VALUE self, VALUE model_name) {
  * Initialisation of ruby extension
  *======================================================================*/
 
-#define RUBY_VBOX_INIT Init_vbox_ ## VBOX_API_VERSION
 /* ruby calls this to load the extension */
 void RUBY_VBOX_INIT(void) {
     VALUE oOne  = INT2FIX(1);

@@ -150,7 +150,9 @@ for interface in LIB.xpath('interface')
     interface.xpath('attribute').each {|a|
         name = ':' + a[:name].uncamelize
         type = cnv_type(a[:type], a[:safearray], a[:mod] == 'ptr')
-        opts = [ ':readonly => true' ] if a[:readonly]
+        opts = if a[:readonly] 
+               then [ ':readonly => true' ] 
+               end
         args = [ name, type ]
         args << opts if opts && !opts.empty?
 

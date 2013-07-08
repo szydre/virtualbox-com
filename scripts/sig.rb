@@ -80,7 +80,6 @@ class Sig
         OUT << "  struct obj *obj = DATA_PTR(self);\n"
         OUT << "  struct #{vtbl} *vtbl = obj->vtbl;\n"
 
-
         args = self.with_var_decl
 
         args.each{|type, way, *vdecl|
