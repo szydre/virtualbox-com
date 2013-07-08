@@ -1,5 +1,6 @@
 #
 # This file has been automatically generated from the VirtualBox.xidl
+# NOTE: it is not always loaded.
 #
 
 module VirtualBox

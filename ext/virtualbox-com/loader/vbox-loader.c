@@ -135,25 +135,27 @@ VBOX_XPCOMC virtualbox_com_xpcom = NULL;
 extern VALUE virtualbox_com_virtualbox(void *ptr);
 extern VALUE virtualbox_com_session(void *ptr);
 
-
 /* ruby calls this to load the extension */
 void Init_vbox_loader(void) {
     void *      vlib  = NULL;
     VBOX_XPCOMC xpcom = NULL;
     char *      api   = NULL;
+    char *      xtra  = NULL;
     void *vbox, *session, *queue;
 
     /* Virtualbox */
     xpcom = virtualbox_com_xpcom = virtualbox_init(&vlib);
 
     /* 4.1 */
-    api = "virtualbox/com/xpcomc-native/4.1/vbox";
+    api  = "virtualbox/com/xpcomc-native/4.1/vbox";
+    xtra = "virtualbox/com/model/4.1";
     xpcom->initialize("c28be65f-1a8f-43b4-81f1-eb60cb516e66", &vbox,
 		      "12f4dcdb-12b2-4ec1-b7cd-ddd9f6c5bf4d", &session);
     if (vbox && session) goto found;
 
     /* 4.2 */
-    api = "virtualbox/com/xpcomc-native/4.2/vbox";
+    api  = "virtualbox/com/xpcomc-native/4.2/vbox";
+    xtra = "virtualbox/com/model/4.2";
     xpcom->initialize("3b2f08eb-b810-4715-bee0-bb06b9880ad2", &vbox,
 		      "12f4dcdb-12b2-4ec1-b7cd-ddd9f6c5bf4d", &session);
     if (vbox && session) goto found;
@@ -164,6 +166,7 @@ void Init_vbox_loader(void) {
 
  found:
     rb_require(api);
+    rb_require(xtra);
 
     VALUE mVirtualBox        = rb_define_module("VirtualBox");
     VALUE mCOM               = rb_define_module_under(mVirtualBox, "COM");

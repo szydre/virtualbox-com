@@ -41,6 +41,7 @@ OUT      = file.nil? ? $stdout : File.open(file, 'w')
 OUT << <<-EOT
 #
 # This file has been automatically generated from the VirtualBox.xidl
+# NOTE: it is not always loaded.
 #
 
 EOT
