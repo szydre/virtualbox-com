@@ -176,7 +176,7 @@ void Init_vbox_loader(void) {
     rb_const_set(mCOM, rb_intern("VIRTUALBOX"), 
 		 virtualbox_com_virtualbox(vbox));
     rb_const_set(mCOM, rb_intern("SESSION"), 
-		 virtualbox_com_session(vbox));
+		 virtualbox_com_session(session));
 
 #if 0
     /* Instantiate event queue */
