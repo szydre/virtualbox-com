@@ -11,6 +11,7 @@ module COM
     UINT16  = :uint16
     UINT32  = :uint32
     UINT64  = :uint64
+    PTR     = :pointer
 end
 end
 

@@ -32,4 +32,4 @@ end
 
 
 
-require_relative 'com/xpcomc-native'
+require_relative 'com/xpcomc-ffi'

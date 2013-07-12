@@ -6,6 +6,11 @@ module XPCOMC
 
 
 module Lib
+    SUPPORTED_VERSIONS = {
+        "4.2" => [ "3b2f08eb-b810-4715-bee0-bb06b9880ad2",
+                   "12F4DCDB-12B2-4EC1-B7CD-DDD9F6C5BF4D" ]
+    }
+
     extend ::FFI::Library
 
     # Constant with default library path and name
@@ -71,6 +76,7 @@ module Lib
             next if virtualbox_ptr.null? || session_ptr.null?
 
             # Load the interface description
+            require "virtualbox/com/model/#{version}-generated"
             require "virtualbox/com/model/#{version}"
 
             #

@@ -10,31 +10,6 @@ require_relative 'xpcomc-ffi/model-types'
 
 module VirtualBox
 module COM
-class IID
-    class FFIStruct < ::FFI::Struct
-        layout :m0, :uint32,
-               :m1, :uint16,
-               :m2, :uint16,
-               :m3, [:uint8, 8]
-    end
-
-    def to_ffi
-        @ffi ||= begin
-                     data = FFIStruct.new
-                     data[:m0] = to_a[0]
-                     data[:m1] = to_a[1]
-                     data[:m2] = to_a[2]
-                     to_a[3..-1].each_index{|i| data[:m3][i] = to_a[3..-1][i] }
-                     data.freeze
-                 end
-    end
-end
-end
-end
-
-
-module VirtualBox
-module COM
 module Model
     def self.create(name, *args)
         self.get(name).new(*args)
@@ -44,6 +19,8 @@ end
 end
 
 # Load FFI implementation
+require_relative 'xpcomc-ffi/iid'
+require_relative 'xpcomc-ffi/abstracts'
 require_relative 'xpcomc-ffi/xpcomc-vbox'
 require_relative 'xpcomc-ffi/binding'
 require_relative 'xpcomc-ffi/implementer'
