@@ -1,7 +1,15 @@
-require_relative "abstract_model"
-
 module VirtualBox
 module COM
+
+class AbstractModel
+    def self.iid(str)
+        const_set(:IID, IID.new(str))
+    end
+        
+    def self.setup(opts={})
+    end
+end
+
 
 #
 # # Defining an Interface
@@ -139,6 +147,7 @@ class AbstractInterface < AbstractModel
         "#<#{self.class.name}>"
     end
 end
+
 
 end
 end
