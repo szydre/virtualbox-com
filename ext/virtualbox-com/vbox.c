@@ -135,6 +135,7 @@ static void iid_init(VALUE under) {
     cIID = rb_define_class_under(under, "IID", rb_cObject);
     no_instantiation(cIID);
     rb_define_method(cIID, "to_s", iid__to_s, 0);
+    rb_define_method(cIID, "to_str", iid__to_s, 0);
 }
 
 
@@ -168,6 +169,7 @@ static void blob_init(VALUE under) {
     no_instantiation(cBlob);
     rb_define_singleton_method(cBlob, "new", blob__new, 1);
     rb_define_method(cBlob, "to_s", blob__to_s, 0);
+    rb_define_method(cBlob, "to_str", blob__to_s, 0);
 }
 
 
@@ -200,6 +202,7 @@ static void wstring_init(VALUE under) {
     no_instantiation(cWString);
     rb_define_singleton_method(cWString, "new", wstring__new, 1);
     rb_define_method(cWString, "to_s", wstring__to_s, 0);
+    rb_define_method(cWString, "to_str", wstring__to_s, 0);
 }
 
 
@@ -611,8 +614,8 @@ static inline void extract_carray(VALUE val, uint32_t *size, void **data) {
 #define convert_uint64(v)  ULL2NUM(v)
 #define convert_ptr(v)     PTR2NUM(v)
 #define convert_bool(v)    ((v) ? Qtrue : Qfalse)
-#define convert_blob(s,d)  ((d) ? blob_new(s,d) : Qnil)
-#define convert_wstring(v) ((v) ? wstring_new(v) : Qnil)
+#define convert_blob(s,d)  ((d) ? rb_str_to_str(blob_new(s,d))  : Qnil)
+#define convert_wstring(v) ((v) ? rb_str_to_str(wstring_new(v)) : Qnil)
 
 static inline VALUE convert_enum(uint32_t v, VALUE klass) {
     VALUE val = ULL2NUM(v);

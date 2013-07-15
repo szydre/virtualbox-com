@@ -36,7 +36,11 @@ class Binding
     def self.bind(model)
         raise "model already bound" if const_defined?(:Object, false)
 
-#        self.init
+#       self.init
+        inherited = []
+        m = model.superclass
+
+
 
         # List of functions (name, signature)
         # Defined in the order they appear in the Model definition
