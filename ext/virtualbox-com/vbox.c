@@ -82,7 +82,12 @@ static ID _new;
 static rb_encoding * _UTF8;
 
 
-
+static VALUE ensure_array(VALUE ary) {
+    ary = rb_check_array_type(ary);
+    if (ary == Qnil)
+	rb_raise(rb_eArgError, "expecting array-like object");
+    return ary;
+}
 
 static void no_instantiation(VALUE klass) {
     rb_undef_method(rb_singleton_class(klass), "new");
@@ -363,7 +368,7 @@ static VALUE prepare_array_uint16(VALUE ary) {
     uint16_t *data = NULL;
     long      len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(uint16_t, len);
     res  = carray_new(len, data, Qnil);
@@ -385,7 +390,7 @@ static VALUE prepare_array_int16(VALUE ary) {
     int16_t * data = NULL;
     long      len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(int16_t, len);
     res  = carray_new(len, data, Qnil);
@@ -407,7 +412,7 @@ static VALUE prepare_array_uint32(VALUE ary) {
     uint32_t *data = NULL;
     long      len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(uint32_t, len);
     res  = carray_new(len, data, Qnil);
@@ -429,7 +434,7 @@ static VALUE prepare_array_int32(VALUE ary) {
     int32_t * data = NULL;
     long      len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = prepare_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(int32_t, len);
     res  = carray_new(len, data, Qnil);
@@ -451,7 +456,7 @@ static VALUE prepare_array_uint64(VALUE ary) {
     uint64_t *data = NULL;
     long      len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(uint64_t, len);
     res  = carray_new(len, data, Qnil);
@@ -473,7 +478,7 @@ static VALUE prepare_array_int64(VALUE ary) {
     int64_t * data = NULL;
     long      len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(int64_t, len);
     res  = carray_new(len, data, Qnil);
@@ -495,7 +500,7 @@ static VALUE prepare_array_bool(VALUE ary) {
     bool_t *data = NULL;
     long    len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(bool_t, len);
     res  = carray_new(len, data, Qnil);
@@ -512,7 +517,7 @@ static VALUE prepare_array_wstring(VALUE ary) {
     wstring_t  *data = NULL;
     long        len, i;
 
-    ary  = rb_ary_dup(rb_check_array_type(ary));
+    ary  = rb_ary_dup(ensure_array(ary));
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(wstring_t, len);
     res  = carray_new(len, data, ary);
@@ -531,7 +536,7 @@ static VALUE prepare_array_enum(VALUE ary, VALUE klass) {
     uint32_t   *data = NULL;
     long        len, i;
 
-    ary  = rb_check_array_type(ary);
+    ary  = ensure_array(ary);
     len  = RARRAY_LEN(ary);
     data = ALLOC_N(uint32_t, len);
     res  = carray_new(len, data, Qnil);
@@ -548,7 +553,7 @@ static VALUE prepare_array_interface(VALUE ary, VALUE klass) {
     void *     *data = NULL;
     long        len, i;
 
-    ary  = rb_ary_dup(rb_check_array_type(ary));
+    ary  = rb_ary_dup(ensure_array(ary));
     len  = RARRAY_LEN(ary);
     data = (void*)ALLOC_N(uint32_t, len);
     res  = carray_new(len, data, ary);
