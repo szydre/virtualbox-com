@@ -9,8 +9,17 @@ puts lib.virtualbox.api_version
 # Name of the first VM
 puts lib.virtualbox.machines[0].name
 
-# Groups of the VM named 'Windows'
+# Groups of which belongs the VM named 'Windows'
 puts lib.virtualbox.find_machine('Windows').groups
+
+# Open a session to change the group of VM named 'Windows'
+ses = VirtualBox::COM.session
+win = lib.virtualbox.find_machine('Windows')
+win.lock_machine(ses, :write)
+vm = ses.machine
+vm.groups = ['/titi']
+vm.save_settings
+ses.unlock_machine
 
 # Register a passive listener
 begin 

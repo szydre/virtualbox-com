@@ -127,7 +127,7 @@ M.constants.each {|name| model = VirtualBox::COM::Model.get(name)
     OUT << "    VALUE c    = c#{name}\n"
     OUT << "      = rb_define_class_under(under, \"#{name}\", #{kAbstract});\n"
     OUT << "    no_instantiation(c);\n"
-    OUT << "    rb_const_set(c, _IID, iid__new(&iid));\n"
+    OUT << "    rb_const_set(c, _IID, iid_new(&iid));\n"
     
     if model <= VirtualBox::COM::AbstractEnum
         OUT << "    VALUE h    = rb_hash_new();\n"

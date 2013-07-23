@@ -121,7 +121,7 @@ static void nsISupports_free(struct obj *ptr);
 /* Class: IID
  */
 #define IID_STR_MAX 36  /* 8+1+4+1+4+1+4+1+12 */
-static VALUE iid__new(iid_t *iid) {
+static VALUE iid_new(iid_t *iid) {
     iid_t *a_iid = ALLOC(iid_t);
     *a_iid = *iid;
     return Data_Wrap_Struct(cIID, 0, free, a_iid);
@@ -136,11 +136,16 @@ static VALUE iid__to_s(VALUE self) {
 	     iid->m3[4], iid->m3[5], iid->m3[6], iid->m3[7]);
     return rb_str_new(str, IID_STR_MAX);
 }
+static void iid__to_raw(VALUE self) {
+    iid_t *iid = DATA_PTR(self);
+    return rb_str_new((char *)iid, sizeof(iid_t));
+}
 static void iid_init(VALUE under) {
     cIID = rb_define_class_under(under, "IID", rb_cObject);
     no_instantiation(cIID);
-    rb_define_method(cIID, "to_s", iid__to_s, 0);
-    rb_define_method(cIID, "to_str", iid__to_s, 0);
+    rb_define_method(cIID, "to_s",   iid__to_s,   0);
+    rb_define_method(cIID, "to_str", iid__to_s,   0);
+    rb_define_method(cIID, "to_raw", iid__to_raw, 0);
 }
 
 
