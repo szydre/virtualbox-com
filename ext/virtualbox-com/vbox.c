@@ -933,6 +933,44 @@ void RUBY_VBOX_INIT(void) {
     rb_define_method(cNSISupports, "cast",  NSISupports__cast,  1);
     rb_define_method(cNSISupports, "dup",   NSISupports__dup,   0);
     rb_define_method(cNSISupports, "clone", NSISupports__clone, 0);
+
+    /* Prevent garbage collection of static value */
+    rb_gc_register_address(&mVirtualBox);
+    rb_gc_register_address(&mCOM);
+    rb_gc_register_address(&mModel);
+
+    rb_gc_register_address(&cBlob);
+    rb_gc_register_address(&cWString);
+    rb_gc_register_address(&cCArray);
+    rb_gc_register_address(&cIID);
+    rb_gc_register_address(&cAbstractModel);
+    rb_gc_register_address(&cAbstractInterface);
+    rb_gc_register_address(&cAbstractEnum);
+
+    rb_gc_register_address(&oZero);
+    rb_gc_register_address(&oMax_u16);
+    rb_gc_register_address(&oMax_u32);
+    rb_gc_register_address(&oMax_u64);
+    rb_gc_register_address(&oMax_s16);
+    rb_gc_register_address(&oMax_s32);
+    rb_gc_register_address(&oMax_s64);
+    rb_gc_register_address(&oMin_s16);
+    rb_gc_register_address(&oMin_s32);
+    rb_gc_register_address(&oMin_s64);
+    rb_gc_register_address(&oExceptionMap);
+    rb_gc_register_address(&oUUIDparser);
+
+    rb_gc_register_address(&sYes);
+    rb_gc_register_address(&sNo);
+    rb_gc_register_address(&sTrue);
+    rb_gc_register_address(&sFalse);
+    rb_gc_register_address(&sOn);
+    rb_gc_register_address(&sOff);
+    rb_gc_register_address(&sEnabled);
+    rb_gc_register_address(&sDisabled);
+    rb_gc_register_address(&sIID);
+    rb_gc_register_address(&sCode);
+    rb_gc_register_address(&sFunction);
 }
 
 VALUE virtualbox_com_virtualbox(void *ptr) {
