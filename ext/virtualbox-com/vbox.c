@@ -50,6 +50,7 @@ static VALUE oMin_s16		= Qundef;
 static VALUE oMin_s32		= Qundef;
 static VALUE oMin_s64		= Qundef;
 static VALUE oExceptionMap      = Qundef;
+static VALUE oUUIDparser	= Qnil;
 
 static VALUE sYes		= Qundef;
 static VALUE sNo		= Qundef;
@@ -78,6 +79,7 @@ static ID _symbol;
 static ID _value;
 static ID _const_get;
 static ID _new;
+static ID _call;
 
 static rb_encoding * _UTF8;
 
@@ -105,8 +107,36 @@ static void ns_check(uint32_t rcode) {
     }
 }
 
+
+static VALUE with_uuid_parser(VALUE self, VALUE val) {
+    if (!NIL_P(val) && 
+	rb_obj_is_instance_of(val, rb_cProc) != Qtrue)
+	rb_raise(rb_eArgError, "nil, proc, or lambda expected");
+    return oUUIDparser = val;
+}
+
+static VALUE uuid_parser_calling(VALUE arg) {
+    return rb_funcall(oUUIDparser, _call, 1, arg);
+}
+
+static VALUE to_uuid(VALUE val) {
+    int state = 0;
+
+    StringValue(val);
+    if (oUUIDparser != Qnil && oUUIDparser != Qundef) {
+	val = rb_protect(uuid_parser_calling, val, &state);
+	if (state) {
+	    rb_warn("Returning nil for uuid and discarding exception raised during uuid parsing to avoid memory leak. Fix the parser so that no exception is raised.");
+	}
+    }
+    return val;
+}
+
 /* Forward definition */
 static void nsISupports_free(struct obj *ptr);
+
+
+
 
 
 
@@ -117,6 +147,7 @@ static void nsISupports_free(struct obj *ptr);
  *   - manage data conversion
  *   - perform garbage collection
  *======================================================================*/
+
 
 /* Class: IID
  */
@@ -339,6 +370,10 @@ static inline VALUE prepare_wstring(VALUE val) {
     return wstring__new(cWString, val);
 }
 
+static inline VALUE prepare_uuid(val) {
+    return wstring__new(cWString, val);
+}
+
 static VALUE prepare_enum(VALUE val, VALUE klass) {
     switch(rb_type(val)) {
     case T_FIXNUM:
@@ -536,6 +571,25 @@ static VALUE prepare_array_wstring(VALUE ary) {
     return res;
 }
 
+static VALUE prepare_array_uuid(VALUE ary) {
+    VALUE       res  = Qundef;
+    wstring_t  *data = NULL;
+    long        len, i;
+
+    ary  = rb_ary_dup(ensure_array(ary));
+    len  = RARRAY_LEN(ary);
+    data = ALLOC_N(wstring_t, len);
+    res  = carray_new(len, data, ary);
+
+    for (i = 0 ; i < len ; i++) {
+	VALUE val = prepare_uuid(rb_ary_entry(ary, i));
+	rb_ary_store(ary, i, val);
+	data[i] = (wstring_t)DATA_PTR(val);
+    }
+    OBJ_FREEZE(ary);
+    return res;
+}
+
 static VALUE prepare_array_enum(VALUE ary, VALUE klass) {
     VALUE       res  = Qundef;
     uint32_t   *data = NULL;
@@ -592,8 +646,10 @@ static VALUE prepare_array_interface(VALUE ary, VALUE klass) {
 #define extract_bool(val, data) 	     *(data) = (val) == Qtrue ? ~0 : 0
 #define extract_ptr(val, data) 	             *(data) = NUM2PTR(val)
 #define extract_wstring(val, data) 	     *(data) = DATA_PTR(val)
+#define extract_uuid(val, data) 	     *(data) = DATA_PTR(val)
 #define extract_enum(val, data, klass)       *(data) = NUM2UINT32(val)
 #define extract_interface(val, data, klass)  *(data) = DATA_PTR(val)
+
 
 static inline void extract_blob(VALUE val, uint32_t *size, void **data) {
     struct blob_info   * bi = ((struct blob_info   *)DATA_PTR(val));
@@ -626,6 +682,7 @@ static inline void extract_carray(VALUE val, uint32_t *size, void **data) {
 #define convert_bool(v)    ((v) ? Qtrue : Qfalse)
 #define convert_blob(s,d)  ((d) ? rb_str_to_str(blob_new(s,d))  : Qnil)
 #define convert_wstring(v) ((v) ? rb_str_to_str(wstring_new(v)) : Qnil)
+#define convert_uuid(v)    ((v) ? to_uuid(wstring_new(v)) : Qnil)
 
 static inline VALUE convert_enum(uint32_t v, VALUE klass) {
     VALUE val = ULL2NUM(v);
@@ -717,6 +774,19 @@ static inline VALUE convert_array_wstring(uint32_t size, void **array) {
     }
 }
 
+static inline VALUE convert_array_uuid(uint32_t size, void **array) {
+    if (array) {
+	VALUE res = rb_ary_new2(size);
+	uint32_t i;
+	for (i = 0 ; i < size ; i++)
+	    rb_ary_push(res, convert_uuid(array[i]));
+	xpcom->unalloc_mem(array); 
+	return res;
+    } else {
+	return Qnil;
+    }
+}
+
 
 
 /*======================================================================*
@@ -797,6 +867,7 @@ void RUBY_VBOX_INIT(void) {
     _value      = rb_intern("value");
     _const_get  = rb_intern("const_get");
     _new	= rb_intern("new");
+    _call       = rb_intern("call");
 
     p15         = rb_funcall(oTwo, _pow,   1, INT2FIX(15));
     p16         = rb_funcall(oTwo, _pow,   1, INT2FIX(16));
@@ -835,6 +906,8 @@ void RUBY_VBOX_INIT(void) {
     mVirtualBox        = rb_define_module("VirtualBox");
     mCOM               = rb_define_module_under(mVirtualBox, "COM");
     mModel             = rb_define_module_under(mCOM, "Model");
+    rb_define_module_function(mCOM, "with_uuid_parser", with_uuid_parser, 1);
+
 
     /* Define abstract enumerations / interfaces */
     cAbstractModel

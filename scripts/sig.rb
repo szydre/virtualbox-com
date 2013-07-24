@@ -31,19 +31,19 @@ class Sig
             case way
             when :out
                 if is_array
-                then [PTR, PTR] 
-                else PTR
+                then [type_to_c(PTR), type_to_c(PTR)] 
+                else type_to_c(PTR)
                 end
             when :in
-                if is_array then [UINT32,  PTR] 
+                if is_array then [type_to_c(UINT32),  type_to_c(PTR)] 
                 elsif model = Model.fetch(type)
-                    if    model <= COM::AbstractInterface then PTR
-                    elsif model <= COM::AbstractEnum      then UINT32
+                    if    model <= COM::AbstractInterface then type_to_c(PTR)
+                    elsif model <= COM::AbstractEnum      then type_to_c(UINT32)
                     end
-                else type
+                else type_to_c(type)
                 end
             end
-        }.unshift(PTR).flatten	# Add `this` element
+        }.unshift(type_to_c(PTR)).flatten	# Add `this` element
     end
 
 
@@ -66,8 +66,24 @@ class Sig
 
 
 
-
-
+    def type_to_c(t)
+        case t
+        when UUID    then 'wstring_t'
+        when WSTRING then 'wstring_t'
+        when BOOL    then 'bool_t'
+        when OCTET   then 'char'
+        when PTR     then 'void *'
+        when INT8    then 'int8_t'
+        when INT16   then 'int16_t'
+        when INT32   then 'int32_t'
+        when INT64   then 'int64_t'
+        when UINT8   then 'uint8_t'
+        when UINT16  then 'uint16_t'
+        when UINT32  then 'uint32_t'
+        when UINT64  then 'uint64_t'
+        else raise "Unknown conversion to c type for #{t}"
+        end
+    end
 
     def to_c_func(name, vtbl, fun)
         ins = self.in;
@@ -84,7 +100,7 @@ class Sig
 
         args.each{|type, way, *vdecl|
             vdecl.each{|var, decl|
-                OUT << "  #{decl} #{var};\n"
+                OUT << "  #{type_to_c(decl)} #{var};\n"
             }
         }
 
@@ -184,6 +200,7 @@ class Sig
         when UINT32  then :uint32
         when UINT64  then :uint64
         when WSTRING then :wstring
+        when UUID    then :uuid
         else
             if model = Model.fetch(type)
                 kind = if    model <= AbstractInterface then :interface

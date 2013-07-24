@@ -106,7 +106,7 @@ def cnv_type(name, array=nil, ptr=nil)
         when 'long long'          then 'INT64'
         when 'unsigned long'      then 'UINT32'
         when 'unsigned long long' then 'UINT64'
-        when 'uuid'               then 'WSTRING'
+        when 'uuid'               then 'UUID'
         when 'wstring'            then 'WSTRING'
         when '$unknown'           then ':NSISupports'
         when '$errorinfo'         then ':NSIException'

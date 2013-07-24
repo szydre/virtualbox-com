@@ -3,18 +3,19 @@ require 'getoptlong'
 
 module VirtualBox
     module COM
-        WSTRING = 'wstring_t'
-        BOOL    = 'bool_t'
-        OCTET   = 'char'
-        PTR     = 'void *'
-        INT8    = 'int8_t'
-        INT16   = 'int16_t'
-        INT32   = 'int32_t'
-        INT64   = 'int64_t'
-        UINT8   = 'uint8_t'
-        UINT16  = 'uint16_t'
-        UINT32  = 'uint32_t'
-        UINT64  = 'uint64_t'
+        UUID    = 'uuid'
+        WSTRING = 'wstring'
+        BOOL    = 'bool'
+        OCTET   = 'octet'
+        PTR     = 'ptr'
+        INT8    = 'int8'
+        INT16   = 'int16'
+        INT32   = 'int32'
+        INT64   = 'int64'
+        UINT8   = 'uint8'
+        UINT16  = 'uint16'
+        UINT32  = 'uint32'
+        UINT64  = 'uint64'
         
         module Model
             def self.get(name)
