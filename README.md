@@ -80,3 +80,4 @@ its release of [virtualbox](https://github.com/mitchellh/virtualbox).
 
 These folks went above and beyond with contributions to the virtualbox gem, and
 for that, I have to say "thanks!"
+* INSA-Lyon
