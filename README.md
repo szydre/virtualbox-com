@@ -6,13 +6,8 @@ VirtualBox from ruby code! Create, destroy, start, stop, suspend, and
 resume virtual machines.  Also list virtual machines, list hard
 drives, network devices, etc.
 
-This is a simplified version (focusing on the VirtualBox API) of the 
-unmaintained [virtualbox](https://github.com/mitchellh/virtualbox) gem
-by [Mitchell Hashimoto](https://github.com/mitchellh) from which
-part of this code belongs.
-
 If you need a high level API take a look at
-[ruby-virtualbox](https://github.com/sdalu/ruby-virtualbox) which 
+[virtualbox-ruby](https://github.com/sdalu/virtualbox-ruby) which 
 rely on this gem but provide a more rubyish interface.
 
 
@@ -25,9 +20,8 @@ install the gem:
     sudo gem install virtualbox-com
 
 The gem uses the native COM interface which VirtualBox provides to
-communicate with it. The gem uses Ruby-FFI to talk to the VirtualBox 
-dynamic library, and all the mapping as been generated from 
-the `VirtualBox.xidl`.
+communicate with it. The gem talk to the VirtualBox dynamic library,
+and all the mapping as been generated from the `VirtualBox.xidl`.
 
 No configuration should be necessary to use this gem, but if
 the dynamic library is not found, you can set the environment
@@ -81,9 +75,8 @@ you're good to go!
 
 ## Special Thanks
 
+First thanks goes to [Mitchell Hashimoto](https://github.com/mitchellh) for 
+its release of [virtualbox](https://github.com/mitchellh/virtualbox).
+
 These folks went above and beyond with contributions to the virtualbox gem, and
 for that, I have to say "thanks!"
-
-* [Mitchell Hashimoto](https://github.com/mitchellh), 
-  [Kieran Pilkington](https://github.com/KieranP),
-  [Aleksey Palazhchenko](https://github.com/AlekSi)
