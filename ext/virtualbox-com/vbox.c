@@ -80,6 +80,7 @@ static ID _value;
 static ID _const_get;
 static ID _new;
 static ID _call;
+static ID _empty_q;
 
 static rb_encoding * _UTF8;
 
@@ -121,8 +122,11 @@ static VALUE uuid_parser_calling(VALUE arg) {
 
 static VALUE to_uuid(VALUE val) {
     int state = 0;
-
     StringValue(val);
+
+    if (rb_funcall(val, _empty_q, 0) == Qtrue)
+	return Qnil;
+
     if (oUUIDparser != Qnil && oUUIDparser != Qundef) {
 	val = rb_protect(uuid_parser_calling, val, &state);
 	if (state) {
@@ -167,7 +171,7 @@ static VALUE iid__to_s(VALUE self) {
 	     iid->m3[4], iid->m3[5], iid->m3[6], iid->m3[7]);
     return rb_str_new(str, IID_STR_MAX);
 }
-static void iid__to_raw(VALUE self) {
+static VALUE iid__to_raw(VALUE self) {
     iid_t *iid = DATA_PTR(self);
     return rb_str_new((char *)iid, sizeof(iid_t));
 }
@@ -868,6 +872,7 @@ void RUBY_VBOX_INIT(void) {
     _const_get  = rb_intern("const_get");
     _new	= rb_intern("new");
     _call       = rb_intern("call");
+    _empty_q	= rb_intern("empty?");
 
     p15         = rb_funcall(oTwo, _pow,   1, INT2FIX(15));
     p16         = rb_funcall(oTwo, _pow,   1, INT2FIX(16));
