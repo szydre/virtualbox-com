@@ -76,7 +76,8 @@ you're good to go!
 ## Special Thanks
 
 First thanks goes to [Mitchell Hashimoto](https://github.com/mitchellh) for 
-its release of [virtualbox](https://github.com/mitchellh/virtualbox).
+its release of the first ruby binding to [virtualbox](https://github.com/mitchellh/virtualbox) 
+from which part of this code is inspired.
 
 These folks went above and beyond with contributions to the virtualbox gem, and
 for that, I have to say "thanks!"
