@@ -110,10 +110,33 @@ class EventSource < NSISupports
         :on_drag_and_drop_mode_changed    => :DragAndDropModeChangedEvent,
     }
 
-    def get_casted_event(*args)
-        if e = get_event(*args)
-            (model = MODEL_MAP[e.type]) ? e.cast(model) : e
+
+
+    old_get_event = instance_method(:get_event)
+    define_method(:get_event) do |listener, timeout, enhanced = true|
+        if evt = old_get_event.bind(self).call(listener, timeout)
+            event_inject_processed(evt, listener) if enhanced
         end
+        evt
+    end
+
+    def get_casted_event(listener, timeout, enhanced = true)
+        if evt = get_event(listener, timeout, false)
+            if model = MODEL_MAP[evt.type]
+                evt = evt.cast(model)
+            end
+            event_inject_processed(evt, listener) if enhanced
+        end
+        evt
+    end
+
+    private
+    def event_inject_processed(evt, listener)
+        source  = self
+        (class << evt ;self; end).send(:define_method, 'processed') do 
+            source.event_processed(listener, evt) if evt.waitable 
+        end
+        evt
     end
 end
 
