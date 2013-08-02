@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/virtualbox-com.png)](http://badge.fury.io/rb/virtualbox-com)
+
 # VirtualBox-Com Ruby Gem
 
 The `virtualbox-COM` ruby gem is a library which focus on the
