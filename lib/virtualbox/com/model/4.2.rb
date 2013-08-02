@@ -28,7 +28,37 @@ class Machine < NSISupports
     end
 end
 
+class VRDEServer < NSISupports
+    VNC_PROPERTY_NICKNAME = {
+        'TCP/Ports'   		=> :port,
+        'TCP/Address' 		=> :address,
+        'VideoChannel/Quality'	=> :quality,
+        'VNCPassword'		=> :password,
+    }.freeze
+    VNC_NICKNAME_PROPERTY = VNC_PROPERTY_NICKNAME.invert.freeze
 
+    def property_supported?(prop)
+        !property_nickname(prop).nil?
+    end
+    def property_nickname(prop)
+        @property_nickname ||= self.class
+            .const_get("#{self.vrde_ext_pack.upcase}_PROPERTY_NICKNAME", false)
+        @property_nickname[prop]
+    rescue NameError
+        raise "unsupported VRDE extension pack (#{self.vrde_ext_pack.upcase})"
+    end
+
+    def nickname_supported?(nick)
+        !nickname_property(nick).nil?
+    end
+    def nickname_property(nick)
+        @nickname_property ||= self.class
+            .const_get("#{self.vrde_ext_pack.upcase}_NICKNAME_PROPERTY", false)
+        @nickname_property[nick]
+    rescue NameError
+        raise "unsupported VRDE extension pack (#{self.vrde_ext_pack.upcase})"
+    end
+end
 
 class Progress < NSISupports
     # This method blocks the execution while the operations represented
